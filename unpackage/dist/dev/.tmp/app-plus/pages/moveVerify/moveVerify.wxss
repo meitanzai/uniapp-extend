@@ -1,0 +1,15 @@
+
+button{
+	margin: 50rpx;
+	color:#fff;
+}
+button:after{
+	display: none;
+}
+.copy{
+	text-align: center;
+	font-size: 28rpx;
+	color: #999;
+	line-height: 48rpx;
+}
+

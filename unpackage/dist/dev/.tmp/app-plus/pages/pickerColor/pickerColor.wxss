@@ -1,0 +1,9 @@
+
+button{
+	margin: 50rpx;
+	color:#fff;
+}
+button:after{
+	display: none;
+}
+

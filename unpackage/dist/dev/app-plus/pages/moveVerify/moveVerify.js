@@ -1,0 +1,2 @@
+setCssToHead(["wx-button{ margin: ",[0,50],"; color:#fff; }\nwx-button:after{ display: none; }\n.",[1],"copy{ text-align: center; font-size: ",[0,28],"; color: #999; line-height: ",[0,48],"; }\n",],undefined,{path:"./pages/moveVerify/moveVerify.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/moveVerify/moveVerify.wxml') } }));

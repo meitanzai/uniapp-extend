@@ -1,0 +1,37 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {}
+		}
+	    ,{
+            "path" : "pages/pickerColor/pickerColor",
+            "style" : {}
+        },
+        {
+            "path" : "pages/moveVerify/moveVerify",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/photoList/photoList",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/globalJs/globalJs",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/idiom/idiom",
+            "style" : {
+				"navigationBarTitleText": "看图猜成语",
+				"navigationBarBackgroundColor":"#857ffc"
+			}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "UNI-APP 河浪插件分享",
+		"navigationBarBackgroundColor": "#42b983",
+		"backgroundColor": "#f3f3f3"
+	}
+}

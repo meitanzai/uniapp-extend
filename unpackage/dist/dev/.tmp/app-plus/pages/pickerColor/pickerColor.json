@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "picker-color": "/components/helang-pickerColor/helang-pickerColor"
+  }
+}
