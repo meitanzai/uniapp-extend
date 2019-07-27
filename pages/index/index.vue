@@ -24,6 +24,10 @@
 						"url":"/pages/moveVerify/moveVerify"
 					},
 					{
+						"txt":"图片列表模板",
+						"url":"/pages/photoList/photoList"
+					},
+					{
 						"txt":"全局方法",
 						"url":"/pages/globalJs/globalJs"
 					}
