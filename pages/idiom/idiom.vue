@@ -83,9 +83,9 @@
 				}
 				
 				let info=this.list[this.passIndex][1];
+				/* 随机排序待选项 */
 				info=info.split("").sort(()=>{
-					/* 随机打乱 */
-					return Math.random()>.5 ? -1 : 1;
+					return Math.random() > 0.5 ? -1 : 1;
 				});
 				
 				this.selected=selectedArr;
@@ -108,19 +108,17 @@
 			picker(e){
 				let index=Number(e.currentTarget.dataset.index);
 				if(this.selectList[index]){
-					for(let i=0;i<this.selected.length;i++){
-						if(!this.selected[i].txt){
-							this.$set(this.selected,i,{
-								txt:this.selectList[index],
-								index
-							});
-							this.$set(this.selectList,index,'');
-							this.$nextTick(()=>{
-								this.verify();
-							});
-							break;
-						}
-					}
+					let i=this.selected.findIndex((item,j)=>{
+						return !this.selected[j].txt;
+					})
+					this.$set(this.selected,i,{
+						txt:this.selectList[index],
+						index
+					});
+					this.$set(this.selectList,index,'');
+					this.$nextTick(()=>{
+						this.verify();
+					});
 				}
 			},
 			/* 答案校验 */
@@ -142,13 +140,9 @@
 			/* 查找错误位置 */
 			findIndex(){
 				let result=this.list[this.passIndex][2];
-				let index=-1;
-				for(let i=0;i<this.selected.length;i++){
-					if(this.selected[i].txt!=result.charAt(i)){
-						index=i;
-						break;
-					}
-				}
+				let index=this.selected.findIndex((item,i)=>{
+					return this.selected[i].txt!=result.charAt(i);
+				});
 				return index;
 			},
 			/* 重新选择 */
@@ -199,6 +193,7 @@
 				if(this.selected[errIndex].index>=0){
 					this.$set(this.selectList,this.selected[errIndex].index,this.selected[errIndex].txt);
 				}
+				
 				this.$set(this.selected,errIndex,{
 					txt:this.selectList[selectIndex],
 					index:selectIndex
