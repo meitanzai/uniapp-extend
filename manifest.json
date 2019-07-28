@@ -74,6 +74,7 @@
         "router" : {
             "mode" : "hash"
         },
-        "title" : "uniapp-extend"
+        "title" : "uniapp-extend",
+        "domain" : "http://mydarling.gitee.io/uniapp-extend"
     }
 }
