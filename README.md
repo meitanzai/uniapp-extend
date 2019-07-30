@@ -3,6 +3,9 @@
 #### 介绍
 uni-app 插件 / 模板分享
 
+在线预览：[https://mydarling.gitee.io/uniapp-extend](https://mydarling.gitee.io/uniapp-extend "点我进入")
+
+
 #### 功能清单
 * 看图猜成语
 * 颜色选择器
