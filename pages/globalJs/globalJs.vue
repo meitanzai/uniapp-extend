@@ -1,25 +1,25 @@
 <template>
 	<view class="container">
 		<view>
-			<button type="primary" @tap="showToast">显示提示框</button>
+			<button type="default" @tap="showToast">显示提示框</button>
 		</view>
 		<view>
-			<button type="primary" @tap="showLoad">显示加载</button>
+			<button type="default" @tap="showLoad">显示加载</button>
 		</view>
 		<view>
-			<button type="primary" @tap="isEmail">邮箱格式，正则校验</button>
+			<button type="default" @tap="isEmail">邮箱格式，正则校验</button>
 		</view>
 		<view>
-			<button type="primary" @tap="getData" data-name="helang" data-age="24">获取自定义属性值</button>
+			<button type="default" @tap="getData" data-name="helang" data-age="24">获取自定义属性值</button>
 		</view>
 		<view id="helang-el" @tap="getRect">
-			<button type="primary">获取尺寸和位置</button>
+			<button type="default">获取尺寸和位置</button>
 		</view>
 		<view>
-			<button type="primary" @tap="request">发送请求</button>
+			<button type="default" @tap="request">发送请求</button>
 		</view>
 		<view>
-			<button type="primary" @tap="upload">上传文件</button>
+			<button type="default" @tap="upload">上传文件</button>
 		</view>
 	</view>
 </template>
@@ -39,6 +39,10 @@
 			showLoad(){
 				/* 默认提示 “加载中” */
 				this.iGlobal.showLoading();
+				
+				setTimeout(function(){
+					uni.hideLoading();
+				},3000);
 			},
 			showToast(){
 				/* 默认提示 无图标的信息 */
