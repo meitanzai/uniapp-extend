@@ -76,6 +76,7 @@
             "base" : "/uniapp-extend/"
         },
         "title" : "uniapp-extend",
-        "domain" : "https://mydarling.gitee.io/uniapp-extend"
+        "domain" : "https://mydarling.gitee.io/uniapp-extend",
+        "template" : "template.h5.html"
     }
 }
