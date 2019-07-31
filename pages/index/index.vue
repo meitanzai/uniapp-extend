@@ -1,35 +1,58 @@
 <template>
 	<view class="container">
-		<navigator v-for="(item,index) in linkList" :key="index" :url="item.url" hover-class="none">
-			<button type="primary">{{item.txt}}</button>
-        </navigator>
+		<uni-card  v-for="(item,index) in linkList" :key="index" :title="item.name">
+			<view>
+				<navigator v-for="(item2,index2) in item.list" :key="index2" :url="item2.url" hover-class="none">
+                    <button type="default" size="mini">{{item2.name}}</button>
+                </navigator>
+			</view>
+		</uni-card>
+		
 	</view>
 </template>
 
 <script>
+	import uniCard from "@/components/uni-card/uni-card"
+
 	export default {
+		components: {uniCard},
 		data() {
 			return {
 				linkList:[
 					{
-						"txt":"猜成语",
-						"url":"/pages/idiom/idiom"
+						"name":"通用组件",
+						"list":[
+							{
+								"name":"滑动验证",
+								"url":"/pages/moveVerify/moveVerify"
+							},
+							{
+								"name":"颜色选择",
+								"url":"/pages/pickerColor/pickerColor"
+							},
+						]
 					},
 					{
-						"txt":"颜色选择",
-						"url":"/pages/pickerColor/pickerColor"
+						"name":"vue 页面模板",
+						"list":[
+							{
+								"name":"猜成语",
+								"url":"/pages/idiom/idiom"
+							},
+							{
+								"name":"图片列表模板",
+								"url":"/pages/photoList/photoList"
+							}
+						]
 					},
 					{
-						"txt":"滑动验证",
-						"url":"/pages/moveVerify/moveVerify"
-					},
-					{
-						"txt":"图片列表模板",
-						"url":"/pages/photoList/photoList"
-					},
-					{
-						"txt":"全局方法",
-						"url":"/pages/globalJs/globalJs"
+						"name":"通用 SDK",
+						"list":[
+							{
+								"name":"全局方法",
+								"url":"/pages/globalJs/globalJs"
+							}
+						]
 					}
 				]
 			}
@@ -45,9 +68,18 @@
 
 <style lang="scss">
 	.container{
-		padding: 50upx;
+		padding: 50upx 30upx;
 		
 		navigator{
+			display: inline-block;
+			margin: 0 20upx 20upx 0;
+			
+			button{
+				display: block;
+			}
+		}
+		
+		.uni-card{
 			margin-bottom: 30upx;
 		}
 	}
