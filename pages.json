@@ -27,6 +27,10 @@
 				"navigationBarBackgroundColor":"#857ffc"
 			}
         }
+        ,{
+            "path" : "pages/asyncSwitch/asyncSwitch",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

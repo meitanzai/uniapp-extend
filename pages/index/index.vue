@@ -30,6 +30,10 @@
 								"name":"颜色选择",
 								"url":"/pages/pickerColor/pickerColor"
 							},
+							{
+								"name":"异步switch",
+								"url":"/pages/asyncSwitch/asyncSwitch"
+							},
 						]
 					},
 					{
