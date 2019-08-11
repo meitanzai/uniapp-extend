@@ -1,7 +1,7 @@
-### uniapp-extend
+## uniapp-extend
 
 #### 介绍
-##### uni-app 插件 / 模板 / SDK 分享
+##### uni-app 组件 / 模板 / SDK 分享
 
 在线预览：[https://mydarling.gitee.io/uniapp-extend](https://mydarling.gitee.io/uniapp-extend "H5版在线体验")
 
@@ -14,7 +14,7 @@
 * 拖动滑块验证
 * 异步switch
 
-##### vue页面模板
+##### 页面模板
 * 看图猜成语
 * 图片列表模板
 * 仿微信列表长按弹窗菜单
