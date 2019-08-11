@@ -24,17 +24,19 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.container {
-  padding: 50rpx 30rpx;
+.async-switch.data-v-70a1c9f6 {
+  display: inline-block;
+  position: relative;
 }
-.container navigator {
-    display: inline-block;
-    margin: 0 20rpx 20rpx 0;
+.async-switch > switch.data-v-70a1c9f6 {
+    margin: 0;
 }
-.container navigator button {
-      display: block;
-}
-.container .uni-card {
-    margin-bottom: 30rpx;
+.async-switch > button.data-v-70a1c9f6 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
 }
 

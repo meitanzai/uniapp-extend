@@ -46,6 +46,10 @@
 							{
 								"name":"图片列表模板",
 								"url":"/pages/photoList/photoList"
+							},
+							{
+								"name":"仿微信列表长按弹出菜单",
+								"url":"/pages/weChat/weChat"
 							}
 						]
 					},

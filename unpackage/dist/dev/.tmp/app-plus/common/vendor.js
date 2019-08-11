@@ -132,14 +132,14 @@ eval("//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset
 /***/ }),
 
 /***/ 44:
-/*!*****************************************************************************************!*\
-  !*** E:/uni-app/uniapp-extend/main.js?{"page":"pages%2FglobalJs_demo%2FglobalJs_demo"} ***!
-  \*****************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** E:/uni-app/uniapp-extend/main.js?{"page":"pages%2FglobalJs%2FglobalJs"} ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);\n\nvar _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 3));\nvar _globalJs_demo = _interopRequireDefault(__webpack_require__(/*! ./pages/globalJs_demo/globalJs_demo.vue */ 45));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}\ncreatePage(_globalJs_demo.default);\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-app-plus/dist/index.js */ 1)[\"createPage\"]))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbbnVsbF0sIm5hbWVzIjpbImNyZWF0ZVBhZ2UiLCJQYWdlIl0sIm1hcHBpbmdzIjoia0RBQUE7O0FBRUE7QUFDQSxvSDtBQUNBQSxVQUFVLENBQUNDLHNCQUFELENBQVYsQyIsImZpbGUiOiI0NC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAndW5pLXBhZ2VzJztcblxuaW1wb3J0IFZ1ZSBmcm9tICd2dWUnICAgICAgICAgICAgXG5pbXBvcnQgUGFnZSBmcm9tICcuL3BhZ2VzL2dsb2JhbEpzX2RlbW8vZ2xvYmFsSnNfZGVtby52dWUnXG5jcmVhdGVQYWdlKFBhZ2UpIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///44\n");
+eval("/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);\n\nvar _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 3));\nvar _globalJs = _interopRequireDefault(__webpack_require__(/*! ./pages/globalJs/globalJs.vue */ 45));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}\ncreatePage(_globalJs.default);\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-app-plus/dist/index.js */ 1)[\"createPage\"]))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbbnVsbF0sIm5hbWVzIjpbImNyZWF0ZVBhZ2UiLCJQYWdlIl0sIm1hcHBpbmdzIjoia0RBQUE7O0FBRUE7QUFDQSxxRztBQUNBQSxVQUFVLENBQUNDLGlCQUFELENBQVYsQyIsImZpbGUiOiI0NC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAndW5pLXBhZ2VzJztcblxuaW1wb3J0IFZ1ZSBmcm9tICd2dWUnICAgICAgICAgICAgXG5pbXBvcnQgUGFnZSBmcm9tICcuL3BhZ2VzL2dsb2JhbEpzL2dsb2JhbEpzLnZ1ZSdcbmNyZWF0ZVBhZ2UoUGFnZSkiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///44\n");
 
 /***/ }),
 
@@ -164,6 +164,30 @@ eval("/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! 
 
 "use strict";
 eval("Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0;var dataList = [\n['/static/images/008.jpg', '一见锺情射箭爱字中穿赞脸河浪创', '一见锺情', '喻男女双方第一次见面便互相喜爱。'],\n['/static/images/001.jpg', '一刀两断文字书写墨水难行原创作', '一刀两断', '比喻断绝关系。形容行事乾脆爽快。'],\n['/static/images/002.jpg', '一日千里走路行步阳山示炸品分享', '一日千里', '形容良马跑得很快。比喻进步神速或事业发展得很快。'],\n['/static/images/004.jpg', '一目了然眼睛看视文字平洗转载好', '一目了然', '看一眼就完全清楚明白。'],\n['/static/images/010.jpg', '一刻千金头转向嚣浮轻巧鹰欢迎用', '一刻千金', '一刻时光，价值千金。形容时间非常宝贵。']];var _default =\n\n{\n  dataList: dataList };exports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvaWRpb20vZGF0YS5qcyJdLCJuYW1lcyI6WyJkYXRhTGlzdCJdLCJtYXBwaW5ncyI6InVGQUFBLElBQUlBLFFBQVEsR0FBQztBQUNaLENBQUMsd0JBQUQsRUFBMEIsaUJBQTFCLEVBQTRDLE1BQTVDLEVBQW1ELGtCQUFuRCxDQURZO0FBRVosQ0FBQyx3QkFBRCxFQUEwQixpQkFBMUIsRUFBNEMsTUFBNUMsRUFBbUQsa0JBQW5ELENBRlk7QUFHVCxDQUFDLHdCQUFELEVBQTBCLGlCQUExQixFQUE0QyxNQUE1QyxFQUFtRCwwQkFBbkQsQ0FIUztBQUlULENBQUMsd0JBQUQsRUFBMEIsaUJBQTFCLEVBQTRDLE1BQTVDLEVBQW1ELGFBQW5ELENBSlM7QUFLVCxDQUFDLHdCQUFELEVBQTBCLGlCQUExQixFQUE0QyxNQUE1QyxFQUFtRCxxQkFBbkQsQ0FMUyxDQUFiLEM7O0FBT2U7QUFDZEEsVUFBUSxFQUFSQSxRQURjLEUiLCJmaWxlIjoiNTguanMiLCJzb3VyY2VzQ29udGVudCI6WyJsZXQgZGF0YUxpc3Q9W1xyXG5cdFsnL3N0YXRpYy9pbWFnZXMvMDA4LmpwZycsJ+S4gOingemUuuaDheWwhOeureeIseWtl+S4reepv+i1nuiEuOays+a1quWImycsJ+S4gOingemUuuaDhScsJ+WWu+eUt+Wls+WPjOaWueesrOS4gOasoeingemdouS+v+S6kuebuOWWnOeIseOAgiddLFxyXG5cdFsnL3N0YXRpYy9pbWFnZXMvMDAxLmpwZycsJ+S4gOWIgOS4pOaWreaWh+Wtl+S5puWGmeWiqOawtOmavuihjOWOn+WIm+S9nCcsJ+S4gOWIgOS4pOaWrScsJ+avlOWWu+aWree7neWFs+ezu+OAguW9ouWuueihjOS6i+S5vuiEhueIveW/q+OAgiddLFxyXG4gICAgWycvc3RhdGljL2ltYWdlcy8wMDIuanBnJywn5LiA5pel5Y2D6YeM6LWw6Lev6KGM5q2l6Ziz5bGx56S654K45ZOB5YiG5LqrJywn5LiA5pel5Y2D6YeMJywn5b2i5a656Imv6ams6LeR5b6X5b6I5b+r44CC5q+U5Za76L+b5q2l56We6YCf5oiW5LqL5Lia5Y+R5bGV5b6X5b6I5b+r44CCJ10sXHJcbiAgICBbJy9zdGF0aWMvaW1hZ2VzLzAwNC5qcGcnLCfkuIDnm67kuobnhLbnnLznnZvnnIvop4bmloflrZflubPmtJfovazovb3lpb0nLCfkuIDnm67kuobnhLYnLCfnnIvkuIDnnLzlsLHlrozlhajmuIXmpZrmmI7nmb3jgIInXSxcclxuICAgIFsnL3N0YXRpYy9pbWFnZXMvMDEwLmpwZycsJ+S4gOWIu+WNg+mHkeWktOi9rOWQkeWao+a1rui9u+W3p+m5sOasoui/jueUqCcsJ+S4gOWIu+WNg+mHkScsJ+S4gOWIu+aXtuWFie+8jOS7t+WAvOWNg+mHkeOAguW9ouWuueaXtumXtOmdnuW4uOWunei0teOAgiddXHJcbl07XHJcbmV4cG9ydCBkZWZhdWx0IHtcclxuXHRkYXRhTGlzdFxyXG59Il0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///58\n");
+
+/***/ }),
+
+/***/ 61:
+/*!*************************************************************************************!*\
+  !*** E:/uni-app/uniapp-extend/main.js?{"page":"pages%2FasyncSwitch%2FasyncSwitch"} ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);\n\nvar _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 3));\nvar _asyncSwitch = _interopRequireDefault(__webpack_require__(/*! ./pages/asyncSwitch/asyncSwitch.vue */ 62));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}\ncreatePage(_asyncSwitch.default);\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-app-plus/dist/index.js */ 1)[\"createPage\"]))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbbnVsbF0sIm5hbWVzIjpbImNyZWF0ZVBhZ2UiLCJQYWdlIl0sIm1hcHBpbmdzIjoia0RBQUE7O0FBRUE7QUFDQSw4RztBQUNBQSxVQUFVLENBQUNDLG9CQUFELENBQVYsQyIsImZpbGUiOiI2MS5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAndW5pLXBhZ2VzJztcblxuaW1wb3J0IFZ1ZSBmcm9tICd2dWUnICAgICAgICAgICAgXG5pbXBvcnQgUGFnZSBmcm9tICcuL3BhZ2VzL2FzeW5jU3dpdGNoL2FzeW5jU3dpdGNoLnZ1ZSdcbmNyZWF0ZVBhZ2UoUGFnZSkiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///61\n");
+
+/***/ }),
+
+/***/ 69:
+/*!***************************************************************************!*\
+  !*** E:/uni-app/uniapp-extend/main.js?{"page":"pages%2FweChat%2FweChat"} ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);\n\nvar _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 3));\nvar _weChat = _interopRequireDefault(__webpack_require__(/*! ./pages/weChat/weChat.vue */ 70));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}\ncreatePage(_weChat.default);\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-app-plus/dist/index.js */ 1)[\"createPage\"]))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbbnVsbF0sIm5hbWVzIjpbImNyZWF0ZVBhZ2UiLCJQYWdlIl0sIm1hcHBpbmdzIjoia0RBQUE7O0FBRUE7QUFDQSwrRjtBQUNBQSxVQUFVLENBQUNDLGVBQUQsQ0FBVixDIiwiZmlsZSI6IjY5LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICd1bmktcGFnZXMnO1xuXG5pbXBvcnQgVnVlIGZyb20gJ3Z1ZScgICAgICAgICAgICBcbmltcG9ydCBQYWdlIGZyb20gJy4vcGFnZXMvd2VDaGF0L3dlQ2hhdC52dWUnXG5jcmVhdGVQYWdlKFBhZ2UpIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///69\n");
 
 /***/ })
 

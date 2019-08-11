@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "async-switch": "/components/helang-asyncSwitch/helang-asyncSwitch"
+  }
+}

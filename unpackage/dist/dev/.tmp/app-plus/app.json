@@ -4,8 +4,10 @@
     "pages/pickerColor/pickerColor",
     "pages/moveVerify/moveVerify",
     "pages/photoList/photoList",
-    "pages/globalJs_demo/globalJs_demo",
-    "pages/idiom/idiom"
+    "pages/globalJs/globalJs",
+    "pages/idiom/idiom",
+    "pages/asyncSwitch/asyncSwitch",
+    "pages/weChat/weChat"
   ],
   "window": {
     "navigationBarTextStyle": "white",
