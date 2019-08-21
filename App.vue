@@ -1,4 +1,5 @@
 <script>
+	import helangSocket from 'lib/socket.js'
 	export default {
 		onLaunch: function() {
 			// #ifdef H5
@@ -8,6 +9,7 @@
 			// #ifndef H5
 			console.log("河浪原创作品，QQ:1846492969");
 			// #endif
+			helangSocket.on();
 		},
 		onShow: function() {
 			

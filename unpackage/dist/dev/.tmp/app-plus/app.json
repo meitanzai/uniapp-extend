@@ -7,7 +7,9 @@
     "pages/globalJs/globalJs",
     "pages/idiom/idiom",
     "pages/asyncSwitch/asyncSwitch",
-    "pages/weChat/weChat"
+    "pages/weChat/weChat",
+    "pages/webSocket/webSocket",
+    "pages/goodsList/goodsList"
   ],
   "window": {
     "navigationBarTextStyle": "white",

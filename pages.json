@@ -35,6 +35,16 @@
             "path" : "pages/weChat/weChat",
             "style" : {}
         }
+        ,{
+            "path" : "pages/webSocket/webSocket",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/goodsList/goodsList",
+            "style" : {
+				"navigationBarTitleText": "商品双向联动列表"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

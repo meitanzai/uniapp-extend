@@ -1,0 +1,2 @@
+setCssToHead(["@charset \x22UTF-8\x22;\n.",[1],"button { padding: ",[0,20],"; }\n.",[1],"button wx-button { margin: 0 ",[0,10],"; }\n.",[1],"item { padding: ",[0,20],"; }\n",],undefined,{path:"./pages/webSocket/webSocket.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/webSocket/webSocket.wxml') } }));

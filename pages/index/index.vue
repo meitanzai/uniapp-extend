@@ -7,7 +7,6 @@
                 </navigator>
 			</view>
 		</uni-card>
-		
 	</view>
 </template>
 
@@ -50,6 +49,10 @@
 							{
 								"name":"仿微信列表长按弹出菜单",
 								"url":"/pages/weChat/weChat"
+							},
+							{
+								"name":"商品双向联动列表",
+								"url":"/pages/goodsList/goodsList"
 							}
 						]
 					},
@@ -59,6 +62,10 @@
 							{
 								"name":"全局方法",
 								"url":"/pages/globalJs/globalJs"
+							},
+							{
+								"name":"webSocket",
+								"url":"/pages/webSocket/webSocket"
 							}
 						]
 					}
