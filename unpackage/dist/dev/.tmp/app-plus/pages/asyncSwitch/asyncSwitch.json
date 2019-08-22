@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "异步switch",
   "usingComponents": {
     "async-switch": "/components/helang-asyncSwitch/helang-asyncSwitch"
   }

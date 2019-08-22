@@ -6,19 +6,27 @@
 		}
 	    ,{
             "path" : "pages/pickerColor/pickerColor",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "颜色选择"
+			}
         },
         {
             "path" : "pages/moveVerify/moveVerify",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "滑动验证"
+			}
         }
         ,{
             "path" : "pages/photoList/photoList",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "有入场动画的图片列表"
+			}
         }
         ,{
             "path" : "pages/globalJs/globalJs",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "项目全局通用方法"
+			}
         }
         ,{
             "path" : "pages/idiom/idiom",
@@ -29,15 +37,21 @@
         }
         ,{
             "path" : "pages/asyncSwitch/asyncSwitch",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "异步switch"
+			}
         }
         ,{
             "path" : "pages/weChat/weChat",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "仿微信列表长按弹出菜单"
+			}
         }
         ,{
             "path" : "pages/webSocket/webSocket",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "webSocket SDK"
+			}
         }
         ,{
             "path" : "pages/goodsList/goodsList",

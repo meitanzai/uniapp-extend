@@ -39,11 +39,11 @@
 						"name":"页面模板",
 						"list":[
 							{
-								"name":"猜成语",
+								"name":"看图猜成语",
 								"url":"/pages/idiom/idiom"
 							},
 							{
-								"name":"图片列表模板",
+								"name":"有入场动画的图片列表",
 								"url":"/pages/photoList/photoList"
 							},
 							{
@@ -60,7 +60,7 @@
 						"name":"通用 SDK",
 						"list":[
 							{
-								"name":"全局方法",
+								"name":"项目全局通用方法",
 								"url":"/pages/globalJs/globalJs"
 							},
 							{

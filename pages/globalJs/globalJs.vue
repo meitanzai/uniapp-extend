@@ -7,10 +7,10 @@
 			<button type="default" @tap="showLoad">显示加载</button>
 		</view>
 		<view>
-			<button type="default" @tap="isEmail">邮箱格式，正则校验</button>
+			<button type="default" @tap="isEmail">常用正则校验</button>
 		</view>
 		<view>
-			<button type="default" @tap="getData" data-name="helang" data-age="24">获取自定义属性值</button>
+			<button type="default" @tap="getData" data-name="helang" data-age="24">获取自定义属性</button>
 		</view>
 		<view id="helang-el" @tap="getRect">
 			<button type="default">获取尺寸和位置</button>

@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "颜色选择",
   "usingComponents": {
     "picker-color": "/components/helang-pickerColor/helang-pickerColor"
   }
