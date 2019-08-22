@@ -25,7 +25,7 @@
 /* 透明度 */
 /* 文章场景相关 */
 .container {
-  padding: 50rpx 30rpx;
+  padding: 32rpx 0 0 0;
 }
 .container navigator {
     display: inline-block;

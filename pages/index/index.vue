@@ -83,7 +83,7 @@
 
 <style lang="scss">
 	.container{
-		padding: 50upx 30upx;
+		padding: 32upx 0 0 0;
 		
 		navigator{
 			display: inline-block;
