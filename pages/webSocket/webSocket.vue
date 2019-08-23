@@ -19,11 +19,16 @@
 		data() {
 			return {
 				msgList:[],
-				scrollHeight:'500px'
+				scrollHeight:'500px',
+				isData:false
 			}
 		},
 		onLoad(){
-			
+			/* 添加服务器数据接收事件 */
+			helangSocket.data((res)=>{
+				//console.log(`index.vue页面接收到的服务器数据:${res}`);
+				this.msgList.push(res);
+			});
 		},
 		mounted(){
 			this.$nextTick(()=>{
@@ -46,11 +51,6 @@
 		methods: {
 			start(){
 				helangSocket.start();
-				
-				helangSocket.data((res)=>{
-					console.log(`index.vue页面接收到的服务器数据:${res}`);
-					this.msgList.push(res);
-				});
 			},
 			send(){
 				helangSocket.send(`当前时间是${new Date().getTime()}`);
