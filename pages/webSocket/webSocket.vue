@@ -46,6 +46,24 @@
 						this.scrollHeight=`${res.windowHeight-data.height}px`;
 					}).exec();
 				})
+				
+				
+				// #ifdef H5
+				if(!/https/.test(window.location.protocol)){
+					return;
+				}
+				uni.showModal({
+					title:"河浪提醒",
+					content:'因测试接口是ws的原因，请切换地址是http的地址查看功能演示',
+					showCancel:false,
+					confirmText:'立即切换',
+					success:()=>{
+						let url = window.location.href;
+						url = url.replace("https:","http:");
+						window.open(url);
+					}
+				});
+				// #endif
 			});
 		},
 		methods: {
