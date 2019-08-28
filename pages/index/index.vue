@@ -33,6 +33,10 @@
 								"name":"异步switch",
 								"url":"/pages/asyncSwitch/asyncSwitch"
 							},
+							{
+								"name":"自定义复选/单选框",
+								"url":"/pages/checkbox/checkbox"
+							}
 						]
 					},
 					{

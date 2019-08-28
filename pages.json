@@ -59,6 +59,12 @@
 				"navigationBarTitleText": "商品双向联动列表"
 			}
         }
+        ,{
+            "path" : "pages/checkbox/checkbox",
+            "style" : {
+				"navigationBarTitleText": "自定义复选/单选框"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

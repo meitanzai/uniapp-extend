@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "自定义复选/单选框",
+  "usingComponents": {
+    "helang-checkbox": "/components/helang-checkbox/helang-checkbox"
+  }
+}

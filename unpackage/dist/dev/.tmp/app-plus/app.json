@@ -9,7 +9,8 @@
     "pages/asyncSwitch/asyncSwitch",
     "pages/weChat/weChat",
     "pages/webSocket/webSocket",
-    "pages/goodsList/goodsList"
+    "pages/goodsList/goodsList",
+    "pages/checkbox/checkbox"
   ],
   "window": {
     "navigationBarTextStyle": "white",

@@ -102,11 +102,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/uni-card/uni-card":1,"components/helang-pickerColor/helang-pickerColor":1,"components/helang-moveVerify/helang-moveVerify":1,"components/helang-asyncSwitch/helang-asyncSwitch":1};
+/******/ 		var cssChunks = {"components/uni-card/uni-card":1,"components/helang-pickerColor/helang-pickerColor":1,"components/helang-moveVerify/helang-moveVerify":1,"components/helang-asyncSwitch/helang-asyncSwitch":1,"components/helang-checkbox/helang-checkbox":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/uni-card/uni-card":"components/uni-card/uni-card","components/helang-pickerColor/helang-pickerColor":"components/helang-pickerColor/helang-pickerColor","components/helang-moveVerify/helang-moveVerify":"components/helang-moveVerify/helang-moveVerify","components/helang-asyncSwitch/helang-asyncSwitch":"components/helang-asyncSwitch/helang-asyncSwitch"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/uni-card/uni-card":"components/uni-card/uni-card","components/helang-pickerColor/helang-pickerColor":"components/helang-pickerColor/helang-pickerColor","components/helang-moveVerify/helang-moveVerify":"components/helang-moveVerify/helang-moveVerify","components/helang-asyncSwitch/helang-asyncSwitch":"components/helang-asyncSwitch/helang-asyncSwitch","components/helang-checkbox/helang-checkbox":"components/helang-checkbox/helang-checkbox"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {
