@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "指定内容高亮",
+  "usingComponents": {
+    "helang-highlight": "/components/helang-highlight/helang-highlight"
+  }
+}

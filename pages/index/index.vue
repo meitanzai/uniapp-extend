@@ -36,6 +36,10 @@
 							{
 								"name":"自定义复选/单选框",
 								"url":"/pages/checkbox/checkbox"
+							},
+							{
+								"name":"指定内容高亮",
+								"url":"/pages/highlight/highlight"
 							}
 						]
 					},

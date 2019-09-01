@@ -65,6 +65,12 @@
 				"navigationBarTitleText": "自定义复选/单选框"
 			}
         }
+        ,{
+            "path" : "pages/highlight/highlight",
+            "style" : {
+				"navigationBarTitleText": "指定内容高亮"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

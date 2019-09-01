@@ -10,7 +10,8 @@
     "pages/weChat/weChat",
     "pages/webSocket/webSocket",
     "pages/goodsList/goodsList",
-    "pages/checkbox/checkbox"
+    "pages/checkbox/checkbox",
+    "pages/highlight/highlight"
   ],
   "window": {
     "navigationBarTextStyle": "white",
@@ -19,11 +20,12 @@
     "backgroundColor": "#f3f3f3"
   },
   "nvueCompiler": "weex",
+  "renderer": "auto",
   "splashscreen": {
     "alwaysShowBeforeRender": true,
     "autoclose": false
   },
   "appname": "uniapp-extend",
-  "compilerVersion": "2.1.3",
+  "compilerVersion": "2.2.2",
   "usingComponents": {}
 }
