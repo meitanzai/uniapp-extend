@@ -22,11 +22,15 @@
 			};
 		},
 		methods: {
+			/* 切换 */
 			change(e){
 				let i = Number(e.currentTarget.dataset.i);
 				/* 单选框 */
 				if(this.type=='radio'){
 					this.index = i;
+					this.$nextTick(()=>{
+						this.$emit("change",this.get());
+					})
 					return;
 				}
 				/* 复选框 */
@@ -35,19 +39,24 @@
 				}else{
 					this.$set(this.list[i],"checked",true);
 				}
+				this.$nextTick(()=>{
+					this.$emit("change",this.get());
+				})
 			},
-			set(res) {
+			/* 设置值 */
+			set(data) {
 				let [type,index] = ['checkbox',-1];
 				let column = ['','col_1','col_2','col_3']
-				if(res.type == 'radio'){
+				if(data.type == 'radio'){
 					type = 'radio';
-					index = res.index >= 0 ? res.index : -1;
+					index = data.index >= 0 ? data.index : -1;
 				}
-				this.column = (res.column in column) ? column[res.column] : '';
+				this.column = (data.column in column) ? column[data.column] : '';
 				this.type = type;
 				this.index = index;
-				this.list = res.list;
+				this.list = data.list;
 			},
+			/* 获取值 */
 			get(){
 				/* 单选框 */
 				if(this.type=='radio'){
@@ -60,11 +69,40 @@
 				
 				let arr=[];
 				this.list.forEach((item,index)=>{
-					if(item.checked){
+					if(item.checked == true){
 						arr.push(item);
 					}
 				});
 				return arr.length > 0 ? arr : null;
+			},
+			/* 全部选中 */
+			checkAll(){
+				if(this.type=='radio'){
+					return null;
+				}
+				this.list.forEach((item,index)=>{
+					this.$set(this.list[index],"checked",true);
+				})
+			},
+			/* 取消全部选中 */
+			cancelAll(){
+				if(this.type=='radio'){
+					this.index = -1;
+					return null;
+				}
+				this.list.forEach((item,index)=>{
+					this.$set(this.list[index],"checked",false);
+				})
+			},
+			/* 反选全部 */
+			invertAll(){
+				if(this.type=='radio'){
+					this.index = -1;
+					return null;
+				}
+				this.list.forEach((item,index)=>{
+					this.$set(this.list[index],"checked",item.checked ? false : true);
+				})
 			}
 		}
 	}

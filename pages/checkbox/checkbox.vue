@@ -4,9 +4,16 @@
 			<picker @change="bindPickerChange" :value="0" :range="array">
 				<button type="default">{{index >= 0 ? array[index] : '请选择示例类型'}}</button>
             </picker>
-			<button type="default" style="margin-top: 20rpx;" @tap="getData" v-if="index >= 0">获取已选择数据</button>
+			<view v-if="index >= 0" style="margin-top: 20rpx;">
+				<view style="font-size: 28rpx;">操作：</view>
+				<button type="default" size="mini" @tap="getData">获取已选数据</button>
+				<button type="default" size="mini" @tap="check" style="margin-left: 10rpx;">全选</button>
+				<button type="default" size="mini" @tap="invert" style="margin-left: 10rpx;">反选</button>
+				<button type="default" size="mini" @tap="cancel" style="margin-left: 10rpx;">取消</button>
+				<view style="font-size: 28rpx;margin-top: 20rpx;padding-top: 20rpx;border-top: #e5e5e5 solid 1px;">组件演示：</view>
+			</view>
 		</view>
-		<helang-checkbox ref="checkbox"></helang-checkbox>
+		<helang-checkbox ref="checkbox" @change="onChange"></helang-checkbox>
 	</view>
 </template>
 
@@ -70,6 +77,25 @@
 						console.log(data);
 					}
 				});
+			},
+			/* 选项切换事件 */
+			onChange(data){
+				console.log(data);
+			},
+			/* 全选 */
+			check(){
+				this.$refs.checkbox.checkAll();		// 该功能在单选框模式下无效
+				this.getData();
+			},
+			/* 取消全选 */
+			cancel(){
+				this.$refs.checkbox.cancelAll();	// 该功能在单选框模式下为取消当前选中项
+				this.getData();
+			},
+			/* 反选 */
+			invert(){
+				this.$refs.checkbox.invertAll();	// 该功能在单选框模式下为取消当前选中项
+				this.getData();
 			}
 		}
 	}
