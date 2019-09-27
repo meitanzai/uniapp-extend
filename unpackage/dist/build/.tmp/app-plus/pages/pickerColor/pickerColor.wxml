@@ -1,0 +1,1 @@
+<view><view><button data-event-opts="{{[['tap',[['showPickerColorPop',['$event']]]]]}}" style="{{'background-color:'+(buttonColor)+';'}}" bindtap="__e">点我修改颜色</button><picker-color vue-id="1" isShow="{{showPickerColor}}" bottom="{{bottomPickerColor}}" data-event-opts="{{[['^callback',[['getPickerColor']]]]}}" bind:callback="__e" bind:__l="__l"></picker-color></view></view>

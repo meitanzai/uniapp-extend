@@ -71,13 +71,6 @@
 				"navigationBarTitleText": "指定内容高亮"
 			}
         }
-        ,{
-            "path" : "pages/webView/webView",
-            "style" : {
-				"navigationBarTitleText": "H5版本套壳示例",
-				"navigationStyle":"custom"
-			}
-        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

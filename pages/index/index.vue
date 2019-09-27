@@ -7,13 +7,6 @@
                 </navigator>
 			</view>
 		</uni-card>
-		<uni-card>
-			<view>
-				<navigator url="/pages/webView/webView" hover-class="none">
-			        <button type="default" size="mini">H5版本套壳示例</button>
-			    </navigator>
-			</view>
-		</uni-card>
 	</view>
 </template>
 

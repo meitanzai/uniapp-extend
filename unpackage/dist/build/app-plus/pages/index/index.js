@@ -1,0 +1,2 @@
+setCssToHead(["@charset \x22UTF-8\x22;\n.",[1],"container { padding: ",[0,32]," 0 0 0; }\n.",[1],"container wx-navigator { display: inline-block; margin: 0 ",[0,20]," ",[0,20]," 0; }\n.",[1],"container wx-navigator wx-button { display: block; }\n.",[1],"container .",[1],"uni-card { margin-bottom: ",[0,30],"; }\n",],undefined,{path:"./pages/index/index.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/index/index.wxml') } }));

@@ -1,0 +1,2 @@
+setCssToHead(["wx-button{ margin: ",[0,50],"; color:#fff; }\nwx-button:after{ display: none; }\n",],undefined,{path:"./pages/pickerColor/pickerColor.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/pickerColor/pickerColor.wxml') } }));

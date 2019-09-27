@@ -9,7 +9,7 @@
 				@tap="previewPhoto"
 			>
 				<image :src="item.url" mode="aspectFill" lazy-load="true"></image>
-				<view>第 {{item.index}} 张图片</view>
+				<view>第 {{item.index+1}} 张图片</view>
 			</view>
 		</view>
 		<view class="load">{{loadTxt}}</view>
@@ -54,15 +54,9 @@
 					setTimeout(()=>{
 						/* 拼接图片路径字符串 */
 						let joinUrlStr=(num)=>{
-							let n=num;
-							if(n<10){
-								n='00'+n;
-							}else if(n<100){
-								n='0'+n;
-							}
 							return {
-								index:n,
-								url:`http://cued.xunlei.com/demos/publ/img/P_${n}.jpg`
+								index:num,
+								url:`/static/logo.png`
 							}
 						}
 						let list=[];
