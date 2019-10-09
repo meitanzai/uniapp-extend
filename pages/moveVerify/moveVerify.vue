@@ -2,11 +2,11 @@
 	<view>		
 		<view style="padding: 30px 15px;">
 			<move-verify @result='verifyResult'></move-verify>
-			<button :style="{'backgroundColor':(isFlag ? '#7ac23c' : '#e64340')}">校验结果：{{isFlag ? '已' : '未'}}通过</button>
-			<view class="copy">
-				<view>uni-app插件，拖动滑块校验插件</view>
-				<view>helang.love@qq.com</view>
-				<view decode="true">&copy; 2019 河浪原创</view>
+			<view class="result" :class="{ 'is':resultData.flag }">
+				<text>校验结果：</text>
+				<text style="font-weight: bold;">{{resultData.flag ? '已' : '未'}}通过</text>
+				<text>，拖动次数：</text>
+				<text style="font-weight: bold;">{{resultData.count || 0}}</text>
 			</view>
 		</view>
 	</view>
@@ -20,30 +20,30 @@
 		},
 		data() {
 			return {
-				isFlag:false
+				resultData:{}
 			}
 		},
 		methods: {
 			/* 校验成功的回调函数 */
-			verifyResult(){
-				this.isFlag=true;
+			verifyResult(res){
+				console.log(res);
+				this.resultData = res;
 			}
 		}
 	}
 </script>
 	
-<style>
-	button{
-		margin: 50upx;
-		color:#fff;
-	}
-	button:after{
-		display: none;
-	}
-	.copy{
-		text-align: center;
-		font-size: 28upx;
-		color: #999;
-		line-height: 48upx;
+<style lang="scss">
+	.result{
+		border: #e64340 solid 1px;
+		margin: 50rpx 0 0 0;
+		padding: 30rpx;
+		font-size: 36rpx;
+		color: #e64340;
+		
+		&.is{
+			border: #7ac23c solid 1px;
+			color: #7ac23c;
+		}
 	}
 </style>
