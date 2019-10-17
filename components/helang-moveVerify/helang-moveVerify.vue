@@ -21,7 +21,8 @@
 				oldx:0,
 				isOk: false,
 				size: {},
-				count:0
+				count:0,
+				isMove:false
 			};
 		},
 		mounted() {
@@ -45,19 +46,26 @@
 			})
 		},
 		methods: {
+			/* 滑动中 */
 			onMove(e) {
 				this.oldx = e.detail.x;
 			},
+			/* 滑动结束 */
 			onEnd() {
 				if (this.isOk) {
 					return;
 				}
+				
+				if(this.oldx<1){
+					return;
+				}
+				
 				this.count++;
+				this.x = this.oldx;
 				if ((this.oldx + 1) > (this.size.pathway - this.size.track)) {
 					this.isOk = true;
 					this.$emit("result",{flag:true,count:this.count});
 				} else {
-					this.x = this.oldx;
 					this.$nextTick(() => {
 						setTimeout(() => {
 							this.x = 0;
@@ -66,6 +74,13 @@
 					});
 					this.$emit("result",{flag:false,count:this.count});
 				}
+			},
+			/* 重置 */
+			reset(){
+				this.x = 0;
+				this.oldx = 0;
+				this.count = 0;
+				this.isOk = false;
 			}
 		}
 	}
