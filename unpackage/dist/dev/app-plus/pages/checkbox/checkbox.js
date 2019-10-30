@@ -1,2 +1,0 @@
-setCssToHead(["@charset \x22UTF-8\x22;\n.",[1],"box.",[1],"data-v-085eb898 { padding: ",[0,10]," ",[0,20],"; }\n",],undefined,{path:"./pages/checkbox/checkbox.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/checkbox/checkbox.wxml') } }));

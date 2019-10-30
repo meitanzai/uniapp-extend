@@ -1,10 +1,21 @@
 <template>
 	<view class="box">
 		<view style="margin-bottom: 20rpx;">
-			<picker @change="bindPickerChange" :value="0" :range="array">
-				<button type="default">{{index >= 0 ? array[index] : '请选择示例类型'}}</button>
-            </picker>
-			<view v-if="index >= 0" style="margin-top: 20rpx;">
+			<view>
+				<view style="font-size: 28rpx;">选择示例类型：</view>
+				<view>
+					<button 
+						v-for="(item,index) in array"
+						:key="index"
+						:type="pickerIndex == index ? '':'default'" 
+						size="mini" 
+						style="margin-right: 10rpx;"
+						:data-index="index"
+						@tap="selectDemoType"
+					>{{item}}</button>
+				</view>
+			</view>
+			<view v-if="pickerIndex >= 0" style="margin-top: 20rpx;">
 				<view style="font-size: 28rpx;">操作：</view>
 				<button type="default" size="mini" @tap="getData">获取已选数据</button>
 				<button type="default" size="mini" @tap="check" style="margin-left: 10rpx;">全选</button>
@@ -25,8 +36,8 @@
 		},
 		data() {
 			return {
-				index:-1,
-				array:['复选框 - 三栏排序','复选框 - 二栏排序','复选框 - 一栏排序','复选框 - 流式排序','单选框 - 三栏排序'],
+				pickerIndex:-1,
+				array:['复选框 - 三栏排序','复选框 - 流式排序','单选框 - 二栏排序','单选框 - 三栏排序'],
 			}
 		},
 		onLoad(){
@@ -44,26 +55,58 @@
 				}
 				return arr;
 			},
-			/* 选择切换 */
-			bindPickerChange(e){
-				let index = e.detail.value;
-				this.index = index;
+			/* 选择示例类别 */
+			selectDemoType(e){
+				let index = e.currentTarget.dataset.index;
+				index = parseInt(index,10);
 				
-				/* 单选框 */
-				if(index == 4){
+				switch(index){
+					case 0:
+					/* 复选框 三列布局 */
 					this.$refs.checkbox.set({
-						type:'radio',	// 类型：单选框
-						index:2,		// 默认选中的项
-						column:3,		// 分列
+						type:'checkbox',		// 类型：复选框
+						column:3,				// 分列：3
 						list:this.creatorList()	// 列表数据
 					});
-					return;
+					break;
+					case 1:
+					/* 复选框 流式布局 */
+					let list = this.creatorList();
+					/* 
+						给第 1,4,6,7,8,9 项添加默认选中
+						此处仅为提供演示使用，具体使用参数请查看插件文章说明
+					 */
+					list.forEach((v,i)=>{	
+						if(/^[1|4|6|7|8|9]$/.test(i)){
+							list[i].checked = true;
+						}
+					});
+					this.$refs.checkbox.set({
+						type:'checkbox',		// 类型：复选框
+						list:list				// 列表数据
+					});
+					break;
+					case 2:
+					/* 单选框 三列布局 */
+					this.$refs.checkbox.set({
+						type:'radio',			// 类型：单选框
+						index:2,				// 默认选中的项
+						column:2,				// 分列
+						list:this.creatorList()	// 列表数据
+					});
+					break;
+					case 3:
+					/* 单选框 三列布局 */
+					this.$refs.checkbox.set({
+						type:'radio',			// 类型：单选框
+						column:3,				// 分列
+						list:this.creatorList()	// 列表数据
+					});
+					break;
+					default:
+					
 				}
-				this.$refs.checkbox.set({
-					type:'checkbox',	// 类型：复选框
-					column:3-index,		// 分列，有 1、2、3三种方式的平均分列，不传则流式自动
-					list:this.creatorList()		// 列表数据
-				});
+				this.pickerIndex = index;
 			},
 			/* 获取数据 */
 			getData(){

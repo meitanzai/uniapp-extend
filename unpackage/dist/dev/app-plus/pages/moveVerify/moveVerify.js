@@ -1,2 +1,0 @@
-setCssToHead(["@charset \x22UTF-8\x22;\n.",[1],"result { border: #e64340 solid 1px; margin: ",[0,50]," 0 0 0; padding: ",[0,30],"; font-size: ",[0,36],"; color: #e64340; }\n.",[1],"result.",[1],"is { border: #7ac23c solid 1px; color: #7ac23c; }\n",],undefined,{path:"./pages/moveVerify/moveVerify.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/moveVerify/moveVerify.wxml') } }));
