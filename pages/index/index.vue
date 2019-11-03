@@ -68,6 +68,10 @@
 						"name":"通用 SDK",
 						"list":[
 							{
+								"name":"项目全局样式表",
+								"url":"/pages/globalCss/globalCss"
+							},
+							{
 								"name":"项目全局通用方法",
 								"url":"/pages/globalJs/globalJs"
 							},

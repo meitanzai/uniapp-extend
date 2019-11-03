@@ -71,6 +71,12 @@
 				"navigationBarTitleText": "指定内容高亮"
 			}
         }
+        ,{
+            "path" : "pages/globalCss/globalCss",
+            "style" : {
+				"navigationBarTitleText": "项目全局样式表"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

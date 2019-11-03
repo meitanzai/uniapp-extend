@@ -70,7 +70,38 @@
 </script>
 
 <style lang="scss">
-@import "../../lib/helang-flex.css";
+/* 列式弹性盒子 */
+.flex_col {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+/* 行式弹性盒子 */
+.flex_row {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+ 
+/* 弹性盒子弹性容器 */
+.flex_col .flex_grow{width:0;flex-grow: 1;}
+.flex_row .flex_grow{flex-grow: 1;}
+ 
+/* 弹性盒子允许换行 */
+.flex_col.flex_wrap{flex-wrap: wrap;}
+ 
+/* 弹性盒子居中对齐 */
+.flex_col.flex_center,.flex_row.flex_center{justify-content: center;}
+ 
+/* 列式弹性盒子两端对齐 */
+.flex_col.flex_space{justify-content: space-between;}
+
 .box{
 	font-size: 28rpx;
 	padding: 20rpx;
