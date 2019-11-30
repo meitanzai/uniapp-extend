@@ -1,14 +1,16 @@
 <template>
-	<view class="pathway" @touchend="onEnd" id="pathway">
+	<view class="pathway on-pathway" @touchend="onEnd">
 		<view class="tips">
 			<text v-if="isOk" style="color: #FFFFFF;">验证通过</text>
 			<text v-else>拖动滑块验证</text>
 		</view>
 		<view class="track" :style="{'transform':'translateX('+oldx+'px)'}"></view>
 		<movable-area :animation="true">
-			<movable-view id="track" :class="{'active':isOk}" :x="x" direction="horizontal" @change="onMove"></movable-view>
+			<movable-view class="on-track" :class="{'active':isOk}" 
+				:x="x" direction="horizontal" @change="onMove"
+				:disabled="isOk"
+			></movable-view>
 		</movable-area>
-		<view class="disabled" v-if="isOk"></view>
 	</view>
 </template>
 
@@ -37,9 +39,9 @@
 				});
 			}
 			this.$nextTick(() => {
-				getSize("#pathway").then((res1) => {
+				getSize(".on-pathway").then((res1) => {
 					this.size.pathway = res1;
-					getSize("#track").then((res2) => {
+					getSize(".on-track").then((res2) => {
 						this.size.track = res2;
 					});
 				})
@@ -52,11 +54,7 @@
 			},
 			/* 滑动结束 */
 			onEnd() {
-				if (this.isOk) {
-					return;
-				}
-				
-				if(this.oldx<1){
+				if (this.isOk || this.oldx<1) {
 					return;
 				}
 				

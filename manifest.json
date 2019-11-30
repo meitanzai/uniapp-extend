@@ -77,6 +77,9 @@
         },
         "title" : "uniapp-extend",
         "domain" : "https://mydarling.gitee.io/uniapp-extend",
-        "template" : "template.h5.html"
+        "template" : "template.h5.html",
+        "devServer" : {
+            "https" : false
+        }
     }
 }

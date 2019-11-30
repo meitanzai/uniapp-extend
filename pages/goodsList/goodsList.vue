@@ -12,7 +12,6 @@
             </scroll-view>
 		</view>
 		<view class="main">
-			<view class="tips" v-if="mainArray.length>0" :style="{ 'top':tipsTop }">{{mainArray[leftIndex].title}}</view>
 			<scroll-view  scroll-y="true" :style="{ 'height':scrollHeight }" @scroll="mainScroll" :scroll-into-view="scrollInto" scroll-with-animation="true" @touchstart="mainTouch" id="scroll-el">
 				<view class="item" v-for="(item,index) in mainArray" :key="index" :id="'item-'+index">
 					<view class="title">
@@ -42,14 +41,13 @@
 				topArr:[],
 				leftIndex:0,
 				isMainScroll:false,
-				scrollInto:'',
-				tipsTop:'0px'
+				scrollInto:''
 			}
 		},
 		onLoad(){
 			uni.getSystemInfo({
 				success:(res)=>{
-					/* 设置当前滚动容器的高，若非窗口的告诉，请自行修改 */
+					/* 设置当前滚动容器的高，若非窗口的高度，请自行修改 */
 					this.scrollHeight=`${res.windowHeight}px`;
 				}
 			});
@@ -95,7 +93,7 @@
 					return new Promise((resolve,reject)=>{
 						let view = uni.createSelectorQuery().select(selector);
 						view.boundingClientRect(data => {
-							resolve(data.top)
+							resolve(data.top);
 						}).exec();
 					})
 				}
@@ -108,13 +106,13 @@
 				/* 主区域滚动容器的顶部距离 */
 				new_p("#scroll-el").then((res)=>{
 					let top = res;
+					
 					// #ifdef H5
-					top+=43;	//因固定提示块的需求，H5的默认标题栏是44px
+					top+=44;	//因固定提示块的需求，H5的默认标题栏是44px
 					// #endif
 					
 					/* 所有节点信息返回后调用该方法 */
 					Promise.all(p_arr).then((data)=>{
-						this.tipsTop=`${top}px`;
 						this.topArr=data;
 					});
 				})
@@ -201,32 +199,22 @@
 		flex-grow: 1;
 		box-sizing: border-box;
 		
-		.tips{
-			line-height: 64rpx;
-			font-size: 24rpx;
-			font-weight: bold;
-			color: #666;
-			height: 64rpx;
-			position: fixed;
-			top: 44px;
-			right: 0;
-			width: 530rpx;
-			z-index: 10;
-			background-color: #fff;
-			padding-left: 10rpx;
-		}
+		
 		
 		.title{
 			line-height: 64rpx;
-			position: relative;
 			font-size: 24rpx;
 			font-weight: bold;
 			color: #666;
-			height: 64rpx;
+			background-color: #fff;
+			position: sticky;
+			top: 0;
+			z-index: 999;
 		}
 		
 		.item{
-			margin-bottom: 20rpx;
+			padding-bottom: 10rpx;
+			border-bottom: #eee solid 1px;
 		}
 		
 		.goods{
