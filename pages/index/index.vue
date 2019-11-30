@@ -7,12 +7,7 @@
                 </navigator>
 			</view>
 		</uni-card>
-		
-		<slider value="60" 
-			step="1" min="1" max="200" 
-			activeColor="#4CD964" backgroundColor="#007AFF" block-size="28"
-			style="height:40rpx;"
-			 />
+
 	</view>
 </template>
 
