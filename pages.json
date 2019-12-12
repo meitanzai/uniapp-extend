@@ -77,6 +77,18 @@
 				"navigationBarTitleText": "项目全局样式表"
 			}
         }
+        ,{
+            "path" : "pages/goodsList/scroll",
+            "style" : {
+				"navigationBarTitleText": "滚动式双向联动列表"
+			}
+        }
+        ,{
+            "path" : "pages/goodsList/swiper",
+            "style" : {
+				"navigationBarTitleText": "轮播式双向联动列表"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
