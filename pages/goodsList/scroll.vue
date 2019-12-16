@@ -110,7 +110,8 @@
 				let index=0;
 				/* 查找当前滚动距离 */
 				for(let i = (this.topArr.length-1);i>=0;i--){
-					if(top>=this.topArr[i]){
+					/* 在部分安卓设备上，因手机逻辑分辨率与rpx单位计算不是整数，滚动距离与有误差，增加2px来完善该问题 */
+					if((top+2)>=this.topArr[i]){
 						index = i;
 						break;
 					}
