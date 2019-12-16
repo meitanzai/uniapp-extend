@@ -7,11 +7,11 @@
 					<button 
 						v-for="(item,index) in array"
 						:key="index"
-						:type="pickerIndex == index ? '':'default'" 
+						:type="pickerIndex == index ? 'primary':'default'" 
 						size="mini" 
 						style="margin-right: 10rpx;"
 						:data-index="index"
-						@tap="selectDemoType"
+						@tap="onSelectType"
 					>{{item}}</button>
 				</view>
 			</view>
@@ -40,8 +40,11 @@
 				array:['复选框 - 三栏排序','复选框 - 流式排序','单选框 - 二栏排序','单选框 - 三栏排序'],
 			}
 		},
-		onLoad(){
-			
+		mounted(){
+			/* 默认初始化组件 */
+			this.$nextTick(()=>{
+				this.selectDemoType(1);
+			})
 		},
 		methods: {
 			/* 创建列表数据 */
@@ -55,11 +58,14 @@
 				}
 				return arr;
 			},
-			/* 选择示例类别 */
-			selectDemoType(e){
+			/* 监听选择类型 */
+			onSelectType(e){
 				let index = e.currentTarget.dataset.index;
 				index = parseInt(index,10);
-				
+				this.selectDemoType(index);
+			},
+			/* 选择示例类别 */
+			selectDemoType(index){
 				switch(index){
 					case 0:
 					/* 复选框 三列布局 */
