@@ -30,7 +30,7 @@
 </template>
 
 <script>
-	import list from './data.js'
+	import list from './idiom_data.js'
 	export default {
 		data() {
 			return {

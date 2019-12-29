@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="t1">点击下方链接体验</view>
-		<navigator url="swiper" hover-class="hover">
+		<navigator url="goodsList_swiper" hover-class="hover">
 			<view class="title">
 				<text>轮播式联动</text>
 				<text class="link">立即体验</text>
@@ -15,7 +15,7 @@
 				</view>
 			</view>
 		</navigator>
-		<navigator url="scroll" hover-class="hover">
+		<navigator url="goodsList_scroll" hover-class="hover">
 			<view class="title">
 				<text>滚动式联动</text>
 				<text class="link">立即体验</text></view>

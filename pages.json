@@ -5,86 +5,86 @@
 			"style": {}
 		}
 	    ,{
-            "path" : "pages/pickerColor/pickerColor",
+            "path" : "pages/component/pickerColor",
             "style" : {
 				"navigationBarTitleText": "颜色选择"
 			}
         },
         {
-            "path" : "pages/moveVerify/moveVerify",
+            "path" : "pages/component/moveVerify",
             "style" : {
 				"navigationBarTitleText": "滑动验证"
 			}
         }
         ,{
-            "path" : "pages/photoList/photoList",
+            "path" : "pages/template/photoList",
             "style" : {
 				"navigationBarTitleText": "有入场动画的图片列表"
 			}
         }
         ,{
-            "path" : "pages/globalJs/globalJs",
+            "path" : "pages/sdk/globalJs",
             "style" : {
 				"navigationBarTitleText": "项目全局通用方法"
 			}
         }
         ,{
-            "path" : "pages/idiom/idiom",
+            "path" : "pages/template/idiom",
             "style" : {
 				"navigationBarTitleText": "看图猜成语",
 				"navigationBarBackgroundColor":"#857ffc"
 			}
         }
         ,{
-            "path" : "pages/asyncSwitch/asyncSwitch",
+            "path" : "pages/component/asyncSwitch",
             "style" : {
 				"navigationBarTitleText": "异步switch"
 			}
         }
         ,{
-            "path" : "pages/weChat/weChat",
+            "path" : "pages/template/weChat",
             "style" : {
 				"navigationBarTitleText": "仿微信列表长按弹出菜单"
 			}
         }
         ,{
-            "path" : "pages/webSocket/webSocket",
+            "path" : "pages/sdk/webSocket",
             "style" : {
 				"navigationBarTitleText": "webSocket SDK"
 			}
         }
         ,{
-            "path" : "pages/goodsList/goodsList",
+            "path" : "pages/template/goodsList",
             "style" : {
 				"navigationBarTitleText": "商品双向联动列表"
 			}
         }
         ,{
-            "path" : "pages/checkbox/checkbox",
+            "path" : "pages/component/checkbox",
             "style" : {
 				"navigationBarTitleText": "自定义复选/单选框"
 			}
         }
         ,{
-            "path" : "pages/highlight/highlight",
+            "path" : "pages/component/highlight",
             "style" : {
 				"navigationBarTitleText": "指定内容高亮"
 			}
         }
         ,{
-            "path" : "pages/globalCss/globalCss",
+            "path" : "pages/sdk/globalCss",
             "style" : {
 				"navigationBarTitleText": "项目全局样式表"
 			}
         }
         ,{
-            "path" : "pages/goodsList/scroll",
+            "path" : "pages/template/goodsList_scroll",
             "style" : {
 				"navigationBarTitleText": "滚动式双向联动列表"
 			}
         }
         ,{
-            "path" : "pages/goodsList/swiper",
+            "path" : "pages/template/goodsList_swiper",
             "style" : {
 				"navigationBarTitleText": "轮播式双向联动列表"
 			}

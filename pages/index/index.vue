@@ -24,23 +24,23 @@
 						"list":[
 							{
 								"name":"滑动验证",
-								"url":"/pages/moveVerify/moveVerify"
+								"url":"/pages/component/moveVerify"
 							},
 							{
 								"name":"颜色选择",
-								"url":"/pages/pickerColor/pickerColor"
+								"url":"/pages/component/pickerColor"
 							},
 							{
 								"name":"异步switch",
-								"url":"/pages/asyncSwitch/asyncSwitch"
+								"url":"/pages/component/asyncSwitch"
 							},
 							{
 								"name":"自定义复选/单选框",
-								"url":"/pages/checkbox/checkbox"
+								"url":"/pages/component/checkbox"
 							},
 							{
 								"name":"指定内容高亮",
-								"url":"/pages/highlight/highlight"
+								"url":"/pages/component/highlight"
 							}
 						]
 					},
@@ -49,19 +49,19 @@
 						"list":[
 							{
 								"name":"看图猜成语",
-								"url":"/pages/idiom/idiom"
+								"url":"/pages/template/idiom"
 							},
 							{
 								"name":"有入场动画的图片列表",
-								"url":"/pages/photoList/photoList"
+								"url":"/pages/template/photoList"
 							},
 							{
 								"name":"仿微信列表长按弹出菜单",
-								"url":"/pages/weChat/weChat"
+								"url":"/pages/template/weChat"
 							},
 							{
 								"name":"商品双向联动列表",
-								"url":"/pages/goodsList/goodsList"
+								"url":"/pages/template/goodsList"
 							}
 						]
 					},
@@ -70,15 +70,15 @@
 						"list":[
 							{
 								"name":"项目全局样式表",
-								"url":"/pages/globalCss/globalCss"
+								"url":"/pages/sdk/globalCss"
 							},
 							{
 								"name":"项目全局通用方法",
-								"url":"/pages/globalJs/globalJs"
+								"url":"/pages/sdk/globalJs"
 							},
 							{
 								"name":"webSocket",
-								"url":"/pages/webSocket/webSocket"
+								"url":"/pages/sdk/webSocket"
 							}
 						]
 					}
