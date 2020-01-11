@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<image src="/static/bg.jpg" mode="aspectFill"></image>
+		<image src="/static/images/idiom/bg.jpg" mode="aspectFill"></image>
 		<view class="flex_col">
 			<view class="content_box">
 				<view class="flex_col flex_space top_label">

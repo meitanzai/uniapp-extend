@@ -1,13 +1,14 @@
 <template>
 	<view class="container">
-		<uni-card  v-for="(item,index) in linkList" :key="index" :title="item.name">
-			<view>
-				<navigator v-for="(item2,index2) in item.list" :key="index2" :url="item2.url" hover-class="none">
-                    <button type="default" size="mini">{{item2.name}}</button>
-                </navigator>
-			</view>
-		</uni-card>
-
+		<view v-for="(item,index) in linkList" :key="index" style="margin-bottom: 15px;">
+			<uni-card :title="item.name">
+				<view>
+					<navigator v-for="(item2,index2) in item.list" :key="index2" :url="item2.url" hover-class="none">
+			            <button type="default" size="mini">{{item2.name}}</button>
+			        </navigator>
+				</view>
+			</uni-card>
+		</view>
 	</view>
 </template>
 
@@ -62,6 +63,10 @@
 							{
 								"name":"商品双向联动列表",
 								"url":"/pages/template/goodsList"
+							},
+							{
+								"name":"仿抖音轮播图",
+								"url":"/pages/template/douyin_swiper"
 							}
 						]
 					},
