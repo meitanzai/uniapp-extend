@@ -10,7 +10,7 @@
 					console.log(window.top.isPC)
 					if(e.windowWidth>375 && window.top.isPC){
 						uni.redirectTo({
-							url:"/"
+							url:"/pc.html"
 						})
 					}
 				}
