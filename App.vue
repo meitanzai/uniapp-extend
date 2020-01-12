@@ -4,6 +4,17 @@
 		onLaunch: function() {
 			// #ifdef H5
 			console.log("%c 河浪原创作品，QQ:1846492969",'color:#007aff;font-size:32px;');
+			
+			uni.getSystemInfo({
+				success(e){
+					console.log(window.top.isPC)
+					if(e.windowWidth>375 && window.top.isPC){
+						uni.redirectTo({
+							url:"/"
+						})
+					}
+				}
+			})
 			// #endif
 			
 			// #ifndef H5
