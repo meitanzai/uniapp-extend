@@ -7,11 +7,8 @@
 			
 			uni.getSystemInfo({
 				success(e){
-					console.log(window.top.isPC)
 					if(e.windowWidth>375 && window.top.isPC){
-						uni.redirectTo({
-							url:"/pc.html"
-						})
+						window.location.pathname = '/uniapp-extend/static/html/pc.html';
 					}
 				}
 			})

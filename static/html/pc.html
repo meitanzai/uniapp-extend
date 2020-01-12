@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
 		<title>uniapp-extend</title>
 		<meta name="Copyright" content="helang">
-		<link rel="shortcut icon" type="image/png" href="http://localhost:8080/uniapp-extend/static/logo.png">
+		<link rel="shortcut icon" type="image/png" href="/uniapp-extend/static/logo.png">
 		<meta name="keywords" content="黄河爱浪,WEB前端河浪,jQuery插件开发者河浪">
 		<meta name="description" content="公众号:web-7258,QQ:1846492969,邮箱:helang.love@qq.com">
 		<style type="text/css">
@@ -30,10 +30,14 @@
 			}
 		</style>
 		<script type="text/javascript">
-			var isPC = true;
+			window.isPC = true;
+			
+			if(window.innerWidth <= 375){
+				window.location.pathname = '/uniapp-extend';
+			}
 		</script>
 	</head>
 	<body>
-		<iframe src="/"></iframe>
+		<iframe src="/uniapp-extend"></iframe>
 	</body>
 </html>
