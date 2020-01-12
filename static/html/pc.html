@@ -17,8 +17,6 @@
 			iframe{
 				width: 375px;
 				height: 667px;
-				border: rgba(0,0,0,0.7) solid 10px;
-				border-radius: 4px;
 				position: fixed;
 				top: 0;
 				right: 0;
@@ -27,6 +25,14 @@
 				margin: auto;
 				background-color: #fff;
 				box-sizing: content-box;
+				border: none;
+			}
+			
+			@media screen and (min-width: 400px) {
+			    iframe {
+			        border: rgba(0,0,0,0.7) solid 10px;
+			        border-radius: 4px;
+			    }
 			}
 		</style>
 		<script type="text/javascript">
