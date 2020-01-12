@@ -7,7 +7,7 @@
 			
 			uni.getSystemInfo({
 				success(e){
-					if(e.windowWidth>375 && window.top.isPC){
+					if(e.windowWidth>375 && !window.top.isPC){
 						window.location.pathname = '/uniapp-extend/static/html/pc.html';
 					}
 				}
