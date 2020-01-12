@@ -7,8 +7,8 @@
 			
 			uni.getSystemInfo({
 				success(e){
-					/* 窗口宽度 大于375px且不在PC页面时，跳转至PC页面 */
-					if(e.windowWidth>375 && !window.top.isPC){
+					/* 窗口宽度 大于420px且不在PC页面时，跳转至PC页面 */
+					if(e.windowWidth>420 && !window.top.isPC){
 						window.location.pathname = '/uniapp-extend/static/html/pc.html';
 					}
 				}
