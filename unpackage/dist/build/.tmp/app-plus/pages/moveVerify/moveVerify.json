@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "滑动验证",
-  "usingComponents": {
-    "move-verify": "/components/helang-moveVerify/helang-moveVerify"
-  }
-}
