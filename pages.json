@@ -96,6 +96,18 @@
 				"navigationStyle":"custom"
 			}
         }
+        ,{
+            "path" : "pages/component/tab",
+            "style" : {
+				"navigationBarTitleText": "选项卡"
+			}
+        }
+        ,{
+            "path" : "pages/template/whackMole",
+            "style" : {
+				"navigationBarTitleText": "打地鼠"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

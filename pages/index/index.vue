@@ -49,7 +49,7 @@
 						"name":"页面模板",
 						"list":[
 							{
-								"name":"看图猜成语",
+								"name":"看图猜成语游戏",
 								"url":"/pages/template/idiom"
 							},
 							{
@@ -67,6 +67,10 @@
 							{
 								"name":"仿抖音轮播图",
 								"url":"/pages/template/douyin_swiper"
+							},
+							{
+								"name":"打地鼠游戏",
+								"url":"/pages/template/whackMole"
 							}
 						]
 					},
