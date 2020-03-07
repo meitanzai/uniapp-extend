@@ -71,7 +71,12 @@
 							{
 								"name":"打地鼠游戏",
 								"url":"/pages/template/whackMole"
+							},
+							{
+								"name":"即时通讯聊天",
+								"url":"/pages/template/talk"
 							}
+							
 						]
 					},
 					{

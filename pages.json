@@ -108,6 +108,12 @@
 				"navigationBarTitleText": "打地鼠"
 			}
         }
+        ,{
+            "path" : "pages/template/talk",
+            "style" : {
+				"navigationBarTitleText": "即时通讯聊天"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
