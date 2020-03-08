@@ -1,23 +1,23 @@
 <template>
 	<view>
+		<view class="tips color_fff size_12 align_c" :class="{ 'show':ajax.loading }" @tap="getHistoryMsg">{{ajax.loadText}}</view>
 		<view class="box-1" id="list-box">
-			<view class="tips color_fff size_12 align_c" :class="{ 'show':ajax.loading }" @tap="getHistoryMsg">{{ajax.loadText}}</view>
-			<scroll-view scroll-y="true" :style="{ 'height':scrollViewHeight }" :scroll-into-view="scrollIntoView" :upper-threshold="5" @scrolltoupper="getHistoryMsg">
-				<view class="talk-list">
-					<view v-for="(item,index) in talkList" :key="index" :id="`msg-${item.id}`">
-						<view class="item flex_col" :class=" item.type == 1 ? 'push':'pull' ">
-							<image :src="item.pic" mode="aspectFill" class="pic"></image>
-							<view class="content">{{item.content}}</view>
-						</view>
+			<view class="talk-list">
+				<view v-for="(item,index) in talkList" :key="index" :id="`msg-${item.id}`">
+					<view class="item flex_col" :class=" item.type == 1 ? 'push':'pull' ">
+						<image :src="item.pic" mode="aspectFill" class="pic"></image>
+						<view class="content">{{item.content}}</view>
 					</view>
 				</view>
-			</scroll-view>
-		</view>
-		<view class="box-2 flex_col">
-			<view class="flex_grow">
-				<input type="text" class="content" v-model="content" placeholder="请输入聊天内容" placeholder-style="color:#DDD;" :cursor-spacing="6">
 			</view>
-			<button class="send" @tap="send">发送</button>
+		</view>
+		<view class="box-2">
+			<view class="flex_col">
+				<view class="flex_grow">
+					<input type="text" class="content" v-model="content" placeholder="请输入聊天内容" placeholder-style="color:#DDD;" :cursor-spacing="6">
+				</view>
+				<button class="send" @tap="send">发送</button>
+			</view>
 		</view>
 	</view>
 </template>
@@ -26,14 +26,12 @@
 	export default {
 		data() {
 			return {
-				scrollViewHeight:'0px',		//滚动容器的高度
-				scrollIntoView:'',	// 滚动容器的滚动目标元素
 				talkList:[],
 				ajax:{
 					rows:20,	//每页数量
 					page:1,	//页码
 					flag:true,	// 请求开关
-					loading:false,	// 加载中
+					loading:true,	// 加载中
 					loadText:'正在获取消息'
 				},
 				content:''
@@ -41,19 +39,15 @@
 		},
 		mounted() {
 			this.$nextTick(()=>{
-				this.setScrollHeight();
-				
 				this.getHistoryMsg();
 			});
 		},
+		onPageScroll(e){
+			if(e.scrollTop<5){
+				this.getHistoryMsg();
+			}
+		},
 		methods: {
-			// 设置滚动容器高度
-			setScrollHeight(){
-				let view = uni.createSelectorQuery().in(this).select("#list-box");
-				view.boundingClientRect((res) => {
-					this.scrollViewHeight = `${Math.floor(res.height)}px`;
-				}).exec();
-			},
 			// 获取历史消息
 			getHistoryMsg(){
 				if(!this.ajax.flag){
@@ -69,15 +63,15 @@
 					console.log('----- 模拟数据格式，供参考 -----');
 					console.log(data);	// 查看请求返回的数据结构 
 					
-					// 获取待滚动元素ID，解决插入数据后，滚动条定位时使用
-					let intoView = '';
+					// 获取待滚动元素选择器，解决插入数据后，滚动条定位时使用
+					let selector = '';
 										
 					if(this.ajax.page>1){
 						// 非第一页，则取历史消息数据的第一条信息元素
-						intoView = `msg-${this.talkList[0].id}`;
+						selector = `#msg-${this.talkList[0].id}`;
 					}else{
 						// 第一页，则取当前消息数据的最后一条信息元素
-						intoView = `msg-${data[data.length-1].id}`;
+						selector = `#msg-${data[data.length-1].id}`;
 					}
 					
 					// 将获取到的消息数据合并到消息数组中
@@ -86,23 +80,25 @@
 					// 数据挂载后执行，不懂的请自行阅读 Vue.js 文档对 Vue.nextTick 函数说明。
 					this.$nextTick(()=>{
 						// 设置当前滚动的位置
-						this.scrollIntoView = intoView;
+						this.setPageScrollTo(selector);
 						
 						this.hideLoadTips(true);
-						
+												
 						if(data.length < this.ajax.rows){
 							// 当前消息数据条数小于请求要求条数时，则无更多消息，不再允许请求。
 							// 可在此处编写无更多消息数据时的逻辑
 						}else{
 							this.ajax.page ++;
-							this.ajax.flag = true;
+							
+							// 延迟 200ms ，以保证设置窗口滚动已完成
+							setTimeout(()=>{
+								this.ajax.flag = true;
+							},200)
 						}
 						
 					})
 				}
 				get();
-				
-				
 			},
 			// 拼接历史记录消息，正式项目可替换为请求历史记录接口
 			joinHistoryMsg(){
@@ -140,6 +136,16 @@
 					},1500);
 				})
 			},
+			// 设置页面滚动位置
+			setPageScrollTo(selector){
+				let view = uni.createSelectorQuery().in(this).select(selector);
+				view.boundingClientRect((res) => {
+					uni.pageScrollTo({
+					    scrollTop:res.top,
+					    duration: 0
+					});
+				}).exec();
+			},
 			// 隐藏加载提示
 			hideLoadTips(flag){
 				if(flag){
@@ -168,8 +174,6 @@
 				setTimeout(()=>{
 					uni.hideLoading();
 					
-					
-					
 					// 将当前发送信息 添加到消息列表。
 					let data = {
 						"id":new Date().getTime(),
@@ -182,8 +186,10 @@
 					this.$nextTick(()=>{
 						// 清空内容框中的内容
 						this.content = '';
-						// 设置当前滚动的位置为最新发送的消息元素
-						this.scrollIntoView = `msg-${data.id}`;
+						uni.pageScrollTo({
+						    scrollTop: 999999,	// 设置一个超大值，以保证滚动条滚动到底部
+						    duration: 0
+						});
 					})
 				},1500);
 			}
@@ -196,45 +202,57 @@
 	page{
 		background-color: #F3F3F3;
 		font-size: 28rpx;
-		
 	}
-	.box-1,.box-2{
-		position: absolute;
+	
+	/* 加载数据提示 */
+	.tips{
+		position: fixed;
 		left: 0;
+		top:var(--window-top);
 		width: 100%;
+		z-index: 9;
+		background-color: rgba(0,0,0,0.15);
+		height: 72rpx;
+		line-height: 72rpx;
+		transform:translateY(-80rpx);
+		transition: transform 0.3s ease-in-out 0s;
+		
+		&.show{
+			transform:translateY(0);
+		}
 	}
 	
 	.box-1{
-		top: 0;
-		bottom: 100rpx;
+		width: 100%;
 		height: auto;
-		z-index: 1;
-		overflow: hidden;
+		padding-bottom: 100rpx;
+		box-sizing: content-box;
 		
-		/* 加载数据提示 */
-		.tips{
-			position: absolute;
-			left: 0;
-			top:0;
-			width: 100%;
-			z-index: 9;
-			background-color: rgba(0,0,0,0.15);
-			height: 72rpx;
-			line-height: 72rpx;
-			transform:translateY(-80rpx);
-			transition: transform 0.3s ease-in-out 0s;
-			
-			&.show{
-				transform:translateY(0);
-			}
-		}
+		/* 兼容iPhoneX */
+		margin-bottom: 0;  
+		margin-bottom: constant(safe-area-inset-bottom);  
+		margin-bottom: env(safe-area-inset-bottom);  
 	}
 	.box-2{
+		position: fixed;
+		left: 0;
+		width: 100%;
 		bottom: 0;
-		height: 100rpx;
+		height: auto;
 		z-index: 2;
 		border-top: #e5e5e5 solid 1px;
-		padding: 0 20rpx;
+		box-sizing: content-box;
+		background-color: #F3F3F3;
+		
+		/* 兼容iPhoneX */
+		padding-bottom: 0;  
+		padding-bottom: constant(safe-area-inset-bottom);  
+		padding-bottom: env(safe-area-inset-bottom);  
+		
+		>view{
+			padding: 0 20rpx;
+			height: 100rpx;
+		}
 		
 		.content{
 			background-color: #fff;
