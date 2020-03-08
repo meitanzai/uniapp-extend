@@ -141,7 +141,7 @@
 				let view = uni.createSelectorQuery().in(this).select(selector);
 				view.boundingClientRect((res) => {
 					uni.pageScrollTo({
-					    scrollTop:res.top - 20,	// -20 为多显示出半个消息的高度，示意上面还有信息
+					    scrollTop:res.top - 30,	// -30 为多显示出大半个消息的高度，示意上面还有信息。
 					    duration: 0
 					});
 				}).exec();
