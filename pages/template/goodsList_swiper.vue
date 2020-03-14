@@ -61,24 +61,39 @@
 		methods: {
 			/* 获取列表数据 */
 			getListData(){
-				/* 因无真实数据，当前方法模拟数据 */
-				let [left,main]=[[],[]];
-
-				for(let i=0;i<10;i++){
-					left.push(`${i+1}类商品`);
+				// Promise 为 ES6 新增的API ，有疑问的请自行学习该方法的使用。
+				new Promise((resolve,reject)=>{
+					/* 因无真实数据，当前方法模拟数据。正式项目中将此处替换为 数据请求即可 */
+					uni.showLoading();
+					setTimeout(()=>{
+						/* 因无真实数据，当前方法模拟数据 */
+						let [left,main]=[[],[]];
+						
+						for(let i=0;i<10;i++){
+							left.push(`${i+1}类商品`);
+							
+							let list=[];
+							let max = Math.floor(Math.random()*15) || 8;
+							for(let j=0;j<max;j++){
+								list.push(j);
+							}
+							main.push({
+								title:`第${i+1}类商品标题`,
+								list
+							})
+						}
+						
+						// 将请求接口返回的数据传递给 Promise 对象的 then 函数。
+						resolve({left,main});
+					},1000);
+				}).then((res)=>{
+					console.log('-----------请求接口返回数据示例-------------');
+					console.log(res);
 					
-					let list=[];
-					let max = Math.floor(Math.random()*15) || 8;
-					for(let j=0;j<max;j++){
-						list.push(j);
-					}
-					main.push({
-						title:`第${i+1}类商品标题`,
-						list
-					})
-				}
-				this.leftArray=left;
-				this.mainArray=main;
+					uni.hideLoading();
+					this.leftArray=res.left;
+					this.mainArray=res.main;
+				});
 			},
 			/* 左侧导航点击 */
 			leftTap(e){
@@ -175,6 +190,7 @@
 				width: 120rpx;
 				height: 120rpx;
 				margin-right: 16rpx;
+				margin-left: 2px;
 			}
 			
 			.describe{
