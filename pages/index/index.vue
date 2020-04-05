@@ -65,8 +65,8 @@
 								"url":"/pages/template/goodsList"
 							},
 							{
-								"name":"仿抖音轮播图",
-								"url":"/pages/template/douyin_swiper"
+								"name":"仿抖音图片轮播",
+								"url":"/pages/template/swiper_image"
 							},
 							{
 								"name":"打地鼠游戏",

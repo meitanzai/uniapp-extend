@@ -90,9 +90,9 @@
 			}
         }
         ,{
-            "path" : "pages/template/douyin_swiper",
+            "path" : "pages/template/swiper_image",
             "style" : {
-				"navigationBarTitleText": "仿抖音轮播图",
+				"navigationBarTitleText": "仿抖音图片轮播",
 				"navigationStyle":"custom"
 			}
         }
@@ -113,7 +113,13 @@
             "style" : {
 				"navigationBarTitleText": "即时通讯聊天"
 			}
-        }
+        },
+		{
+			"path" : "pages/template/swiper_video",
+			"style" : {
+				"navigationBarTitleText": "仿抖音视频轮播"
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

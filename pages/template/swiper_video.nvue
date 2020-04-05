@@ -1,0 +1,96 @@
+<template>
+	<view class="container">
+		<swiper class="swiper" :vertical="true" @change="onSwiperChange">
+			<swiper-item v-for="(item,index) in list" :key="index">
+				<view class="swiper-item" :data-index="index" @click="aa">
+					<video class="swiper-video" :id="'video-'+index" :src="item" 
+					:controls="false" 
+					:loop="true" 
+					@play="onPlay"
+					>
+					<view class="a" >
+						dfsfaa
+					</view>
+					</video>
+				</view>
+			</swiper-item>
+		</swiper>
+		
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				params:{
+					index:0,
+					isPlay:false
+				},
+				list:(()=>{		// 视频地址
+					let list = [];
+					for(let i = 0; i < 10; i++){
+						list.push(`https://learning.dcloud.io/video/chapter_0${i}.mp4`);
+					}
+					return list;
+				})()
+			}
+		},
+		mounted() {
+			this.$nextTick(()=>{
+				setTimeout(()=>{
+					this.videoPlay(this.params.index);
+				},300)
+			})
+		},
+		methods: {
+			/* 视频暂停 */
+			videoPause(index){
+				let videoPause = uni.createVideoContext(`video-${index}`,this);
+				videoPause.pause();
+				this.params.isPlay = false;
+			},
+			/* 视频播放 */
+			videoPlay(index,reset = false){
+				let videoPlay = uni.createVideoContext(`video-${index}`,this);
+				if(reset){
+					videoPlay.seek(0);
+				}
+				videoPlay.play();
+				this.params.index = index;
+				this.params.isPlay = true;
+			},
+			onSwiperChange(e){
+				let index = e.detail.current;
+				this.videoPause(this.params.index);
+				this.videoPlay(index,true);
+			},
+			onPlay(e){
+				//console.log(e);
+			},
+			aa(e){
+				let index = e.currentTarget.dataset.index;
+				if(this.params.isPlay){
+					this.videoPause(index);
+				}else{
+					this.videoPlay(index);
+				}
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+.container,.swiper,.swiper-item,.swiper-video{
+	flex: 1;
+}
+.a{
+	position:absolute;
+	z-index:10;
+	top: 0;
+	width: 375rpx;
+	bottom: 1000rpx;
+	left: 0;
+	background-color: #4CD964;
+}
+</style>

@@ -34,4 +34,11 @@
 	/*
 	@import "./lib/global.scss";
 	*/
+   
+	/* 条件编译，仅在H5平台生效 */
+	// #ifdef H5
+	::-webkit-scrollbar {
+		display: none;
+	}
+	// #endif
 </style>
