@@ -1,20 +1,26 @@
 <template>
 	<view class="container">
+		
+		<image :src="topNavBgUrl" mode="widthFix" class="top-nav-bg"></image>
+		<view class="top-nav" :style="{ paddingTop: iStatusBarHeight + 'px'}">
+			<text class="top-nav-title">顶部导航栏</text>
+		</view>
+		
 		<swiper class="swiper" :vertical="true" @change="onSwiperChange">
 			<swiper-item v-for="(item,index) in list" :key="index">
-				<view class="swiper-item" :data-index="index" @click="aa">
-					<video class="swiper-video" :id="'video-'+index" :src="item" 
+				<view class="swiper-item" :data-index="index">
+					<video class="swiper-video" :id="'video-'+index" :src="item.url" 
 					:controls="false" 
 					:loop="true" 
 					@play="onPlay"
 					>
-					<view class="a" >
-						dfsfaa
-					</view>
 					</video>
+					
 				</view>
 			</swiper-item>
 		</swiper>
+		
+		
 		
 	</view>
 </template>
@@ -23,27 +29,44 @@
 	export default {
 		data() {
 			return {
+				iStatusBarHeight:0,
+				topNavBgUrl:'https://img-cdn-qiniu.dcloud.net.cn/uploads/article/20200409/2fd2310e8a4d1455134ee603376cd967.png',
+				bottomTextBgUrl:'https://img-cdn-qiniu.dcloud.net.cn/uploads/article/20200409/8de63df9efea7efa0b116190bfb19385.png',
 				params:{
 					index:0,
 					isPlay:false
 				},
-				list:(()=>{		// 视频地址
-					let list = [];
-					for(let i = 0; i < 10; i++){
-						list.push(`https://learning.dcloud.io/video/chapter_0${i}.mp4`);
-					}
-					return list;
-				})()
+				list:[]
 			}
 		},
 		mounted() {
-			this.$nextTick(()=>{
-				setTimeout(()=>{
-					this.videoPlay(this.params.index);
-				},300)
-			})
+			this.getVideoList();
+			
+			this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight;
 		},
 		methods: {
+			/* 获取视频列表 */
+			getVideoList(){
+				new Promise((success,error)=>{
+					let list = [];
+					let timeArr=[114,251,135,320,269,542,196,322,179,218];
+					for(let i = 0; i < 10; i++){
+						list.push({
+							"url":`https://learning.dcloud.io/video/chapter_0${i}.mp4`,
+							"time":timeArr[i]
+						});
+					}
+					success(list);
+				}).then((res)=>{
+					console.log(res);
+					this.list = [...this.list,...res];
+					this.$nextTick(()=>{
+						setTimeout(()=>{
+							this.videoPlay(this.params.index);
+						},300)
+					})
+				});
+			},
 			/* 视频暂停 */
 			videoPause(index){
 				let videoPause = uni.createVideoContext(`video-${index}`,this);
@@ -59,6 +82,8 @@
 				videoPlay.play();
 				this.params.index = index;
 				this.params.isPlay = true;
+				
+				console.log(this.list[index])
 			},
 			onSwiperChange(e){
 				let index = e.detail.current;
@@ -84,13 +109,37 @@
 .container,.swiper,.swiper-item,.swiper-video{
 	flex: 1;
 }
-.a{
-	position:absolute;
+.top-nav-bg{
+	position:fixed;
+	z-index:9;
+	top: 0;
+	width: 750rpx;
+	height: 200rpx;
+	left: 0;
+}
+.top-nav{
+	position:fixed;
 	z-index:10;
 	top: 0;
-	width: 375rpx;
-	bottom: 1000rpx;
+	width: 750rpx;
+	height: auto;
 	left: 0;
-	background-color: #4CD964;
+}
+.top-nav-title{
+	height: 44px;
+	font-size: 32rpx;
+	text-align: center;
+	box-sizing: content-box;
+	line-height: 43px;
+	font-size: 20px;
+	color: #fff;
+}
+.bottom-text-bg{
+	position:fixed;
+	z-index:1;
+	bottom: 0;
+	width: 750rpx;
+	height: 800rpx;
+	left: 0;
 }
 </style>
