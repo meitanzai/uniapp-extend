@@ -1,7 +1,7 @@
 <template>
 	<view class="list_box">
 		<view class="left">
-			<scroll-view scroll-y="true" :style="{ 'height':scrollHeight }">
+			<scroll-view scroll-y="true" :style="{ 'height':scrollHeight + 'px' }">
 				<view class="item" 
 					v-for="(item,index) in leftArray"
 					:key="index" 
@@ -12,8 +12,8 @@
             </scroll-view>
 		</view>
 		<view class="main">
-			<scroll-view  scroll-y="true" :style="{ 'height':scrollHeight }" @scroll="mainScroll" :scroll-into-view="scrollInto" scroll-with-animation="true">
-				<view class="item" v-for="(item,index) in mainArray" :key="index" :id="'item-'+index">
+			<scroll-view  scroll-y="true" :style="{ 'height':scrollHeight + 'px' }" @scroll="mainScroll" :scroll-into-view="scrollInto" scroll-with-animation="true">
+				<view class="item main-item" v-for="(item,index) in mainArray" :key="index" :id="'item-'+index">
 					<view class="title">
 						<view>{{item.title}}</view>
 					</view>
@@ -26,6 +26,7 @@
 						</view>
 					</view>
 				</view>
+				<view class="fill-last" :style="{ 'height':fillHeight + 'px' }"></view>
 			</scroll-view>
 		</view>
 	</view>
@@ -35,7 +36,8 @@
 	export default {
 		data() {
 			return {
-				scrollHeight:'500px',
+				scrollHeight:500,
+				fillHeight:0,	// 填充高度，用于最后一项低于滚动区域时使用
 				leftArray:[],
 				mainArray:[],
 				topArr:[],
@@ -47,7 +49,7 @@
 			uni.getSystemInfo({
 				success:(res)=>{
 					/* 设置当前滚动容器的高，若非窗口的高度，请自行修改 */
-					this.scrollHeight=`${res.windowHeight}px`;
+					this.scrollHeight = res.windowHeight;
 				}
 			});
 		},
@@ -68,7 +70,11 @@
 							left.push(`${i+1}类商品`);
 							
 							let list=[];
-							for(let j=0;j<(i+1);j++){
+							let r = Math.floor(Math.random()*10);
+							console.log(r);
+							r = r < 1 ? 3 : r;
+							console.log(r);
+							for(let j=0;j<r;j++){
 								list.push(j);
 							}
 							main.push({
@@ -96,27 +102,22 @@
 			},
 			/* 获取元素顶部信息 */
 			getElementTop(){
-				/* Promise 对象数组 */
-				let p_arr=[];
-				
-				/* 新建 Promise 方法 */
-				let new_p=(selector)=>{
-					return new Promise((resolve,reject)=>{
-						let view = uni.createSelectorQuery().select(selector);
-						view.boundingClientRect(data => {
-							resolve(data.top);
-						}).exec();
-					})
-				}
-				
-				/* 遍历数据，创建相应的 Promise 数组数据 */
-				this.mainArray.forEach((item,index)=>{
-					p_arr.push(new_p(`#item-${index}`));
-				});
-				
-				/* 所有节点信息返回后调用该方法 */
-				Promise.all(p_arr).then((data)=>{
-					this.topArr=data;					
+				new Promise((resolve,reject)=>{
+					let view = uni.createSelectorQuery().selectAll('.main-item');
+					view.boundingClientRect(data => {
+						resolve(data);
+					}).exec();
+				}).then((res)=>{
+					let topArr = res.map((item)=>{
+						return item.top;
+					});
+					this.topArr = topArr;
+					
+					/* 获取最后一项的高度，设置填充高度。判断和填充时做了 +-20 的操作，是为了滚动时更好的定位 */
+					let last = res[res.length-1].height;					
+					if(last - 20 < this.scrollHeight){
+						this.fillHeight = this.scrollHeight - last + 20;
+					}
 				});
 			},
 			/* 主区域滚动监听 */
@@ -182,6 +183,12 @@
 				color: #42b983;
 				background-color: #fff;
 			}
+		}
+		
+		.fill-last{
+			height: 0;
+			width: 100%;
+			background: none;
 		}
 	}
 	.main{
