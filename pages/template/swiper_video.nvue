@@ -19,9 +19,6 @@
 				</view>
 			</swiper-item>
 		</swiper>
-		
-		
-		
 	</view>
 </template>
 
@@ -40,6 +37,15 @@
 			}
 		},
 		mounted() {
+			// #ifndef APP-PLUS-NVUE
+			uni.showModal({
+				title:'提示',
+				content:'该模板是nvue模板，仅APP平台可正常体验',
+				showCancel:false,
+				confirmText:'我知道了'
+			})
+			// #endif
+			
 			this.getVideoList();
 			
 			this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight;
@@ -122,14 +128,12 @@
 	z-index:10;
 	top: 0;
 	width: 750rpx;
-	height: auto;
 	left: 0;
 }
 .top-nav-title{
 	height: 44px;
 	font-size: 32rpx;
 	text-align: center;
-	box-sizing: content-box;
 	line-height: 43px;
 	font-size: 20px;
 	color: #fff;

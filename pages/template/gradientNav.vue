@@ -1,47 +1,77 @@
 <template>
 	<view>
-		<!-- 顶部导航栏 -->
-		<view class="top-nav" :class="topNavStyle.class" :style="topNavStyle.style">
-			<view>顶部导航栏</view>
+		<view class="title" :class="topNavStyle.class" :style="topNavStyle.style">
+			<view class="flex_col">
+				<view class="box1"></view>
+				<view class="flex_grow flex_col flex_center tab">
+					<view v-for="(item,index) in topNavArr" :key="index"
+					 :class="{ 'active':topNavIndex==index }" 
+					 :data-index="index" @tap="changeTopNav">{{item}}</view>
+				</view>
+				<view class="box1 align_r">
+					
+				</view>
+			</view>
 		</view>
-		
-		<view class="box-1">
-			<image src="/static/images/douyin/0.jpg" mode="aspectFill"></image>
-			<view>滚动页面 - 查看导航栏渐变效果</view>
+		<card-swiper></card-swiper>
+		<view style="height: 600px;">
+			<view style="padding-top: 50rpx;text-align: center;">向上滚动查看标题栏目渐变效果</view>
 		</view>
-		<view style="height: 1000px;"></view>
 	</view>
 </template>
 
 <script>
+	import cardSwiper from "@/components/helang-cardSwiper/helang-cardSwiper"
 	export default {
 		data() {
 			return {
 				topNavIndex:0,
+				topNavArr:['推荐','热门','新作'],
 				pageScrollTop:0,	// 页面滚动距离
 			}
 		},
+		components:{
+			cardSwiper
+		},
 		computed:{
 			topNavStyle(){
-				let r = this.pageScrollTop  / 110;	// 当滚动距离 >= 110 时不透明
+				let r = this.pageScrollTop  / 100;
 				return {
-					"class":r>=0.75?'active':'',
-					"style":`background-color: rgba(66,185,131,${r>=1?1:r});`
+					"class":r>=0.85?'style2':'',
+					"style":`background-color: rgba(255,255,255,${r>=1?1:r});`
 				}
 			}
 		},
+		onLoad() {
+			
+		},
+		// 页面滚动监听
 		onPageScroll(e){
 			this.pageScrollTop = Math.floor(e.scrollTop);
 		},
 		methods: {
-			
+			// 顶部导航改变 
+			changeTopNav(e){
+				this.topNavIndex = this.$iGlobal.getData(e,"index");
+			},
+			// 去搜索
+			toSearch(){
+				uni.navigateTo({
+					url:`/pages/search/search`  
+				})
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
+	@import "lib/global.scss";
+	
+	page{
+		background-color: #fff;
+	}
 	/* 标题栏 */
-	.top-nav{
+	.title{
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -49,53 +79,49 @@
 		height: auto;
 		padding-top: var(--status-bar-height);
 		z-index: 10;
-		background-color: rgba(66,185,131,0);
-
+		background-color: rgba(255,255,255,0);
+		color: rgba(255,255,255,0.8);
+		
 		&>view{
-			height: 44px;	/* 框架自带导航高度为44px */
-			line-height: 43px;
-			font-size: 16px;
-			text-align: center;
-			color: #333;
-			transition: color 0.5s ease-in-out 0s;
+			height: 44px;
 		}
 		
-		&.active{
-			background-color: rgba(255,255,255,1);
+		.box1{
+			width: 60rpx;
+			margin: 0 40rpx;
+			font-size: 36rpx;
+		}
+		
+		
+		.tab{
 			&>view{
-				color: #fff;
+				margin: 0 30rpx;
+				line-height: 64rpx;
+				font-size: 36rpx;
+				position: relative;
+				letter-spacing: 0;
+				transition: transform 0.3s ease-in-out 0s;
+				transform: scale(1,1);
+				
+				&.active{
+					color: rgba(255,255,255,1);
+					transform: scale(1.15,1.15);
+				}
+			}
+		}
+		
+		&.style2{
+			color: #666;
+			background-color: rgba(255,255,255,1);
+			
+			.tab{
+				&>view{
+					&.active{
+						color: #333;
+					}
+				}
 			}
 		}
 	}
-	/* 顶部导航栏占位元素 */
-	.top-nav-placeholder{
-		padding-top: var(--status-bar-height);
-		height: 44px;
-		box-sizing: content-box;
-		width: 750rpx;
-	}
 
-
-	.box-1{
-		position: relative;
-		
-		&>image{
-			width: 100%;
-			height: 1200rpx;
-		}
-		
-		&>view{
-			font-size: 14px;
-			position: absolute;
-			top: 200px;
-			width: 550rpx;
-			left: 100rpx;
-			text-align: center;
-			background-color: rgba(0,0,0,0.5);
-			color: #fff;
-			line-height: 100px;
-			border-radius: 4px;
-			box-shadow: 0 0 5px #fff;
-		}
-	}
 </style>

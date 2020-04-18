@@ -42,6 +42,10 @@
 							{
 								"name":"指定内容高亮",
 								"url":"/pages/component/highlight"
+							},
+							{
+								"name":"卡片式轮播图",
+								"url":"/pages/template/gradientNav"
 							}
 						]
 					},
@@ -75,6 +79,10 @@
 							{
 								"name":"即时通讯聊天",
 								"url":"/pages/template/talk"
+							},
+							{
+								"name":"滚动渐变的顶部导航栏",
+								"url":"/pages/template/gradientNav"
 							}
 							
 						]
@@ -93,6 +101,15 @@
 							{
 								"name":"webSocket",
 								"url":"/pages/sdk/webSocket"
+							}
+						]
+					},
+					{
+						"name":"正在开发中的",
+						"list":[
+							{
+								"name":"nvue 仿抖音视频轮播",
+								"url":"/pages/template/swiper_video"
 							}
 						]
 					}

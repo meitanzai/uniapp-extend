@@ -33,12 +33,12 @@
 		},
 		onLoad(){
 			console.log('统一资源标识符：')
-			console.log(this.iGlobal.URI);
+			console.log(this.$iGlobal.URI);
 		},
 		methods: {
 			showLoad(){
 				/* 默认提示 “加载中” */
-				this.iGlobal.showLoading();
+				this.$iGlobal.showLoading();
 				
 				setTimeout(function(){
 					uni.hideLoading();
@@ -46,29 +46,29 @@
 			},
 			showToast(){
 				/* 默认提示 无图标的信息 */
-				this.iGlobal.showToast("登录成功","success");
+				this.$iGlobal.showToast("登录成功","success");
 			},
 			isEmail(){
-				if(this.iGlobal.regExps.email.test('1846492969@qq.com')){
-					this.iGlobal.showToast("这是一个合法的邮箱");
+				if(this.$iGlobal.regExps.email.test('1846492969@qq.com')){
+					this.$iGlobal.showToast("这是一个合法的邮箱");
 				}else{
-					this.iGlobal.showToast("这个邮箱不合法");
+					this.$iGlobal.showToast("这个邮箱不合法");
 				}
 			},
 			getData(e){
 				/* 默认获取元素上的所有自定义值 */
-				let name=this.iGlobal.getData(e,"name");
-				this.iGlobal.showToast(`name : ${name}`);
+				let name=this.$iGlobal.getData(e,"name");
+				this.$iGlobal.showToast(`name : ${name}`);
 			},
 			getRect(){
-				this.iGlobal.getRect('#helang-el').then((res)=>{
-					this.iGlobal.showToast("浏览器控制台查看结果");
+				this.$iGlobal.getRect('#helang-el').then((res)=>{
+					this.$iGlobal.showToast("浏览器控制台查看结果");
 					console.log(res);
 				})
 			},
 			request(){
-				this.iGlobal.showLoading();
-				this.iGlobal.request({
+				this.$iGlobal.showLoading();
+				this.$iGlobal.request({
 					url:'https://api.apiopen.top/getWangYiNews',
 					data:{
 						page:1,
@@ -77,14 +77,14 @@
 					method:'POST'
 				}).then((res)=>{
 					uni.hideLoading();
-					this.iGlobal.showToast("成功,看控制台","success");
+					this.$iGlobal.showToast("成功,看控制台","success");
 					console.log(res);
 				}).catch((err)=>{
 					console.log("错误");
 				});
 			},
 			upload(){
-				this.iGlobal.showToast("文件上传，可参照 请求 接口自行添加");
+				this.$iGlobal.showToast("文件上传，可参照 请求 接口自行添加");
 			}
 		}
 	}
