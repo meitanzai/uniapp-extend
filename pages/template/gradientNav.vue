@@ -15,7 +15,7 @@
 		</view>
 		<card-swiper></card-swiper>
 		<view style="height: 600px;">
-			<view style="padding-top: 50rpx;text-align: center;">向上滚动查看标题栏目渐变效果</view>
+			<view style="padding-top: 50rpx;text-align: center;">向上滚动查看标题栏渐变效果</view>
 		</view>
 	</view>
 </template>
@@ -38,7 +38,7 @@
 				let r = this.pageScrollTop  / 100;
 				return {
 					"class":r>=0.85?'style2':'',
-					"style":`background-color: rgba(255,255,255,${r>=1?1:r});`
+					"style":`background-color: rgba(66, 185, 131,${r>=1?1:r});`
 				}
 			}
 		},
@@ -52,7 +52,7 @@
 		methods: {
 			// 顶部导航改变 
 			changeTopNav(e){
-				this.topNavIndex = this.$iGlobal.getData(e,"index");
+				this.topNavIndex = e.currentTarget.dataset.index
 			},
 			// 去搜索
 			toSearch(){
@@ -79,7 +79,7 @@
 		height: auto;
 		padding-top: var(--status-bar-height);
 		z-index: 10;
-		background-color: rgba(255,255,255,0);
+		background-color: rgba(66,185,131,0);
 		color: rgba(255,255,255,0.8);
 		
 		&>view{
@@ -111,17 +111,16 @@
 		}
 		
 		&.style2{
-			color: #666;
-			background-color: rgba(255,255,255,1);
+			color: #FFF;
+			background-color: rgba(66, 185, 131,1);
 			
 			.tab{
 				&>view{
 					&.active{
-						color: #333;
+						color: #FFF;
 					}
 				}
 			}
 		}
 	}
-
 </style>

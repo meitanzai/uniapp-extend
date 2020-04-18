@@ -94,7 +94,7 @@
 					top: 0;
 					left: 0;
 					width: 100%;
-					height: 100%;
+					height: 80%;
 					top: -60px;
 					left: -60px;
 					filter: blur(50px);
