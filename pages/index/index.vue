@@ -110,6 +110,14 @@
 							{
 								"name":"nvue 仿抖音视频轮播",
 								"url":"/pages/template/swiper_video"
+							},
+							{
+								"name":"flex布局盒子",
+								"url":"/pages/component/flex"
+							},
+							{
+								"name":"自定义导航栏解决方案",
+								"url":"/pages/template/customBar"
 							}
 						]
 					}

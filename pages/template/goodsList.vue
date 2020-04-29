@@ -1,6 +1,19 @@
 <template>
 	<view>
 		<view class="t1">点击下方链接体验</view>
+		<navigator url="goodsList_scroll" hover-class="hover">
+			<view class="title">
+				<text>滚动式联动</text>
+				<text class="link">立即体验</text></view>
+			<view class="content">
+				<view>
+					优点：滚动流畅度很好，全平台兼容
+				</view>
+				<view>
+					缺点：因为需要计算高度的原因，需要在页面初始化时将所有商品信息返回，若是有大量的数据，不太建议这样做，会影响到打开时的加载速度
+				</view>
+			</view>
+		</navigator>
 		<navigator url="goodsList_swiper" hover-class="hover">
 			<view class="title">
 				<text>轮播式联动</text>
@@ -15,22 +28,8 @@
 				</view>
 			</view>
 		</navigator>
-		<navigator url="goodsList_scroll" hover-class="hover">
-			<view class="title">
-				<text>滚动式联动</text>
-				<text class="link">立即体验</text></view>
-			<view class="content">
-				<view>
-					优点：滚动流畅度很好，全平台兼容
-				</view>
-				<view>
-					缺点：因主内容区数据量的问题，导致内容高度达不到置顶条件，则会导致最后一栏滚动无法定位问题。
-				</view>
-			</view>
-		</navigator>
 		<view class="t2">
 			<view>因数据不可控的原因，请各位开发者们选择适合自己的模板使用，各有优缺点，选择适合自己的才是最好的。</view>
-			<view>如果每一项的数据量足够多，推荐使用【滚动式联动】，流畅性会好很多。</view>
 		</view>
 	</view>
 </template>

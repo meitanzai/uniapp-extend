@@ -1,42 +1,69 @@
 <template>
-	<view class="list_box">
-		<view class="left">
-			<scroll-view scroll-y="true" :style="{ 'height':scrollHeight + 'px' }">
-				<view class="item" 
-					v-for="(item,index) in leftArray"
-					:key="index" 
-					:class="{ 'active':index==leftIndex }" 
-					:data-index="index"
-					@tap="leftTap"
-				>{{item}}</view>
-            </scroll-view>
+	<view class="container">
+		<!-- 顶部面板 -->
+		<view class="top--panel">
+			<!-- 顶部面板，可添加所需要放在页面顶部的内容代码。比如banner图 -->
+			<view style="background-color: #ffaa00;text-align: center;font-size: 28rpx;padding: 10px 0;color: #fff;">
+				<view>这里顶部内容占位区域，不需要则删除</view>
+				<view>可添加需放在页面顶部的内容，比如banner图</view>
+			</view>
 		</view>
-		<view class="main">
-			<scroll-view  scroll-y="true" :style="{ 'height':scrollHeight + 'px' }" @scroll="mainScroll" :scroll-into-view="scrollInto" scroll-with-animation="true">
-				<view class="item main-item" v-for="(item,index) in mainArray" :key="index" :id="'item-'+index">
-					<view class="title">
-						<view>{{item.title}}</view>
-					</view>
-					<view class="goods" v-for="(item2,index2) in item.list" :key="index2">
-						<image src="/static/logo.png" mode=""></image>
-						<view>
-							<view>第{{index2+1}}个商品标题</view>
-							<view class="describe">第{{index2+1}}个商品的描述内容</view>
-							<view class="money">第{{index2+1}}个商品的价格</view>
-						</view>
-					</view>
+		<!-- 滚动区域 -->
+		<view class="scroll-panel" id="scroll-panel">
+			<view class="list-box">
+				<view class="left">
+					<scroll-view scroll-y="true" 
+						:style="{ 'height':scrollHeight + 'px' }" 
+						:scroll-into-view="leftIntoView"
+						>
+						<view class="item" 
+							v-for="(item,index) in leftArray"
+							:key="index" 
+							:class="{ 'active':index==leftIndex }" 
+							:id="'left-'+index"
+							:data-index="index"
+							@tap="leftTap"
+						>{{item}}</view>
+			        </scroll-view>
 				</view>
-				<view class="fill-last" :style="{ 'height':fillHeight + 'px' }"></view>
-			</scroll-view>
+				<view class="main">
+					<scroll-view  scroll-y="true" :style="{ 'height':scrollHeight + 'px' }" @scroll="mainScroll" :scroll-into-view="scrollInto" scroll-with-animation="true">
+						<view class="item main-item" v-for="(item,index) in mainArray" :key="index" :id="'item-'+index">
+							<view class="title">
+								<view>{{item.title}}</view>
+							</view>
+							<view class="goods" v-for="(item2,index2) in item.list" :key="index2">
+								<image src="/static/logo.png" mode=""></image>
+								<view>
+									<view>第{{index2+1}}个商品标题</view>
+									<view class="describe">第{{index2+1}}个商品的描述内容</view>
+									<view class="money">第{{index2+1}}个商品的价格</view>
+								</view>
+							</view>
+						</view>
+						<view class="fill-last" :style="{ 'height':fillHeight + 'px' }"></view>
+					</scroll-view>
+				</view>
+			</view>
+		</view>
+		<!-- 底部面板 -->
+		<view class="bottom-panel">
+			<!-- 底部面板，可添加所需要放在页面底部的内容代码。比如购物车栏目 -->
+			<view style="background-color: #ffaa00;text-align: center;font-size: 28rpx;padding: 10px 0;color: #fff;">
+				<view>这里底部内容占位区域，不需要则删除</view>
+				<view>可添加需放在页面底部的内容，比如购物车栏目</view>
+			</view>
 		</view>
 	</view>
+	
 </template>
 
 <script>
 	export default {
 		data() {
 			return {
-				scrollHeight:500,
+				scrollHeight:400,
+				scrollTopSize:0,
 				fillHeight:0,	// 填充高度，用于最后一项低于滚动区域时使用
 				leftArray:[],
 				mainArray:[],
@@ -45,18 +72,36 @@
 				scrollInto:''
 			}
 		},
-		onLoad(){
-			uni.getSystemInfo({
-				success:(res)=>{
-					/* 设置当前滚动容器的高，若非窗口的高度，请自行修改 */
-					this.scrollHeight = res.windowHeight;
-				}
-			});
+		computed:{
+			/* 计算左侧滚动位置定位 */
+			leftIntoView(){
+				return `left-${this.leftIndex > 3 ? (this.leftIndex-3):0}`;
+			}
 		},
 		mounted(){
-			this.getListData();
+			/* 等待DOM挂载完成 */
+			this.$nextTick(()=>{
+				/* 等待滚动区域初始化完成 */
+				this.initScrollView().then(()=>{
+					/* 获取列表数据，你的代码从此处开始 */
+					this.getListData();
+				})
+			})
 		},
 		methods: {
+			/* 初始化滚动区域 */
+			initScrollView(){
+				return new Promise((resolve, reject)=>{
+					let view = uni.createSelectorQuery().select('#scroll-panel');
+					view.boundingClientRect(res => {
+						this.scrollTopSize = res.top;
+						this.scrollHeight = res.height;
+						this.$nextTick(()=>{
+							resolve();
+						})
+					}).exec();
+				});
+			},
 			/* 获取列表数据 */
 			getListData(){
 				// Promise 为 ES6 新增的API ，有疑问的请自行学习该方法的使用。
@@ -66,14 +111,12 @@
 					setTimeout(()=>{
 						let [left,main]=[[],[]];
 						
-						for(let i=0;i<10;i++){
+						for(let i=0;i<25;i++){
 							left.push(`${i+1}类商品`);
 							
 							let list=[];
 							let r = Math.floor(Math.random()*10);
-							console.log(r);
 							r = r < 1 ? 3 : r;
-							console.log(r);
 							for(let j=0;j<r;j++){
 								list.push(j);
 							}
@@ -109,12 +152,12 @@
 					}).exec();
 				}).then((res)=>{
 					let topArr = res.map((item)=>{
-						return item.top;
+						return item.top - this.scrollTopSize;	/* 减去滚动容器距离顶部的距离 */
 					});
 					this.topArr = topArr;
 					
 					/* 获取最后一项的高度，设置填充高度。判断和填充时做了 +-20 的操作，是为了滚动时更好的定位 */
-					let last = res[res.length-1].height;					
+					let last = res[res.length-1].height;			
 					if(last - 20 < this.scrollHeight){
 						this.fillHeight = this.scrollHeight - last + 20;
 					}
@@ -144,7 +187,37 @@
 </script>
 
 <style lang="scss">
-.list_box{
+page,.container{
+	height: 100%;
+}
+/* 容器 */
+.container{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+	align-content: flex-start;
+	
+	&>view{
+		width: 100%;
+	}
+	
+	.scroll-panel{
+		flex-grow: 1;
+		height: 0;
+		overflow: hidden;
+	}
+	
+	.bottom-panel{
+		padding-bottom: 0;
+		padding-bottom: constant(safe-area-inset-bottom);  
+		padding-bottom: env(safe-area-inset-bottom);		
+	}
+}
+	
+	
+.list-box{
 	display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
