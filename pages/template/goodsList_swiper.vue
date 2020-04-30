@@ -79,22 +79,17 @@
 				return `left-${this.leftIndex > 5 ? (this.leftIndex-5):0}`;
 			}
 		},
-		onLoad(){
-			/* 设置当前滚动容器的高，若非窗口的高度，请自行修改 */
-			uni.getSystemInfo({
-				success:(res)=>{
-					this.scrollHeight=`${res.windowHeight}px`;
-				}
-			});
-		},
 		mounted(){
 			/* 等待DOM挂载完成 */
 			this.$nextTick(()=>{
-				/* 等待滚动区域初始化完成 */
-				this.initScrollView().then(()=>{
-					/* 获取列表数据，你的代码从此处开始 */
-					this.getListData();
-				})
+				/* 在非H5平台，nextTick回调后有概率获取到错误的元素高度，则添加200ms的延迟来减少BUG的产生 */
+				setTimeout(()=>{
+					/* 等待滚动区域初始化完成 */
+					this.initScrollView().then(()=>{
+						/* 获取列表数据，你的代码从此处开始 */
+						this.getListData();
+					})
+				},200);
 			})
 		},
 		methods: {
