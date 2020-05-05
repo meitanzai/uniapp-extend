@@ -1,54 +1,49 @@
 <template>
-	<view class="container">
-		<view v-for="(item,index) in linkList" :key="index" style="margin-bottom: 15px;">
-			<uni-card :title="item.name">
-				<view class="item">
-					<navigator v-for="(item2,index2) in item.list" :key="index2" :url="item2.url" hover-class="none">
-			            <button type="default" size="mini">{{item2.name}}</button>
-			        </navigator>
+	<view>
+		<scroll-view scroll-x class="bg-white nav" scroll-with-animation :scroll-left="scrollLeft">
+			<view class="flex text-center">
+				<view class="cu-item flex-sub" 
+					v-for="(item,index) in linkList" 
+					:key="index" 
+					:class="index==TabCur?'text-green cur':''" 
+					@tap="tabSelect" 
+					:data-id="index"
+					>
+					{{item.name}}
 				</view>
-			</uni-card>
+			</view>
+		</scroll-view>
+		<view class="margin-top margin-bottom">
+			<view v-for="(item,index) in linkList" :key="index" v-if="index == TabCur">
+				<view class="cu-bar bg-white solid-bottom solid-top">
+					<view class="action">
+						<text class="cuIcon-title text-green"></text>
+						<text>{{item.name}}</text>
+					</view>
+				</view>
+				<view class="cu-list menu">
+					<navigator class="cu-item arrow" 
+						v-for="(item2,index2) in item.list" 
+						:key="index2" 
+						:url="item2.url" 
+						>
+						<view class="content">
+							<text class="text-grey">{{item2.name}}</text>
+						</view>
+					</navigator>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	import uniCard from "@/components/uni-card/uni-card"
-
 	export default {
-		components: {uniCard},
 		data() {
 			return {
+				TabCur: 0,
+				scrollLeft: 0,
 				linkList:[
-					{
-						"name":"通用组件",
-						"list":[
-							{
-								"name":"滑动验证",
-								"url":"/pages/component/moveVerify"
-							},
-							{
-								"name":"颜色选择",
-								"url":"/pages/component/pickerColor"
-							},
-							{
-								"name":"异步switch",
-								"url":"/pages/component/asyncSwitch"
-							},
-							{
-								"name":"自定义复选/单选框",
-								"url":"/pages/component/checkbox"
-							},
-							{
-								"name":"指定内容高亮",
-								"url":"/pages/component/highlight"
-							},
-							{
-								"name":"卡片式轮播图",
-								"url":"/pages/template/gradientNav"
-							}
-						]
-					},
 					{
 						"name":"页面模板",
 						"list":[
@@ -88,6 +83,35 @@
 						]
 					},
 					{
+						"name":"通用组件",
+						"list":[
+							{
+								"name":"滑动验证",
+								"url":"/pages/component/moveVerify"
+							},
+							{
+								"name":"颜色选择",
+								"url":"/pages/component/pickerColor"
+							},
+							{
+								"name":"异步switch",
+								"url":"/pages/component/asyncSwitch"
+							},
+							{
+								"name":"自定义复选/单选框",
+								"url":"/pages/component/checkbox"
+							},
+							{
+								"name":"指定内容高亮",
+								"url":"/pages/component/highlight"
+							},
+							{
+								"name":"卡片式轮播图",
+								"url":"/pages/template/gradientNav"
+							}
+						]
+					},
+					{
 						"name":"通用 SDK",
 						"list":[
 							{
@@ -105,7 +129,7 @@
 						]
 					},
 					{
-						"name":"正在开发中",
+						"name":"正在开发",
 						"list":[
 							{
 								"name":"nvue 仿抖音视频轮播",
@@ -126,33 +150,15 @@
 			}
 		},
 		methods: {
-			
-		},
-		onLoad(){
-			
+			tabSelect(e) {
+				this.TabCur = e.currentTarget.dataset.id;
+				this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60;
+			}
 		}
 	}
 </script>
 
-<style scoped lang="scss">
-	.container{
-		padding: 30rpx 0 0 0;
-		
-		.item{
-			margin: 0 -10rpx -10rpx 0;
-		}
-		
-		navigator{
-			display: inline-block;
-			margin: 0 10rpx 10rpx 0;
-			
-			button{
-				display: block;
-			}
-		}
-		
-		.uni-card{
-			margin-bottom: 30rpx;
-		}
-	}
+<style lang="scss">
+	@import "/colorui/icon.css";
+	@import "/colorui/main.css";
 </style>
