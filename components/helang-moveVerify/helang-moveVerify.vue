@@ -60,7 +60,7 @@
 				
 				this.count++;
 				this.x = this.oldx;
-				if ((this.oldx + 1) > (this.size.pathway - this.size.track)) {
+				if ((this.oldx + 3) > (this.size.pathway - this.size.track)) {
 					this.isOk = true;
 					this.$emit("result",{flag:true,count:this.count});
 				} else {

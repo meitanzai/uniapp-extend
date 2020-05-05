@@ -2,7 +2,7 @@
 	<view class="container">
 		<view v-for="(item,index) in linkList" :key="index" style="margin-bottom: 15px;">
 			<uni-card :title="item.name">
-				<view>
+				<view class="item">
 					<navigator v-for="(item2,index2) in item.list" :key="index2" :url="item2.url" hover-class="none">
 			            <button type="default" size="mini">{{item2.name}}</button>
 			        </navigator>
@@ -105,16 +105,17 @@
 						]
 					},
 					{
-						"name":"正在开发中的",
+						"name":"正在开发中",
 						"list":[
 							{
 								"name":"nvue 仿抖音视频轮播",
 								"url":"/pages/template/swiper_video"
-							},
-							{
-								"name":"flex布局盒子",
-								"url":"/pages/component/flex"
-							},
+							}
+						]
+					},
+					{
+						"name":"暂停开发",
+						"list":[
 							{
 								"name":"自定义导航栏解决方案",
 								"url":"/pages/template/customBar"
@@ -135,11 +136,15 @@
 
 <style scoped lang="scss">
 	.container{
-		padding: 32upx 0 0 0;
+		padding: 30rpx 0 0 0;
+		
+		.item{
+			margin: 0 -10rpx -10rpx 0;
+		}
 		
 		navigator{
 			display: inline-block;
-			margin: 0 20upx 20upx 0;
+			margin: 0 10rpx 10rpx 0;
 			
 			button{
 				display: block;
@@ -147,7 +152,7 @@
 		}
 		
 		.uni-card{
-			margin-bottom: 30upx;
+			margin-bottom: 30rpx;
 		}
 	}
 </style>

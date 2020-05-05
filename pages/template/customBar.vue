@@ -1,15 +1,29 @@
 <template>
-	<view class="container flex_row" :style="WH">
+	<view class="container flex_row" :style="windowHeight">
 		<view class="flex_grow content-box" id="content-box">
-			<view :style="{ height:H }">
+			<view :style="{height:contentHeight}">
 				<view class="top-nav">自定义导航栏</view>
-				
-				
-				<view style="height: 100px;"></view>
-				<input type="text" placeholder="请输入内容" cursor-spacing="10" class="aaa">
-				
-				<view style="height: 300px;"></view>
-				<input type="text" placeholder="请输入内容" cursor-spacing="10" class="aaa">
+				<view class="scroll-box">
+					<scroll-view scroll-y="true" scrollHeight
+						:style="{height:scrollHeight}"
+						:refresher-enabled="true"
+						refresher-background="#f3f3f3"
+						refresher-default-style="black"
+					>
+
+						<view style="min-height: 400px;">
+							<view style="padding: 20rpx;font-size: 16px;">
+								<view>
+									最初想通过 scroll-view组件 + 导航页多组件切换的方式来解决下拉/键盘/多页面切换的问题，但是
+									scroll-view组件的下拉功能仅支持App平台与微信小程序平台且下拉体验贼差，故暂时放弃该解决方案，
+									<text style="color: #ea0000;">本模版也暂时停止更新</text>
+								</view>
+							</view>
+						</view>
+						<input type="text" placeholder="键盘问题测试输入框" cursor-spacing="10" class="input-1">
+						<view style="height: 300px;"></view>
+					</scroll-view>
+				</view>
 			</view>
 		</view>
 		<view>
@@ -48,20 +62,28 @@
 		components: {uniIcons},
 		data() {
 			return {
-				H:'0px',
-				WH:''
+				contentHeight:'0px',
+				windowHeight:'',
+				scrollHeight:'0px'
 			}
 		},
 		mounted() {
 			uni.getSystemInfo({
 				success:(res)=> {
-					this.WH = `height:${res.windowHeight}px;`;
+					this.windowHeight = `height:${res.windowHeight}px;`;
 				}
 			})
 			this.$nextTick(()=>{
 				let view = uni.createSelectorQuery().select('#content-box');
 				view.boundingClientRect(data => {
-					this.H = `${data.height}px`;
+					this.contentHeight = `${data.height}px`;
+					
+					this.$nextTick(()=>{
+						let view = uni.createSelectorQuery().select('.scroll-box');
+						view.boundingClientRect(data2 => {
+							this.scrollHeight = `${data2.height}px`;
+						}).exec();
+					})
 				}).exec();
 			})
 		},
@@ -85,6 +107,25 @@ page,.container{
 .content-box{
 	height: 0;
 	overflow: hidden;
+	
+	&>view{
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-items: flex-start;
+		align-content: flex-start;
+		
+		&>view{
+			width: 100%;
+		}
+	}
+	
+	.scroll-box{
+		flex-grow: 1;
+		height: 0;
+		overflow: hidden;
+	}
 }
 
 .tab-bar{
@@ -135,15 +176,6 @@ page,.container{
 	}
 }
 
-.aaa{
-	width: 750rpx;
-	height: 100rpx;
-	background-color: #fff;
-	padding: 0 20rpx;
-}
-
-
-
 .top-nav{
 	padding-top: var(--status-bar-height);
 	height: 44px;
@@ -153,5 +185,12 @@ page,.container{
 	font-size: 17px;
 	text-align: center;
 	line-height: 43px;
+}
+
+.input-1{
+	width: 750rpx;
+	height: 100rpx;
+	background-color: #fff;
+	padding: 0 20rpx;
 }
 </style>

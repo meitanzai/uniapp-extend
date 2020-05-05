@@ -129,12 +129,6 @@
 			}
 		},
 		{
-            "path" : "pages/component/flex",
-            "style" : {
-				"navigationBarTitleText": "flex布局盒子"
-			}
-        },
-		{
             "path" : "pages/template/customBar",
             "style" : {
 				"navigationBarTitleText": "自定义导航栏解决方案",
