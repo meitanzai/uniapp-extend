@@ -37,7 +37,7 @@
    
 	/* 条件编译，仅在H5平台生效 */
 	// #ifdef H5
-	::-webkit-scrollbar {
+	body::-webkit-scrollbar,html::-webkit-scrollbar {
 		display: none;
 	}
 	// #endif

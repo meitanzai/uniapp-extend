@@ -1,10 +1,22 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
+			"path": "pages/index/template",
 			"style": {}
-		}
-	    ,{
+		},
+		{
+			"path": "pages/index/component",
+			"style": {}
+		},
+		{
+			"path": "pages/index/sdk",
+			"style": {}
+		},
+		{
+			"path": "pages/index/codeing",
+			"style": {}
+		},
+	    {
             "path" : "pages/component/pickerColor",
             "style" : {
 				"navigationBarTitleText": "颜色选择"
@@ -137,6 +149,36 @@
 			}
         }
     ],
+	"tabBar": {
+	    "color": "#666666",
+	    "selectedColor": "#42b983",
+	    "borderStyle": "black",
+	    "backgroundColor": "#ffffff",
+	    "list": [{
+	        "pagePath": "pages/index/template",
+	        "iconPath": "static/tabBar/template.png",
+	        "selectedIconPath": "static/tabBar/template-active.png",
+	        "text": "模板"
+	    },
+		{
+	        "pagePath": "pages/index/component",
+	        "iconPath": "static/tabBar/component.png",
+	        "selectedIconPath": "static/tabBar/component-active.png",
+	        "text": "组件"
+	    },
+		{
+		    "pagePath": "pages/index/sdk",
+		    "iconPath": "static/tabBar/sdk.png",
+		    "selectedIconPath": "static/tabBar/sdk-active.png",
+		    "text": "SDK"
+		},
+		{
+		    "pagePath": "pages/index/codeing",
+		    "iconPath": "static/tabBar/codeing.png",
+		    "selectedIconPath": "static/tabBar/codeing-active.png",
+		    "text": "开发"
+		}]
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "UNI-APP 河浪插件分享",
