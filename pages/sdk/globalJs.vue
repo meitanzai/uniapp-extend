@@ -21,6 +21,11 @@
 		<view>
 			<button type="default" @tap="upload">上传文件</button>
 		</view>
+		<view>
+			<button type="default" size="mini" @tap="aa1">设置</button>
+			<button type="default" size="mini" @tap="aa2">获取</button>
+			<button type="default" size="mini" @tap="aa3">删除</button>
+		</view>
 	</view>
 </template>
 
@@ -85,6 +90,16 @@
 			},
 			upload(){
 				this.$iGlobal.showToast("文件上传，可参照 请求 接口自行添加");
+			},
+			aa1(){
+				this.$iGlobal.globalData.set("aa",131313);
+			},
+			aa2(){
+				console.log(this.$iGlobal.globalData.get("aa"))
+			},
+			aa3(){
+				this.$iGlobal.globalData.del("aa")
+				console.log(this.$iGlobal.globalData.get("aa"))
 			}
 		}
 	}

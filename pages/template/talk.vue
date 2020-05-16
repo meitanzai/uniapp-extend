@@ -3,7 +3,11 @@
 		<view class="tips color_fff size_12 align_c" :class="{ 'show':ajax.loading }" @tap="getHistoryMsg">{{ajax.loadText}}</view>
 		<view class="box-1" id="list-box">
 			<view class="talk-list">
-				<view v-for="(item,index) in talkList" :key="index" :id="`msg-${item.id}`">
+				<view 
+					v-for="(item,index) in talkList" 
+					:key="`${item.id}-${index}`" 
+					:id="`msg-${item.id}`"
+				>
 					<view class="item flex_col" :class=" item.type == 1 ? 'push':'pull' ">
 						<image :src="item.pic" mode="aspectFill" class="pic"></image>
 						<view class="content">{{item.content}}</view>
