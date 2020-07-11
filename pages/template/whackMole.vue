@@ -1,10 +1,10 @@
 <template>
 	<view class="box">
-		<view class="result flex_col flex_col_2">
-			<view class="align_l">时间：{{time}}</view>
-			<view class="align_r">得分：{{countResult}}</view>
+		<view class="result flex-col flex-col-2">
+			<view class="align-l">时间：{{time}}</view>
+			<view class="align-r">得分：{{countResult}}</view>
 		</view>
-		<view class="flex_col flex_col_3 flex_wrap">
+		<view class="flex-col flex-col-3 flex-wrap">
 			<view class="item" v-for="(item,index) in list" :key="index" @tap="whack(index)">
 				<image src="/static/images/whackMole/hole.png" mode="aspectFit" class="hole"></image>
 				<image src="/static/images/whackMole/mouse.png" mode="aspectFit" class="mouse" v-show="item == 1"></image>

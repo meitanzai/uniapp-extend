@@ -1,6 +1,6 @@
 <template>
-	<view class="container flex_row" :style="windowHeight">
-		<view class="flex_grow content-box" id="content-box">
+	<view class="container flex-row" :style="windowHeight">
+		<view class="flex-grow content-box" id="content-box">
 			<view :style="{height:contentHeight}">
 				<view class="top-nav">自定义导航栏</view>
 				<view class="scroll-box">
@@ -27,7 +27,7 @@
 			</view>
 		</view>
 		<view>
-			<view class="tab-bar flex_col flex_col_5 align_c">
+			<view class="tab-bar flex-col flex-col-5 align-c">
 				<view class="tab">
 					<uni-icons type="home-filled" size="24" color="#666666"></uni-icons>
 					<view>首页</view>

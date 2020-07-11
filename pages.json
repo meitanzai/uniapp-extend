@@ -148,6 +148,24 @@
 				"disableScroll":true
 			}
         }
+        ,{
+            "path" : "pages/component/blur",
+            "style" : {
+				"navigationBarTitleText": "高斯模糊"
+			}
+        }
+        ,{
+            "path" : "pages/template/vote",
+            "style" : {
+				"navigationBarTitleText": "投票"
+			}
+        }
+        ,{
+            "path" : "pages/template/autoSwiper",
+            "style" : {
+				"navigationBarTitleText": "自动缩放高度的轮播度"
+			}
+        }
     ],
 	"tabBar": {
 	    "color": "#666666",

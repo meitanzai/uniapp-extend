@@ -3,33 +3,33 @@
 		<view class="itme-box">
 			<view class="title">项目全局样式表 - 布局演示</view>
 			<view class="demo-2">
-				<view class="flex_col color_fff">
+				<view class="flex-col color-fff">
 					<image src="../../static/logo.png" mode="aspectFill" class="pic"></image>
-					<view class="flex_grow">
-						<view class="size_16" style="padding-bottom: 10rpx;">河浪（uni-app）</view>
-						<view class="size_12">一个热爱分享又普通的web前端开发者</view>
+					<view class="flex-grow">
+						<view class="size-16" style="padding-bottom: 10rpx;">河浪（uni-app）</view>
+						<view class="size-12">一个热爱分享又普通的web前端开发者</view>
 					</view>
-					<view class="edit size_12">编辑</view>
+					<view class="edit size-12">编辑</view>
 				</view>
 			</view>
-			<view class="demo-3 flex_col flex_col_3 color_999 align_c size_12">
+			<view class="demo-3 flex-col flex-col-3 color-999 align-c size-12">
 				<view>
 					<view>
-						<text class="color_d51 font_b size_14">1024</text>
+						<text class="color-d51 font-b size-14">1024</text>
 						<text style="padding-left: 6rpx;">元</text>
 					</view>
 					<view>可提金额</view>
 				</view>
 				<view>
 					<view>
-						<text class="color_d51 font_b size_14">1102</text>
+						<text class="color-d51 font-b size-14">1102</text>
 						<text style="padding-left: 6rpx;">元</text>
 					</view>
 					<view>即将到账</view>
 				</view>
 				<view>
 					<view>
-						<text class="color_d51 font_b size_14">1988</text>
+						<text class="color-d51 font-b size-14">1988</text>
 						<text style="padding-left: 6rpx;">元</text>
 					</view>
 					<view>累计收益</view>
@@ -38,55 +38,55 @@
 		</view>
 		<view class="itme-box">
 			<view class="title">弹性分列式布局 - 等比分列</view>
-			<view class="flex_col flex_col_3 align_c demo-1 color_fff">
+			<view class="flex-col flex-col-3 align-c demo-1 color-fff">
 				<view>等比分为3列</view>
 				<view>默认垂直居中</view>
-				<view>flex_col_3</view>
+				<view>flex-col-3</view>
 			</view>
 		</view>
 		<view class="itme-box">
 			<view class="title">弹性分列式布局 - 水平居中</view>
-			<view class="flex_col flex_center flex_col_3 align_c demo-1 color_fff">
+			<view class="flex-col flex-center flex-col-3 align-c demo-1 color-fff">
 				<view>我被水平居中了</view>
-				<view>flex_center</view>
+				<view>flex-center</view>
 			</view>
 		</view>
 		<view class="itme-box">
 			<view class="title">弹性分列式布局 - 两端对齐</view>
-			<view class="flex_col flex_space flex_col_3 align_c demo-1 color_fff">
+			<view class="flex-col flex-space flex-col-3 align-c demo-1 color-fff">
 				<view>我们被分开了</view>
-				<view>flex_space</view>
+				<view>flex-space</view>
 			</view>
 		</view>
 		<view class="itme-box">
 			<view class="title">弹性分列式布局 - 弹性设置</view>
-			<view class="flex_col flex_center flex_col_3 align_c demo-1 color_fff">
+			<view class="flex-col flex-center flex-col-3 align-c demo-1 color-fff">
 				<view>右边的是弹性的</view>
-				<view class="flex_grow">flex_grow</view>
+				<view class="flex-grow">flex-grow</view>
 			</view>
 		</view>
 		<view class="itme-box">
 			<view class="title">弹性分列式布局 - 允许换行</view>
-			<view class="flex_col flex_wrap flex_col_2 align_c demo-1 color_fff" style="height: 220rpx;">
+			<view class="flex-col flex-wrap flex-col-2 align-c demo-1 color-fff" style="height: 220rpx;">
 				<view>请求换行</view>
 				<view>默认垂直居中</view>
-				<view>flex_wrap</view>
+				<view>flex-wrap</view>
 			</view>
 		</view>
 		<view class="itme-box">
 			<view class="title">弹性分行式布局 - 自动适应容器高度</view>
-			<view class="flex_row flex_wrap flex_col_2 align_c demo-1 color_fff" style="height: 600rpx;padding: 20rpx;">
+			<view class="flex-row flex-wrap flex-col-2 align-c demo-1 color-fff" style="height: 600rpx;padding: 20rpx;">
 				<view style="width: 100%;">我被下面的弹性元素自动顶到了上方</view>
-				<view class="flex_grow flex_col flex_center flex_wrap" style="width: 100%;">
+				<view class="flex-grow flex-col flex-center flex-wrap" style="width: 100%;">
 					<view>我是分行式布局中的弹性元素</view>
 					<view>我会占满容器高度所有剩余的空间</view>
 				</view>
-				<view style="width: 100%;">flex_row</view>
+				<view style="width: 100%;">flex-row</view>
 			</view>
 		</view>
 		<view class="itme-box">
 			<view class="title">样式表内容清单：</view>
-			<view class="label-box flex_col flex_wrap size_12 color_666">
+			<view class="label-box flex-col flex-wrap size-12 color-666">
 				<view>根元素样式</view>
 				<view>常用元素尺寸规则</view>
 				<view>弹性盒子</view>
@@ -95,7 +95,7 @@
 				<view>对齐方式</view>
 				<view>弹窗</view>
 			</view>
-			<view class="size_12 color_999 copy">
+			<view class="size-12 color-999 copy">
 				<view>更多使用，请查看 global.scss 文件。源码有详细注释</view>
 				<view>2019 helang.love@qq.com</view>
 			</view>

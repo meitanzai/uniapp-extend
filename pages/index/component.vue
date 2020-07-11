@@ -53,6 +53,10 @@
 							{
 								"name":"卡片式轮播图",
 								"url":"/pages/template/gradientNav"
+							},
+							{
+								"name":"高斯模糊",
+								"url":"/pages/component/blur"
 							}
 						]
 					}

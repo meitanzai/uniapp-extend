@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view>		
 		<view v-for="(item,index) in linkList" :key="index">
 			<view class="cu-bar bg-white solid-bottom solid-top">
 				<view class="action">
@@ -61,8 +61,14 @@
 							{
 								"name":"滚动渐变的顶部导航栏",
 								"url":"/pages/template/gradientNav"
+							},
+							{
+								"name":"投票",
+								"url":"/pages/template/vote"
+							},{
+								"name":"自动缩放高度的轮播度",
+								"url":"/pages/template/autoSwiper"
 							}
-							
 						]
 					}
 				]

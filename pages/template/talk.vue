@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class="tips color_fff size_12 align_c" :class="{ 'show':ajax.loading }" @tap="getHistoryMsg">{{ajax.loadText}}</view>
+		<view class="tips color-fff size_12 align-c" :class="{ 'show':ajax.loading }" @tap="getHistoryMsg">{{ajax.loadText}}</view>
 		<view class="box-1" id="list-box">
 			<view class="talk-list">
 				<view 
@@ -8,7 +8,7 @@
 					:key="item.id" 
 					:id="'msg-'+item.id"
 				>
-					<view class="item flex_col" :class=" item.type == 1 ? 'push':'pull' ">
+					<view class="item flex-col" :class=" item.type == 1 ? 'push':'pull' ">
 						<image :src="item.pic" mode="aspectFill" class="pic"></image>
 						<view class="content">{{item.content}}</view>
 					</view>
@@ -16,8 +16,8 @@
 			</view>
 		</view>
 		<view class="box-2">
-			<view class="flex_col">
-				<view class="flex_grow">
+			<view class="flex-col">
+				<view class="flex-grow">
 					<input type="text" class="content" v-model="content" placeholder="请输入聊天内容" placeholder-style="color:#DDD;" :cursor-spacing="6">
 				</view>
 				<button class="send" @tap="send">发送</button>

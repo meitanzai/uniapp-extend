@@ -1,14 +1,14 @@
 <template>
 	<view>
 		<view class="title" :class="topNavStyle.class" :style="topNavStyle.style">
-			<view class="flex_col">
+			<view class="flex-col">
 				<view class="box1"></view>
-				<view class="flex_grow flex_col flex_center tab">
+				<view class="flex-grow flex-col flex-center tab">
 					<view v-for="(item,index) in topNavArr" :key="index"
 					 :class="{ 'active':topNavIndex==index }" 
 					 :data-index="index" @tap="changeTopNav">{{item}}</view>
 				</view>
-				<view class="box1 align_r">
+				<view class="box1 align-r">
 					
 				</view>
 			</view>

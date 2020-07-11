@@ -1,11 +1,11 @@
 <template>
 	<view style="height: 100%;">
 		<view class="title">
-			<view class="flex_col color_fff">
+			<view class="flex-col color_fff">
 				<view class="box1">
 					<uni-icons type="search" size="20" color="#fff"></uni-icons>
 				</view>
-				<view class="flex_grow flex_col flex_center tab">
+				<view class="flex-grow flex-col flex-center tab">
 					<view :class="{ 'active':listType==0 }" data-type="0" @tap="changeType">关注</view>
 					<view :class="{ 'active':listType==1 }" data-type="1" @tap="changeType">推荐</view>
 				</view>
