@@ -37,16 +37,29 @@
 				if(this.list[i].checked){
 					this.$set(this.list[i],"checked",false);
 				}else{
+					if(this.maxSize){
+						let pickerSize = 0;
+						this.list.forEach((item,index)=>{
+							if(item.checked){
+								pickerSize++;
+							}
+						});
+						// 当已选值数量 >= 允许的最大选择值时触发
+						if(pickerSize >= this.maxSize){
+							this.maxFn && this.maxFn();
+							return;
+						}
+					}
 					this.$set(this.list[i],"checked",true);
 				}
 				this.$nextTick(()=>{
 					this.$emit("change",this.get());
-				})
+				});
 			},
 			/* 设置值 */
 			set(data) {
 				let [type,index] = ['checkbox',-1];
-				let column = ['','col_1','col_2','col_3']
+				let column = ['','col_1','col_2','col_3'];
 				if(data.type == 'radio'){
 					type = 'radio';
 					index = data.index >= 0 ? data.index : -1;
@@ -55,6 +68,14 @@
 				this.type = type;
 				this.index = index;
 				this.list = data.list;
+				
+				if(data.maxSize > 0 && data.maxFn){
+					this.maxSize = data.maxSize;
+					this.maxFn = data.maxFn;					
+				}else{
+					this.maxSize = undefined;
+					this.maxFn = undefined;
+				}
 			},
 			/* 获取值 */
 			get(){

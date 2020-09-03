@@ -81,6 +81,7 @@
 </script>
 
 <style lang="scss">
+	@import "@/lib/global.scss";
 	@import "/colorui/icon.css";
 	@import "/colorui/main.css";
 </style>

@@ -1,30 +1,33 @@
 <template>
-	<view class="box">
-		<view style="margin-bottom: 20rpx;">
-			<view>
-				<view style="font-size: 28rpx;">选择示例类型：</view>
-				<view>
-					<button 
-						v-for="(item,index) in array"
-						:key="index"
-						:type="pickerIndex == index ? 'primary':'default'" 
-						size="mini" 
-						style="margin-right: 10rpx;"
-						:data-index="index"
-						@tap="onSelectType"
-					>{{item}}</button>
-				</view>
-			</view>
-			<view v-if="pickerIndex >= 0" style="margin-top: 20rpx;">
-				<view style="font-size: 28rpx;">操作：</view>
-				<button type="default" size="mini" @tap="getData">获取已选数据</button>
-				<button type="default" size="mini" @tap="check" style="margin-left: 10rpx;">全选</button>
-				<button type="default" size="mini" @tap="invert" style="margin-left: 10rpx;">反选</button>
-				<button type="default" size="mini" @tap="cancel" style="margin-left: 10rpx;">取消</button>
-				<view style="font-size: 28rpx;margin-top: 20rpx;padding-top: 20rpx;border-top: #e5e5e5 solid 1px;">组件演示：</view>
+	<view>
+		<view class="panel">
+			<view class="panel-head">选择示例类型：</view>
+			<view class="panel-body">
+				<button
+					v-for="(item,index) in array"
+					:key="index"
+					:type="pickerIndex == index ? 'primary':'default'" 
+					size="mini" 
+					:data-index="index"
+					@tap="onSelectType"
+				>{{item}}</button>
 			</view>
 		</view>
-		<helang-checkbox ref="checkbox" @change="onChange"></helang-checkbox>
+		<view class="panel">
+			<view class="panel-head">操作：</view>
+			<view class="panel-body">
+				<button type="default" size="mini" @tap="getData">获取已选数据</button>
+				<button type="default" size="mini" @tap="check" :disabled="disabled">全选</button>
+				<button type="default" size="mini" @tap="invert" :disabled="disabled">反选</button>
+				<button type="default" size="mini" @tap="cancel">取消全部</button>
+			</view>
+		</view>
+		<view class="panel">
+			<view class="panel-head">组件演示：</view>
+			<view class="panel-body">
+				<helang-checkbox ref="checkbox" @change="onChange"></helang-checkbox>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -37,7 +40,8 @@
 		data() {
 			return {
 				pickerIndex:-1,
-				array:['复选框 - 三栏排序','复选框 - 流式排序','单选框 - 二栏排序','单选框 - 三栏排序'],
+				array:['复选框 - 三栏排序','复选框 - 流式排序（最多只能选择5个）','单选框 - 二栏排序','单选框 - 一栏排序'],
+				disabled:false
 			}
 		},
 		mounted(){
@@ -74,23 +78,36 @@
 						column:3,				// 分列：3
 						list:this.creatorList()	// 列表数据
 					});
+					this.disabled = false;
 					break;
 					case 1:
 					/* 复选框 流式布局 */
 					let list = this.creatorList();
 					/* 
-						给第 1,4,6,7,8,9 项添加默认选中
+						给第 1,4,7,9 项添加默认选中
 						此处仅为提供演示使用，具体使用参数请查看插件文章说明
 					 */
 					list.forEach((v,i)=>{	
-						if(/^[1|4|6|7|8|9]$/.test(i)){
+						if(/^[1|4|7|9]$/.test(i)){
 							list[i].checked = true;
 						}
 					});
 					this.$refs.checkbox.set({
 						type:'checkbox',		// 类型：复选框
-						list:list				// 列表数据
+						list:list,				// 列表数据
+						maxSize:5,				// 最大选择数量
+						maxFn:()=>{				// 超出最大选择数量时的回调函数
+							// 此处可输出当前页面的数据
+							// console.log(this.array);
+							uni.showToast({
+								title:'最多只能选择5个',
+								icon:'none',
+								duration:1000,
+								mask:false
+							});
+						}
 					});
+					this.disabled = false;
 					break;
 					case 2:
 					/* 单选框 三列布局 */
@@ -100,14 +117,16 @@
 						column:2,				// 分列
 						list:this.creatorList()	// 列表数据
 					});
+					this.disabled = true;
 					break;
 					case 3:
-					/* 单选框 三列布局 */
+					/* 单选框 一列布局 */
 					this.$refs.checkbox.set({
 						type:'radio',			// 类型：单选框
-						column:3,				// 分列
+						column:1,				// 分列
 						list:this.creatorList()	// 列表数据
 					});
+					this.disabled = true;
 					break;
 					default:
 					
@@ -150,8 +169,36 @@
 	}
 </script>
 
-<style lang="scss" scoped>
-.box{
-	padding: 10rpx 20rpx;
-}
+<style lang="scss">
+	page{
+		background-color: #f2f2f2;
+	}
+	.panel{
+		background-color: #fff;
+		margin-bottom: 20rpx;
+		padding: 20rpx 20rpx 0 20rpx;
+		
+		&-head{
+			font-size: 28rpx;
+		}
+		&-body{
+			margin-top: 20rpx;
+			padding: 20rpx 0 0 0;
+			border-top: #eee solid 1px;
+			overflow: hidden;
+			
+			> button{
+				display: block;
+				float: left;
+				margin: 0 20rpx 20rpx 0;
+				border: #007aff solid 1px;
+				padding: 0 20rpx;
+				border-radius: 0;
+				
+				&:after{
+					display: none;
+				}
+			}
+		}
+	}
 </style>

@@ -57,6 +57,10 @@
 							{
 								"name":"高斯模糊",
 								"url":"/pages/component/blur"
+							},
+							{
+								"name":"图片压缩",
+								"url":"/pages/component/compress"
 							}
 						]
 					}

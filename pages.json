@@ -166,6 +166,12 @@
 				"navigationBarTitleText": "自动缩放高度的轮播度"
 			}
         }
+        ,{
+            "path" : "pages/component/compress",
+            "style" : {
+				"navigationBarTitleText": "图片压缩"
+			}
+        }
     ],
 	"tabBar": {
 	    "color": "#666666",
