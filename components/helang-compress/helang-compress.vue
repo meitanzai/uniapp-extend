@@ -30,11 +30,14 @@
 
 					let {width,height} = info;
 					
-					// 原图尺寸低于10则返回原图
-					if(width < 10 || height < 10){
+					// #ifndef H5
+					// 原图尺寸低于50则返回原图
+					if(width < 50 || height < 50){
 						resolve(params.src);
 						return;
 					}
+					// #endif
+					
 
 					if (width > maxSize || height > maxSize) {
 						if (width > height) {
@@ -54,6 +57,7 @@
 					this.$nextTick(() => {
 						setTimeout(() => {
 							const ctx = uni.createCanvasContext('myCanvas', this);
+							ctx.clearRect(0,0,width, height)
 							ctx.drawImage(info.path, 0, 0, uni.upx2px(width), uni.upx2px(height));
 							ctx.draw(false, () => {
 								uni.canvasToTempFilePath({
@@ -71,7 +75,7 @@
 										resolve(res.tempFilePath);
 									},
 									fail:(err)=>{
-										reject(err);
+										reject(null);
 									}
 								},this);
 								
@@ -89,9 +93,58 @@
 							resolve(info);
 						},
 						fail: () => {
-							reject();
+							reject(null);
 						}
 					});
+				});
+			},
+			// 批量压缩
+			batchCompress(params){
+				let [index,done,fail] = [0,0,0];
+				let paths = [];
+				let tatch = ()=>{
+					return new Promise((resolve, reject)=>{
+						let start = async ()=>{
+							params.progress && params.progress({
+								done,
+								fail,
+								count:params.batchSrc.length
+							});
+							let path = await next();
+							if(path){
+								done++;
+								paths.push(path);
+							}else{
+								fail++;
+							}
+							
+							index++;
+														
+							if(index >= params.batchSrc.length){
+								resolve(true);
+							}else{
+								start();
+							}
+						}
+						start();
+					});
+				}
+				let next = ()=>{
+					return this.compress({
+						src:params.batchSrc[index],
+						maxSize:params.maxSize,
+						fileType:params.fileType,
+						quality:params.quality
+					})
+				}
+				
+				return new Promise(async (resolve, reject)=>{
+					let res = await tatch();
+					if(res){
+						resolve(paths);
+					}else{
+						reject(null);
+					}
 				});
 			}
 		}

@@ -1,8 +1,16 @@
 <template>
 	<view class="container">
-		<button @tap="selectPhoto">选择照片</button>
 		<helang-compress ref="helangCompress"></helang-compress>
-		<image :src="compressPath" mode="widthFix"></image>
+		<button @tap="selectPhoto" type="primary">选择照片</button>
+		<view style="padding: 20rpx 0;" v-if="paths.length>0">
+			<button @tap="compress" size="mini" type="warn" style="margin-right: 10px;">单张压缩</button>
+			<button @tap="batchCompress" type="warn" size="mini">批量压缩</button>
+		</view>
+		
+		<view class="img-list">
+			<image v-for="(item,index) in compressPaths" :key="index" :src="item" mode="aspectFit"></image>
+		</view>
+		
 	</view>
 </template>
 
@@ -15,49 +23,76 @@
 		},
 		data() {
 			return {
-				compressPath:""
+				compressPaths:[],
+				paths:[]
 			}
 		},
 		methods: {
+			// 选择照片
 			selectPhoto(){
 				uni.chooseImage({
-				    count: 1,
+				    count: 9,
 				    sizeType: ['compressed'],
 				    sourceType: ['album','camera'],
 				    success: (res)=> {
-						uni.showLoading({
-							title:'压缩中',
-							mask:true
-						})
-				        this.$refs.helangCompress.compress({
-				        	src:res.tempFilePaths[0],
-				        	maxSize:800,
-							fileType:'jpg',
-				        	quality:0.85
-				        }).then((res)=>{
-							setTimeout(()=>{
-								uni.hideLoading();
-								uni.showToast({
-									icon:'success',
-									title:'压缩成功'
-								});
-							},500);
-				        	
-				        	this.compressPath = res;
-							console.log(res);
-				        }).catch((err)=>{
-							setTimeout(()=>{
-								uni.hideLoading();
-							},500);
-							uni.showModal({
-								title:'提示',
-								content:err,
-								showCancel:false,
-								confirmText:'我知道了'
-							});
-						});
+						this.paths = res.tempFilePaths;
 				    }
 				});
+			},
+			// 单张压缩
+			compress(){				
+				uni.showLoading({
+					title:'压缩中',
+					mask:true
+				});
+				
+				this.$refs.helangCompress.compress({
+					src:this.paths[0],
+					maxSize:800,
+					fileType:'jpg',
+					quality:0.85
+				}).then((res)=>{
+					uni.hideLoading();
+					uni.showToast({
+						title:"压缩成功",
+						icon:"success"
+					})
+					this.compressPaths = [res];
+				}).catch((err)=>{
+					uni.hideLoading();
+					uni.showToast({
+						title:"压缩失败",
+						icon:"none"
+					})
+				})
+			},
+			// 批量压缩
+			batchCompress(){
+				this.$refs.helangCompress.batchCompress({
+					batchSrc:this.paths,
+					maxSize:800,
+					fileType:'jpg',
+					quality:0.85,
+					progress:(res)=>{
+						uni.showLoading({
+							title:`进度:${res.done+res.fail}/${res.count}`
+						})
+						console.log(res);
+					}
+				}).then((res)=>{
+					uni.hideLoading();
+					uni.showToast({
+						title:"压缩完成",
+						icon:"success"
+					})
+					this.compressPaths = res;
+				}).catch((err)=>{
+					uni.hideLoading();
+					uni.showToast({
+						title:"压缩失败",
+						icon:"none"
+					})
+				})
 			}
 		}
 	}
@@ -65,11 +100,21 @@
 
 <style lang="scss">
 .container{
+	button{
+		&::after{
+			display: none;
+		}
+	}
+	
 	padding: 30rpx;
 	
-	image{
-		width: 100%;
-		margin-top: 10px;
+	.img-list{
+		> image{
+			width: 200rpx;
+			height: 200rpx;
+			margin: 10px 10px 0 0;
+			border: #d7d7d7 solid 1px;
+		}
 	}
 }
 </style>
