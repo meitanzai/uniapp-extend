@@ -50,7 +50,8 @@
 					src:this.paths[0],
 					maxSize:800,
 					fileType:'jpg',
-					quality:0.85
+					quality:0.85,
+					minSize:640	//最小压缩尺寸，图片尺寸小于该时值不压缩，非H5平台有效
 				}).then((res)=>{
 					uni.hideLoading();
 					uni.showToast({
@@ -73,6 +74,7 @@
 					maxSize:800,
 					fileType:'jpg',
 					quality:0.85,
+					minSize:640,	//最小压缩尺寸，图片尺寸小于该时值不压缩，非H5平台有效
 					progress:(res)=>{
 						uni.showLoading({
 							title:`进度:${res.done+res.fail}/${res.count}`
