@@ -53,12 +53,33 @@
 						}
 					}
 					
+					
+					// h5平台，用canvas压缩代码尝试
+					// #ifdef H5
+					const img = new Image();
+					img.src = info.path;
+					const canvas = document.createElement('canvas');
+					const context = canvas.getContext('2d');
+					// 设置宽高度为等同于要压缩图片的尺寸
+					canvas.width = width;
+					canvas.height = height;
+					context.clearRect(0, 0, width, height);
+					//将img绘制到画布上
+					context.drawImage(img, 0, 0, width, height);
+					let fileType = `image/png`;
+					if(params.fileType && params.fileType == 'jpg'){
+						fileType = `image/jpeg`;
+					}
+					const base64 = canvas.toDataURL(fileType, params.quality || 0.9);
+					resolve(base64);
+					// #endif
+					
+					// #ifndef H5
 					// 设置画布尺寸
 					this.canvasSize = {
 						width: `${width}rpx`,
 						height: `${height}rpx`
 					}
-					
 					// Vue.nextTick 回调在 App 有异常，则使用 setTimeout 等待DOM更新
 					setTimeout(() => {
 						const ctx = uni.createCanvasContext('myCanvas', this);
@@ -73,7 +94,7 @@
 								destWidth: width,
 								destHeight: height,
 								canvasId: 'myCanvas',
-								fileType: params.fileType || 'jpg',
+								fileType: params.fileType || 'png',
 								quality: params.quality || 0.9,
 								success: (res) => {
 									// 在H5平台下，tempFilePath 为 base64
@@ -86,6 +107,7 @@
 							
 						});
 					}, 500);
+					// #endif
 				});
 			},
 			// 获取图片信息
