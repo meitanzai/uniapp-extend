@@ -84,9 +84,9 @@
 			}
         }
         ,{
-            "path" : "pages/sdk/globalCss",
+            "path" : "pages/sdk/flex",
             "style" : {
-				"navigationBarTitleText": "项目全局样式表"
+				"navigationBarTitleText": "flex布局CSS库"
 			}
         }
         ,{

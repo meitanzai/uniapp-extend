@@ -31,8 +31,8 @@
 						"name":"通用 SDK",
 						"list":[
 							{
-								"name":"项目全局样式表",
-								"url":"/pages/sdk/globalCss"
+								"name":"flex布局CSS库",
+								"url":"/pages/sdk/flex"
 							},
 							{
 								"name":"项目全局通用方法",
