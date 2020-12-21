@@ -63,6 +63,10 @@
 								"url":"/pages/template/gradientNav"
 							},
 							{
+								"name":"表格",
+								"url":"/pages/template/table"
+							},
+							{
 								"name":"投票",
 								"url":"/pages/template/vote"
 							},{

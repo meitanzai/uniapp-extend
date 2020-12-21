@@ -172,6 +172,15 @@
 				"navigationBarTitleText": "图片压缩"
 			}
         }
+        ,{
+            "path" : "pages/template/table",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "表格",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"tabBar": {
 	    "color": "#666666",
