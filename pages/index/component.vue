@@ -61,6 +61,10 @@
 							{
 								"name":"图片压缩",
 								"url":"/pages/component/compress"
+							},
+							{
+								"name":"滚动选择器加强版",
+								"url":"/pages/component/pickerPlus"
 							}
 						]
 					}

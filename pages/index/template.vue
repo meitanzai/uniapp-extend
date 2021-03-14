@@ -11,7 +11,7 @@
 				<navigator class="cu-item arrow" 
 					v-for="(item2,index2) in item.list" 
 					:key="index2" 
-					:url="item2.url" 
+					:url="item2.url+'?q=18464'" 
 					>
 					<view class="content">
 						<text class="text-grey">{{item2.name}}</text>

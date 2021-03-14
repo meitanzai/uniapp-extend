@@ -109,12 +109,6 @@
 			}
         }
         ,{
-            "path" : "pages/component/tab",
-            "style" : {
-				"navigationBarTitleText": "选项卡"
-			}
-        }
-        ,{
             "path" : "pages/template/whackMole",
             "style" : {
 				"navigationBarTitleText": "打地鼠"
@@ -177,6 +171,15 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "表格",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/component/pickerPlus",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "滚动选择器加强版",
                 "enablePullDownRefresh": false
             }
             
