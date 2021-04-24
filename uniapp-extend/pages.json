@@ -184,6 +184,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/component/checkboxs",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "同页面多组件示例",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"tabBar": {
 	    "color": "#666666",

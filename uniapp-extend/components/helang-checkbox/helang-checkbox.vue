@@ -3,7 +3,10 @@
 		<view v-for="(v,i) in list" :key="i" >
 			<view 
 			class="item"
-			:class="{ 'active':(type=='radio' && index == i) || (type=='checkbox' && v.checked) }"
+			:class="{ 
+				'active':(type=='radio' && index == i) || (type=='checkbox' && v.checked),
+				'disabled':isDisabled
+			}"
 			:data-i="i"
 			@tap="change"
 			>{{v.text}}</view>
@@ -13,23 +16,39 @@
 
 <script>
 	export default {
+		props:{
+			// 标识名，用于多个组件时区分回调组件
+			keyName:{
+				type: Number | String,
+				default: ''
+			}
+		},
 		data() {
 			return {
 				list:[],
 				index:-1,
 				type:'checkbox',
-				column:''
+				column:'',
+				isDisabled:false,
+				copyListData:'',
+				copyIndexData:-1
 			};
+		},
+		mounted() {
+			
 		},
 		methods: {
 			/* 切换 */
 			change(e){
+				if(this.disabled()){
+					return;
+				}
 				let i = Number(e.currentTarget.dataset.i);
 				/* 单选框 */
 				if(this.type=='radio'){
 					this.index = i;
 					this.$nextTick(()=>{
-						this.$emit("change",this.get());
+						this.$emit("change",this.get(),this.$props.keyName);
 					})
 					return;
 				}
@@ -53,7 +72,7 @@
 					this.$set(this.list[i],"checked",true);
 				}
 				this.$nextTick(()=>{
-					this.$emit("change",this.get());
+					this.$emit("change",this.get(),this.$props.keyName);
 				});
 			},
 			/* 设置值 */
@@ -76,6 +95,10 @@
 					this.maxSize = undefined;
 					this.maxFn = undefined;
 				}
+				
+				// 存储数据
+				this.copyListData = JSON.stringify(data.list);
+				this.copyIndexData = data.index === undefined ? -1 : data.index;
 			},
 			/* 获取值 */
 			get(){
@@ -98,6 +121,9 @@
 			},
 			/* 全部选中 */
 			checkAll(){
+				if(this.disabled()){
+					return;
+				}
 				if(this.type=='radio'){
 					return null;
 				}
@@ -107,6 +133,9 @@
 			},
 			/* 取消全部选中 */
 			cancelAll(){
+				if(this.disabled()){
+					return;
+				}
 				if(this.type=='radio'){
 					this.index = -1;
 					return null;
@@ -117,6 +146,9 @@
 			},
 			/* 反选全部 */
 			invertAll(){
+				if(this.disabled()){
+					return;
+				}
 				if(this.type=='radio'){
 					this.index = -1;
 					return null;
@@ -124,6 +156,18 @@
 				this.list.forEach((item,index)=>{
 					this.$set(this.list[index],"checked",item.checked ? false : true);
 				})
+			},
+			/* 重置 */
+			reset(){
+				this.list = JSON.parse(this.copyListData);
+				this.index = this.copyIndexData;
+			},
+			/* 禁用 */
+			disabled(flag = undefined){
+				if(flag === undefined){
+					return this.isDisabled;
+				}
+				this.isDisabled = flag;
 			}
 		}
 	}
@@ -175,6 +219,12 @@
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		
+		// 未选中状态下的禁用样式
+		&.disabled{
+			background-color: #f1f1f1;
+			color: #d8d8d8;
+		}
+		
 		&.active{
 			background-color: #f5fff9;
 			color: #42b983;
@@ -195,15 +245,26 @@
 			&::after{
 				content: '';
 				display:block;
-				width: 4px;
-				height: 8px;
+				width: 3px;
+				height: 6px;
 				border-right: #fff solid 2px;
 				border-bottom: #fff solid 2px;
 				transform:rotate(25deg);
 				position: absolute;
-				right: 2px;
+				right: 3px;
 				bottom: 3px;
 				z-index: 2;
+			}
+			
+			// 选中状态下的禁用样式
+			&.disabled{
+				background-color: #f1f1f1;
+				color: #d8d8d8;
+				border: #e5e5e5 solid 1px;
+				
+				&::before{
+					background-color: #d9d9d9;
+				}
 			}
 		}
 	}

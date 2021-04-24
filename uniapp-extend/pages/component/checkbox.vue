@@ -11,6 +11,12 @@
 					:data-index="index"
 					@tap="onSelectType"
 				>{{item}}</button>
+				<button
+					type="default" 
+					size="mini"
+					style="color: #F43F3B;"
+					@tap="toCheckboxs"
+				>同页面多组件示例</button>
 			</view>
 		</view>
 		<view class="panel">
@@ -20,6 +26,8 @@
 				<button type="default" size="mini" @tap="check" :disabled="disabled">全选</button>
 				<button type="default" size="mini" @tap="invert" :disabled="disabled">反选</button>
 				<button type="default" size="mini" @tap="cancel">取消全部</button>
+				<button type="default" size="mini" @tap="reset">重置</button>
+				<button type="default" size="mini" @tap="changeDisabled">{{disabledSelect?'取消禁用':'禁用'}}</button>
 			</view>
 		</view>
 		<view class="panel">
@@ -41,7 +49,8 @@
 			return {
 				pickerIndex:-1,
 				array:['复选框 - 三栏排序','复选框 - 流式排序（最多只能选择5个）','单选框 - 二栏排序','单选框 - 一栏排序'],
-				disabled:false
+				disabled:false,
+				disabledSelect:false
 			}
 		},
 		mounted(){
@@ -164,6 +173,25 @@
 			invert(){
 				this.$refs.checkbox.invertAll();	// 该功能在单选框模式下为取消当前选中项
 				this.getData();
+			},
+			// 重置
+			reset(){
+				this.$refs.checkbox.reset();
+				this.getData();
+			},
+			// 禁用
+			changeDisabled(){
+				this.disabledSelect = !this.disabledSelect;
+				this.$refs.checkbox.disabled(this.disabledSelect);
+			},
+			// 同页面多组件示例
+			toCheckboxs(){
+				uni.navigateTo({
+					url:'./checkboxs',
+					fail(e){
+						console.log(e)
+					}
+				})
 			}
 		}
 	}
