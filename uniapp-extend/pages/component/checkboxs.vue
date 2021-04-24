@@ -17,7 +17,7 @@
 		<view class="panel" v-for="(item,index) in checkboxData" :key="index">
 			<view class="panel-head">{{item.title}}：</view>
 			<view class="panel-body">
-				<helang-checkbox ref="checkbox" @change="onChange" :keyName="'AAAAA'+index"></helang-checkbox>
+				<helang-checkbox ref="checkbox" @change="onChange" :keyName="index"></helang-checkbox>
 			</view>
 		</view>
 	</view>
