@@ -175,21 +175,30 @@
             }
             
         }
-        ,{
-            "path" : "pages/component/pickerPlus",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "滚动选择器加强版",
-                "enablePullDownRefresh": false
-            }
+        // ,{
+        //     "path" : "pages/component/waterfall",
+        //     "style" :                                                                                    
+        //     {
+        //         "navigationBarTitleText": "瀑布流",
+        //         "enablePullDownRefresh": true
+        //     }
             
-        }
+        // }
         ,{
             "path" : "pages/component/checkboxs",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "同页面多组件示例",
                 "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "uni_modules/helang-waterfall/pages/waterfall/waterfall",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "瀑布流",
+                "enablePullDownRefresh": true
             }
             
         }

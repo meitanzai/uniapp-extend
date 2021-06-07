@@ -63,8 +63,8 @@
 								"url":"/pages/component/compress"
 							},
 							{
-								"name":"滚动选择器加强版",
-								"url":"/pages/component/pickerPlus"
+								"name":"瀑布流",
+								"url":"/uni_modules/helang-waterfall/pages/waterfall/waterfall"
 							}
 						]
 					}
