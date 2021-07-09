@@ -1,0 +1,76 @@
+body {
+	margin: 0;
+	background-color: #fff;
+	background-image: url(pc-bg.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 100vw;
+	height: 100vh;
+}
+
+.container{
+	position: fixed;
+	width: 800px;
+	height: 690px;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+}
+
+.container .iframe{
+	width: 340px;
+	height: 690px;
+	background-image: url(pc-iPhoneX.png);
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	background-position: center;
+	float: left;
+}
+
+.container .iframe > iframe {
+	width: 316px;
+	height: 604px;
+	background-color: #fff;
+	box-sizing: content-box;
+	border: none;
+	margin: 43px 0 0 12px;
+}
+
+.container .content{
+	float: left;
+	color: #42b983;
+	margin-left: 60px;
+	width: 400px;
+}
+
+.container .content > h1{
+	font-size: 36px;
+	font-weight: bold;
+	margin: 0;
+	padding: 100px 0 50px 0;
+}
+
+.container .content > h3{
+	font-size: 18px;
+	font-weight: bold;
+	margin: 0;
+	padding: 0 0 50px 0;
+}
+
+.container .content .qrcode{
+	border: #42b983 solid 2px;
+	box-sizing: content-box;
+	width: 260px;
+}
+
+.container .content > p{
+	font-size: 14px;
+	margin: 0;
+	padding: 4px 0 0 0;
+	text-align: center;
+	width: 260px;
+}

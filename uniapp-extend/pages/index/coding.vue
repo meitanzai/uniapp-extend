@@ -37,10 +37,16 @@
 							{
 								"name":"自定义导航栏解决方案",
 								"url":"/pages/template/customBar"
-							},{
+							},
+							{
+								"name":"投票",
+								"url":"/pages/template/vote"
+							},
+							{
 								"name":"自动缩放高度的轮播度",
 								"url":"/pages/template/autoSwiper"
-							},{
+							},
+							{
 								"name":"高性能的轮播图",
 								"url":"/pages/template/optimized-swiper"
 							}

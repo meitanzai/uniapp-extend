@@ -234,9 +234,9 @@
 		}]
 	},
 	"globalStyle": {
-		"navigationBarTextStyle": "white",
+		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "UNI-APP 河浪插件分享",
-		"navigationBarBackgroundColor": "#42b983",
+		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#f3f3f3"
 	},
 	"networkTimeout":{

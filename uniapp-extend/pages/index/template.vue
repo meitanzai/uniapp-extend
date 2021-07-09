@@ -11,7 +11,7 @@
 				<navigator class="cu-item arrow" 
 					v-for="(item2,index2) in item.list" 
 					:key="index2" 
-					:url="item2.url+'?q=18464'" 
+					:url="item2.url" 
 					>
 					<view class="content">
 						<text class="text-grey">{{item2.name}}</text>
@@ -65,10 +65,6 @@
 							{
 								"name":"表格",
 								"url":"/pages/template/table"
-							},
-							{
-								"name":"投票",
-								"url":"/pages/template/vote"
 							}
 						]
 					}
