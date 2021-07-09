@@ -13,7 +13,7 @@
 			"style": {}
 		},
 		{
-			"path": "pages/index/codeing",
+			"path": "pages/index/coding",
 			"style": {}
 		},
 	    {
@@ -175,15 +175,6 @@
             }
             
         }
-        // ,{
-        //     "path" : "pages/component/waterfall",
-        //     "style" :                                                                                    
-        //     {
-        //         "navigationBarTitleText": "瀑布流",
-        //         "enablePullDownRefresh": true
-        //     }
-            
-        // }
         ,{
             "path" : "pages/component/checkboxs",
             "style" :                                                                                    
@@ -199,6 +190,15 @@
             {
                 "navigationBarTitleText": "瀑布流",
                 "enablePullDownRefresh": true
+            }
+            
+        }
+        ,{
+            "path" : "pages/template/optimized-swiper",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "高性能的轮播图",
+                "enablePullDownRefresh": false
             }
             
         }
@@ -227,10 +227,10 @@
 		    "text": "SDK"
 		},
 		{
-		    "pagePath": "pages/index/codeing",
-		    "iconPath": "static/tabBar/codeing.png",
-		    "selectedIconPath": "static/tabBar/codeing-active.png",
-		    "text": "开发"
+		    "pagePath": "pages/index/coding",
+		    "iconPath": "static/tabBar/coding.png",
+		    "selectedIconPath": "static/tabBar/coding-active.png",
+		    "text": "示例"
 		}]
 	},
 	"globalStyle": {

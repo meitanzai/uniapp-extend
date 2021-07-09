@@ -28,7 +28,7 @@
 			return {
 				linkList:[
 					{
-						"name":"正在开发",
+						"name":"功能示例",
 						"list":[
 							{
 								"name":"nvue 仿抖音视频轮播",
@@ -37,6 +37,12 @@
 							{
 								"name":"自定义导航栏解决方案",
 								"url":"/pages/template/customBar"
+							},{
+								"name":"自动缩放高度的轮播度",
+								"url":"/pages/template/autoSwiper"
+							},{
+								"name":"高性能的轮播图",
+								"url":"/pages/template/optimized-swiper"
 							}
 						]
 					}
