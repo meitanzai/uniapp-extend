@@ -7,12 +7,16 @@
 			
 			uni.getSystemInfo({
 				success(e){
-					/* 窗口宽度大于420px且不在PC页面且不在移动设备时跳转至 PC.html 页面 */
-					if(e.windowWidth>420 && !window.top.isPC && !/iOS|Android/i.test(e.system)){	
-						window.location.pathname = '/uniapp-extend/static/html/pc.html';
+					// 是否为移动设备
+					let isMobile = /iOS|Android/i.test(e.system);
+					if(!isMobile){
+						/* 窗口宽度大于768px且不在PC页面且不在移动设备时跳转至 PC.html 页面 */
+						if(e.windowWidth>768 && !window.top.isPC){	
+							window.location.pathname = '/uniapp-extend/static/html/pc.html';
+						}
 					}
 				}
-			})
+			});
 			// #endif
 			
 			// #ifndef H5
