@@ -65,6 +65,10 @@
 							{
 								"name":"表格",
 								"url":"/pages/template/table"
+							},
+							{
+								"name":"应用换肤",
+								"url":"/pages/template/skin-peeler"
 							}
 						]
 					}
