@@ -65,6 +65,10 @@
 							{
 								"name":"瀑布流",
 								"url":"/uni_modules/helang-waterfall/pages/waterfall/waterfall"
+							},
+							{
+								"name":"从底部弹起的滚动选择器工具箱",
+								"url":"/uni_modules/helang-picker-utils/pages/picker-utils/picker-utils"
 							}
 						]
 					}

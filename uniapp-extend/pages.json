@@ -212,6 +212,15 @@
             }
             
         }
+        ,{
+            "path" : "uni_modules/helang-picker-utils/pages/picker-utils/picker-utils",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"tabBar": {
 	    "color": "#666666",

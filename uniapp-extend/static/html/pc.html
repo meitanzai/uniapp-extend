@@ -13,19 +13,20 @@
 		<script type="text/javascript">
 			window.isPC = true;
 			
-			window.onload = function(){
-				/* 监听电脑浏览器窗口尺寸改变 */
-				window.onresize = function(){
-					/* 窗口宽度 小于或等于420px 时，跳转回H5页面 */
-					if(window.innerWidth <= 768){
-						window.location.pathname = '/uniapp-extend';
-					}
-				}
-				
+			window.addEventListener("load",function(){
 				var basic = '/uniapp-extend/';
 				var src = basic + window.location.hash;
+				
+				/* 监听电脑浏览器窗口尺寸改变 */
+				window.onresize = function(){
+					/* 窗口宽度 小于或等于768px 时，跳转回H5页面 */
+					if(window.innerWidth <= 768){
+						window.location.replace(src);
+					}
+				}
 				document.querySelector("iframe").setAttribute("src",src);
-			}
+			},false)
+
 		</script>
 	</head>
 	<body>
