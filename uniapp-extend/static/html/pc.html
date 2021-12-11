@@ -15,18 +15,20 @@
 			
 			window.addEventListener("load",function(){
 				var basic = '/uniapp-extend/';
+				// 若你的项目未设置根目录（默认为 / 时），则使用下方代码
+				// var basic =  '/';
+
 				var src = basic + window.location.hash;
 				
 				/* 监听电脑浏览器窗口尺寸改变 */
-				window.onresize = function(){
+				window.addEventListener("resize",function(){
 					/* 窗口宽度 小于或等于768px 时，跳转回H5页面 */
 					if(window.innerWidth <= 768){
 						window.location.replace(src);
 					}
-				}
+				},false);
 				document.querySelector("iframe").setAttribute("src",src);
-			},false)
-
+			},false);
 		</script>
 	</head>
 	<body>

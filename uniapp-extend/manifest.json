@@ -1,7 +1,7 @@
 {
     "name" : "uniapp-extend",
     "appid" : "__UNI__78AB2D6",
-    "description" : "",
+    "description" : "UNI-APP 河浪插件分享",
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,
@@ -92,7 +92,7 @@
             "mode" : "hash",
             "base" : "/uniapp-extend/"
         },
-        "title" : "uniapp-extend",
+        "title" : "UNI-APP 河浪插件分享",
         "domain" : "https://mydarling.gitee.io/uniapp-extend",
         "template" : "template.h5.html",
         "devServer" : {
