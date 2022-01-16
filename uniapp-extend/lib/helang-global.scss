@@ -1,0 +1,187 @@
+/*
+ *  uni-app 全局样式表
+ *  作者:helang
+ *  邮箱:helang.love@qq.com
+*/
+
+/* 根元素样式 设置页面背景、字体大小、字体颜色，字符间距、长单词换行 */
+page {
+  background-color: #F5F6FA;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  color: #333333;
+  letter-spacing: 0;
+  word-wrap: break-word;
+  line-height: normal;
+}
+
+/* 设置常用元素尺寸规则 */
+view,textarea,input,label,form,button,image{box-sizing: border-box;}
+/* 按钮样式处理 */
+button{font-size: 28rpx;}
+/* 取消按钮默认的边框线效果 */
+button:after{border:none;}
+/* 设置图片默认样式，取消默认尺寸 */
+image{display: block;height: auto;width: auto;}
+/* 输入框默认字体大小 */
+textarea,input{font-size: 28rpx;};
+
+/* RGB颜色 Map */
+$map-rgb-color:(
+	"fff":(color:#ffffff),
+	"000":(color:#000000),
+	"f56":(color:#F5F6FA),
+	"333":(color:#333333),
+	"666":(color:#666666),
+	"999":(color:#999999),
+	"ff9":(color:#F1F9FF),
+	"09f":(color:#0091FF),
+	"ccc":(color:#CCCCCC),
+	"abb":(color:#A3B0B7),
+	"f88":(color:#F8F8F8),
+	"f60":(color:#FA6400),
+	"0d6":(color:#0ED968),
+	"466":(color:#4C4646),
+	"788":(color:#7A848B),
+	"f5a":(color:#FF5F6A)
+);
+/* 生成 字体&背景颜色 */
+$map-rgb-color-keys:map-keys($map-rgb-color);
+@each $k in $map-rgb-color-keys {
+    $item:map-get($map-rgb-color,$k);
+    .rgb-#{$k}{
+        color: map-get($item,color);
+    }
+	.bg-#{$k}{
+	    background-color: map-get($item,color);
+	}
+}
+
+/* 字体状态 */
+.font-U {
+    text-decoration: underline;
+}
+
+.font-B {
+    font-weight: bold;
+}
+
+.font-I {
+    font-style: italic;
+}
+
+/* 文字对齐方式 */
+.font-c{text-align: center;}
+.font-l{text-align: left;}
+.font-r{text-align: right;}
+ 
+/* 字体大小和行高 10px ~ 36px */
+@for $i from 0 to 14{
+    .font-#{$i*2+10} {
+		font-size: $i * 4 + 20rpx;
+    }
+	.font-height-#{$i*2+10} {
+		line-height: $i * 4 + 20rpx;
+	}
+}
+
+/* 圆角 4~28 以4的倍数递增 */
+@for $i from 1 to 8{
+    .radius-#{$i*4} {
+        border-radius: $i * 4rpx;
+    }
+}
+
+/* 边距和内补 10 - 50 以10的倍数递增 */
+@for $i from 1 to 6{
+    .p-#{$i*10} {
+        padding: $i * 10rpx;
+    }
+    .m-#{$i*10} {
+        margin: $i * 10rpx;
+    }
+
+    .m-t-#{$i*10} {
+        margin-top: $i * 10rpx;
+    }
+    .m-r-#{$i*10} {
+        margin-right: $i * 10rpx;
+    }
+    .m-b-#{$i*10} {
+        margin-bottom: $i * 10rpx;
+    }
+    .m-l-#{$i*10} {
+        margin-left: $i * 10rpx;
+    }
+    
+    .p-t-#{$i*10} {
+        padding-top: $i * 10rpx;
+    }
+    .p-r-#{$i*10} {
+        padding-right: $i * 10rpx;
+    }
+    .p-b-#{$i*10} {
+        padding-bottom: $i * 10rpx;
+    }
+    .p-l-#{$i*10} {
+        padding-left: $i * 10rpx;
+    }
+}
+
+/* 超出省略 1~5 以1的倍数递增 */
+@for $i from 1 to 6{
+	.ellipsis-#{$i} {
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		@if $i == 1 {
+			white-space: nowrap;
+		}@else{
+			display: -webkit-box;
+			-webkit-line-clamp: $i;
+			-webkit-box-orient: vertical;
+		}
+	}
+}
+
+// 输入框默认提示颜色值
+.input-placeholder,.textarea-placeholder{
+	color: #CCCCCC;
+}
+
+// 底部安全区域
+@mixin safe-area-inset-bottom-mixin {
+	box-sizing: content-box;
+	padding-bottom: 0;
+	padding-bottom: constant(safe-area-inset-bottom);
+	padding-bottom: env(safe-area-inset-bottom);
+}
+
+// 底部固定的面板
+.bottom-fixed-panel{
+	position: fixed;
+	width: 100%;
+	height: auto;
+	left: 0;
+	bottom: 0;
+	background-color: #FFFFFF;
+	z-index: 9;
+	@include safe-area-inset-bottom-mixin;
+}
+
+// 底部面板占位元素，使用该类名后再添加具体的占位高度即可
+.bottom-placeholder{
+	@include safe-area-inset-bottom-mixin;
+}
+
+// 顶部固定的面板
+.top-fixed-panel{
+	position: fixed;
+	width: 100%;
+	height: auto;
+	left: 0;
+	top:0;
+	top: var(--window-top);
+	z-index: 9;
+	background-color: #FFFFFF;
+}

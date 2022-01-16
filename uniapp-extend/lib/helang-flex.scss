@@ -61,7 +61,7 @@
 	}
 	
 	/* 弹性元素 */
-	.h-flex-item-grow{
+	&>.h-flex-item-grow{
 		flex-grow: 1;
 		width:0;
 	}
@@ -121,7 +121,7 @@
 	}
 	
 	/* 弹性元素 */
-	.h-flex-item-grow{
+	&>.h-flex-item-grow{
 		flex-grow: 1;
 		height: 0;
 	}
