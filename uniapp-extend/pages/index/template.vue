@@ -69,6 +69,10 @@
 							{
 								"name":"应用换肤",
 								"url":"/pages/template/skin-peeler"
+							},
+							{
+								"name":"答题模板(仿驾考宝典)",
+								"url":"/pages/template/optimized-swiper"
 							}
 						]
 					}

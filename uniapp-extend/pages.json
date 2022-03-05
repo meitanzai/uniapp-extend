@@ -197,7 +197,7 @@
             "path" : "pages/template/optimized-swiper",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "高性能的轮播图",
+                "navigationBarTitleText": "答题模板(仿驾考宝典)",
                 "enablePullDownRefresh": false
             }
             

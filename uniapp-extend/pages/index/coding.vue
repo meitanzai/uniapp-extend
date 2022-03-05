@@ -45,10 +45,6 @@
 							{
 								"name":"自动缩放高度的轮播度",
 								"url":"/pages/template/autoSwiper"
-							},
-							{
-								"name":"高性能的轮播图",
-								"url":"/pages/template/optimized-swiper"
 							}
 						]
 					}
