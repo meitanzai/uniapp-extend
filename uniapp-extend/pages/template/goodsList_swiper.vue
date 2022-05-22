@@ -30,7 +30,7 @@
 				<view class="main">
 					<swiper class="swiper" :style="{ 'height':scrollHeight }" 
 						:current="leftIndex" @change="swiperChange"
-						 vertical="true" duration="300">
+						 :vertical="true" duration="200" :disable-touch="true">
 						<swiper-item v-for="(item,index) in mainArray" :key="index">
 							<scroll-view  scroll-y="true" :style="{ 'height':scrollHeight }">
 								<view class="item">
@@ -79,18 +79,15 @@
 				return `left-${this.leftIndex > 5 ? (this.leftIndex-5):0}`;
 			}
 		},
-		mounted(){
-			/* 等待DOM挂载完成 */
-			this.$nextTick(()=>{
-				/* 在非H5平台，nextTick回调后有概率获取到错误的元素高度，则添加200ms的延迟来减少BUG的产生 */
-				setTimeout(()=>{
-					/* 等待滚动区域初始化完成 */
-					this.initScrollView().then(()=>{
-						/* 获取列表数据，你的代码从此处开始 */
-						this.getListData();
-					})
-				},200);
-			})
+		onReady(){
+			/* 在非H5平台，nextTick回调后有概率获取到错误的元素高度，则添加200ms的延迟来减少BUG的产生 */
+			setTimeout(()=>{
+				/* 等待滚动区域初始化完成 */
+				this.initScrollView().then(()=>{
+					/* 获取列表数据，你的代码从此处开始 */
+					this.getListData();
+				})
+			},100);
 		},
 		methods: {
 			/* 初始化滚动区域 */
@@ -99,9 +96,9 @@
 					let view = uni.createSelectorQuery().select('#scroll-panel');
 					view.boundingClientRect(res => {
 						this.scrollHeight = `${res.height}px`;
-						this.$nextTick(()=>{
+						setTimeout(()=>{
 							resolve();
-						})
+						},100);
 					}).exec();
 				});
 			},
@@ -112,25 +109,41 @@
 					/* 因无真实数据，当前方法模拟数据。正式项目中将此处替换为 数据请求即可 */
 					uni.showLoading();
 					setTimeout(()=>{
-						/* 因无真实数据，当前方法模拟数据 */
-						let [left,main]=[[],[]];
+						/* 因无真实数据，当前方法模拟数据。正式项目中将此处替换为 数据请求即可 */
+						uni.showLoading();
 						
-						for(let i=0;i<25;i++){
-							left.push(`${i+1}类商品`);
+						// 模拟数据
+						let mockData = ()=>{
+							let [left,main]=[[],[]];
 							
-							let list=[];
-							let max = Math.floor(Math.random()*15) || 8;
-							for(let j=0;j<max;j++){
-								list.push(j);
+							let size = Math.floor(Math.random()*40);
+							size = size < 20 ? 20 : size;
+							for(let i=0;i<size;i++){
+								left.push(`${i+1}类商品`);
+								
+								let list=[];
+								let r = Math.floor(Math.random()*10);
+								r = r < 5 ? 5 : r;
+								for(let j=0;j<r;j++){
+									list.push(j);
+								}
+								main.push({
+									title:`第${i+1}类商品标题`,
+									list
+								})
 							}
-							main.push({
-								title:`第${i+1}类商品标题`,
-								list
-							})
+							
+							return {
+								left,
+								main
+							}
 						}
-						
-						// 将请求接口返回的数据传递给 Promise 对象的 then 函数。
-						resolve({left,main});
+						setTimeout(()=>{
+							let res = mockData();
+							let {left,main} = res;
+							// 将请求接口返回的数据传递给 Promise 对象的 then 函数。
+							resolve({left,main});
+						},1000);
 					},1000);
 				}).then((res)=>{
 					console.log('-----------请求接口返回数据示例-------------');
@@ -156,7 +169,10 @@
 </script>
 
 <style lang="scss">
-page,.container{
+page{
+	height: 100vh;
+}
+.container{
 	height: 100%;
 }
 /* 容器 */
@@ -185,6 +201,7 @@ page,.container{
 	}
 }
 	
+	
 .list-box{
 	display: flex;
     flex-direction: row;
@@ -197,16 +214,18 @@ page,.container{
 	.left{
 		width: 200rpx;
 		background-color: #f6f6f6;
-		line-height: 80rpx;
+		line-height: normal;
 		box-sizing: border-box;
 		font-size: 32rpx;
 		
 		.item{
-			padding-left: 20rpx;
+			padding: 30rpx;
 			position: relative;
-			&:not(:first-child) {
-				margin-top: 1px;
 			
+			
+			& + .item{
+				margin-top: 1px;
+							
 				&::after {
 					content: '';
 					display: block;
@@ -220,10 +239,28 @@ page,.container{
 				}
 			}
 			
-			&.active,&:active{
+			&.active{
 				color: #42b983;
 				background-color: #fff;
+				position: relative;
+				
+				&::before{
+					content: '';
+					display: block;
+					position: absolute;
+					top: 0;
+					left: 0;
+					border-left: #42b983 solid 4px;
+					height: 100%;
+					width: 0;
+				}
 			}
+		}
+		
+		.fill-last{
+			height: 0;
+			width: 100%;
+			background: none;
 		}
 	}
 	.main{
@@ -233,23 +270,23 @@ page,.container{
 		flex-grow: 1;
 		box-sizing: border-box;
 		
-		.swiper{
-			height: 500px;
-		}
-
+		
+		
 		.title{
-			line-height: 64rpx;
+			line-height: normal;
+			padding: 30rpx 0;
 			font-size: 24rpx;
 			font-weight: bold;
 			color: #666;
 			background-color: #fff;
 			position: sticky;
 			top: 0;
-			z-index: 999;
+			z-index: 19;
 		}
 		
 		.item{
-			padding-bottom: 10rpx;
+			padding-bottom: 16rpx;
+			border-bottom: #eee solid 1px;
 		}
 		
 		.goods{
@@ -259,9 +296,12 @@ page,.container{
 			justify-content: flex-start;
 			align-items: center;
 			align-content: center;
-			margin-bottom: 10rpx;
 			
-			&>image{
+			& + .goods{
+				margin-top: 16rpx;
+			}
+			
+			& > image{
 				width: 120rpx;
 				height: 120rpx;
 				margin-right: 16rpx;

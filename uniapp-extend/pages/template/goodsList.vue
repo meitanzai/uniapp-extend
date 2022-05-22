@@ -21,10 +21,11 @@
 			</view>
 			<view class="content">
 				<view>
-					优点：左侧导航与主内容区域联动性好
+					优点：左侧导航与主内容区域联动性好且可以随意调整右侧内容的高度
 				</view>
 				<view>
-					缺点：因H5平台浏览器众多，体验欠佳，不建议在H5平台使用
+					缺点：因H5平台浏览器众多，体验欠佳，不建议在H5平台使用。
+					<text style="color: red;">双向联动有BUG，仅支持左侧联动</text>	
 				</view>
 			</view>
 		</navigator>

@@ -15,6 +15,7 @@
 					<scroll-view scroll-y="true" 
 						:style="{ 'height':scrollHeight + 'px' }" 
 						:scroll-into-view="leftIntoView"
+						:scroll-with-animation="false"
 						>
 						<view class="item" 
 							v-for="(item,index) in leftArray"
@@ -27,7 +28,7 @@
 			        </scroll-view>
 				</view>
 				<view class="main">
-					<scroll-view  scroll-y="true" :style="{ 'height':scrollHeight + 'px' }" @scroll="mainScroll" :scroll-into-view="scrollInto" scroll-with-animation="true">
+					<scroll-view  scroll-y="true" :style="{ 'height':scrollHeight + 'px' }" @scroll="mainScroll" :scroll-into-view="scrollInto" :scroll-with-animation="false">
 						<view class="item main-item" v-for="(item,index) in mainArray" :key="index" :id="'item-'+index">
 							<view class="title">
 								<view>{{item.title}}</view>
@@ -78,18 +79,15 @@
 				return `left-${this.leftIndex > 3 ? (this.leftIndex-3):0}`;
 			}
 		},
-		mounted(){
-			/* 等待DOM挂载完成 */
-			this.$nextTick(()=>{
-				/* 在非H5平台，nextTick回调后有概率获取到错误的元素高度，则添加200ms的延迟来减少BUG的产生 */
-				setTimeout(()=>{
-					/* 等待滚动区域初始化完成 */
-					this.initScrollView().then(()=>{
-						/* 获取列表数据，你的代码从此处开始 */
-						this.getListData();
-					})
-				},200);
-			})
+		onReady(){
+			/* 在非H5平台，nextTick回调后有概率获取到错误的元素高度，则添加200ms的延迟来减少BUG的产生 */
+			setTimeout(()=>{
+				/* 等待滚动区域初始化完成 */
+				this.initScrollView().then(()=>{
+					/* 获取列表数据，你的代码从此处开始 */
+					this.getListData();
+				})
+			},100);
 		},
 		methods: {
 			/* 初始化滚动区域 */
@@ -99,9 +97,9 @@
 					view.boundingClientRect(res => {
 						this.scrollTopSize = res.top;
 						this.scrollHeight = res.height;
-						this.$nextTick(()=>{
+						setTimeout(()=>{
 							resolve();
-						})
+						},100);
 					}).exec();
 				});
 			},
@@ -111,15 +109,19 @@
 				new Promise((resolve,reject)=>{
 					/* 因无真实数据，当前方法模拟数据。正式项目中将此处替换为 数据请求即可 */
 					uni.showLoading();
-					setTimeout(()=>{
+					
+					// 模拟数据
+					let mockData = ()=>{
 						let [left,main]=[[],[]];
 						
-						for(let i=0;i<25;i++){
+						let size = Math.floor(Math.random()*40);
+						size = size < 20 ? 20 : size;
+						for(let i=0;i<size;i++){
 							left.push(`${i+1}类商品`);
 							
 							let list=[];
 							let r = Math.floor(Math.random()*10);
-							r = r < 1 ? 3 : r;
+							r = r < 5 ? 5 : r;
 							for(let j=0;j<r;j++){
 								list.push(j);
 							}
@@ -129,6 +131,14 @@
 							})
 						}
 						
+						return {
+							left,
+							main
+						}
+					}
+					setTimeout(()=>{
+						let res = mockData();
+						let {left,main} = res;
 						// 将请求接口返回的数据传递给 Promise 对象的 then 函数。
 						resolve({left,main});
 					},1000);
@@ -141,9 +151,9 @@
 					this.mainArray=res.main;
 					
 					// DOM 挂载后 再调用 getElementTop 获取高度的方法。
-					this.$nextTick(()=>{
+					setTimeout(()=>{
 						this.getElementTop();
-					});
+					},100);
 				});
 			},
 			/* 获取元素顶部信息 */
@@ -168,17 +178,25 @@
 			},
 			/* 主区域滚动监听 */
 			mainScroll(e){
-				let top =e.detail.scrollTop;
-				let index=0;
-				/* 查找当前滚动距离 */
-				for(let i = (this.topArr.length-1);i>=0;i--){
-					/* 在部分安卓设备上，因手机逻辑分辨率与rpx单位计算不是整数，滚动距离与有误差，增加2px来完善该问题 */
-					if((top+2)>=this.topArr[i]){
-						index = i;
-						break;
+				// 节流方法
+				clearTimeout(this.mainThrottle);
+				this.mainThrottle = setTimeout(()=>{
+					scrollFn();
+				},10);
+				
+				let scrollFn = ()=>{
+					let top =e.detail.scrollTop;
+					let index=0;
+					/* 查找当前滚动距离 */
+					for(let i = (this.topArr.length-1);i>=0;i--){
+						/* 在部分安卓设备上，因手机逻辑分辨率与rpx单位计算不是整数，滚动距离与有误差，增加2px来完善该问题 */
+						if((top+2)>=this.topArr[i]){
+							index = i;
+							break;
+						}
 					}
+					this.leftIndex=(index < 0 ? 0: index);
 				}
-				this.leftIndex=(index < 0 ? 0: index);
 			},
 			/* 左侧导航点击 */
 			leftTap(e){
@@ -190,7 +208,10 @@
 </script>
 
 <style lang="scss">
-page,.container{
+page{
+	height: 100vh;
+}
+.container{
 	height: 100%;
 }
 /* 容器 */
@@ -232,16 +253,18 @@ page,.container{
 	.left{
 		width: 200rpx;
 		background-color: #f6f6f6;
-		line-height: 80rpx;
+		line-height: normal;
 		box-sizing: border-box;
 		font-size: 32rpx;
 		
 		.item{
-			padding-left: 20rpx;
+			padding: 30rpx;
 			position: relative;
-			&:not(:first-child) {
-				margin-top: 1px;
 			
+			
+			& + .item{
+				margin-top: 1px;
+							
 				&::after {
 					content: '';
 					display: block;
@@ -258,6 +281,18 @@ page,.container{
 			&.active{
 				color: #42b983;
 				background-color: #fff;
+				position: relative;
+				
+				&::before{
+					content: '';
+					display: block;
+					position: absolute;
+					top: 0;
+					left: 0;
+					border-left: #42b983 solid 4px;
+					height: 100%;
+					width: 0;
+				}
 			}
 		}
 		
@@ -277,7 +312,8 @@ page,.container{
 		
 		
 		.title{
-			line-height: 64rpx;
+			line-height: normal;
+			padding: 30rpx 0;
 			font-size: 24rpx;
 			font-weight: bold;
 			color: #666;
@@ -288,7 +324,7 @@ page,.container{
 		}
 		
 		.item{
-			padding-bottom: 10rpx;
+			padding-bottom: 16rpx;
 			border-bottom: #eee solid 1px;
 		}
 		
@@ -299,9 +335,12 @@ page,.container{
 			justify-content: flex-start;
 			align-items: center;
 			align-content: center;
-			margin-bottom: 10rpx;
 			
-			&>image{
+			& + .goods{
+				margin-top: 16rpx;
+			}
+			
+			& > image{
 				width: 120rpx;
 				height: 120rpx;
 				margin-right: 16rpx;
