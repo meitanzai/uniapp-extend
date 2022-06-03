@@ -15,6 +15,7 @@
             })
         </script>
         <link rel="stylesheet" href="<%= BASE_URL %>static/index.css" />
+		<!-- uni-app 电脑端浏览兼容样式表 -->
 		<link rel="stylesheet" href="<%= BASE_URL %>static/adapt-pc/pc.css" />
     </head>
     <body>
@@ -23,12 +24,13 @@
         </noscript>
         <div id="app"></div>
 		
-		<!-- PC兼容模板容器 -->
+		<!-- uni-app 电脑端兼容模板容器 -->
 		<uni-adapt-pc></uni-adapt-pc>
-		<!-- PC兼容模板 -->
+		<!-- uni-app 电脑端兼容模板 -->
 		<script type="text/html" id="tpl-adapt-pc">
 			<div class="container">
 				<div class="iframe">
+					<!-- 电脑端放置H5内容容器，helang-mobile-href 为固定标识不可修改 -->
 					<iframe src="helang-mobile-href"></iframe>
 				</div>
 				<div class="content">
@@ -41,6 +43,7 @@
 				</div>
 			</div>
 		</script>
+		<!-- uni-app 电脑端浏览兼容脚本文件 -->
 		<script type="text/javascript" src="<%= BASE_URL %>static/adapt-pc/pc.js"></script>
         <!-- built files will be auto injected -->
     </body>
