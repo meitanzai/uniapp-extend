@@ -8,28 +8,6 @@
 			console.log('ＱＱ：1846492969');
 			console.log('uni-app插件主页：https://ext.dcloud.net.cn/publisher?id=110853')
 			console.groupEnd();
-			
-			uni.getSystemInfo({
-				success(e){
-					// 是否为移动设备
-					let isMobile = /iOS|Android/i.test(e.system);
-					if(!isMobile){
-						/**
-						 * 窗口宽度大于768px且不在PC页面且不在移动设备时跳转至 PC.html 页面
-						 * 这里为什么不做窗口尺寸的大小监听，
-						 * 因为正常用户的设备不可能尺寸一会大一会小（你当用户的手机是变形金刚啊）。
-						* */						
-						if(e.windowWidth > 768 && !window.top.isPC){
-							let basic = '/uniapp-extend/static/html/pc.html';
-							// 若你的项目未设置根目录（默认为 / 时），则使用下方代码
-							// let basic = '/static/html/pc.html';
-							
-							let src = basic + window.location.hash;
-							window.location.replace(src);
-						}
-					}
-				}
-			});
 			// #endif
 			
 			// #ifndef H5

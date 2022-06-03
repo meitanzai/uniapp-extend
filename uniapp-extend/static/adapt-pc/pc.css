@@ -1,4 +1,19 @@
-body {
+/**
+ * uni-app 电脑端浏览兼容样式表
+ * 作者：河浪
+ * 联系方式：QQ 1846492969，邮箱 helang.love@qq.com
+ */
+
+/* 隐藏页面内容 */
+body[adapt='pc']>*{
+	display: none !important;
+}
+/* 显示 uni-adapt-pc 标记内容 */
+body[adapt='pc']>uni-adapt-pc{
+	display: block !important;
+}
+
+body[adapt='pc'] {
 	margin: 0;
 	background-color: #fff;
 	background-image: url(pc-bg.png);
@@ -9,7 +24,7 @@ body {
 	height: 100vh;
 }
 
-.container{
+body[adapt='pc'] .container{
 	position: fixed;
 	width: 100%;
 	height: 690px;
@@ -23,7 +38,7 @@ body {
 	max-width: 900px;
 }
 
-.container .iframe{
+body[adapt='pc'] .container .iframe{
 	width: 340px;
 	height: 690px;
 	background-image: url(pc-iPhoneX.png);
@@ -33,7 +48,7 @@ body {
 	float: left;
 }
 
-.container .iframe > iframe {
+body[adapt='pc'] .container .iframe > iframe {
 	width: 316px;
 	height: 604px;
 	background-color: #fff;
@@ -42,34 +57,34 @@ body {
 	margin: 43px 0 0 12px;
 }
 
-.container .content{
+body[adapt='pc'] .container .content{
 	float: right;
 	color: #42b983;
 	margin-left: 60px;
 	width: 400px;
 }
 
-.container .content > h1{
+body[adapt='pc'] .container .content > h1{
 	font-size: 36px;
 	font-weight: bold;
 	margin: 0;
 	padding: 100px 0 50px 0;
 }
 
-.container .content > h3{
+body[adapt='pc'] .container .content > h3{
 	font-size: 18px;
 	font-weight: bold;
 	margin: 0;
 	padding: 0 0 50px 0;
 }
 
-.container .content .qrcode{
+body[adapt='pc'] .container .content .qrcode{
 	border: #42b983 solid 2px;
 	box-sizing: content-box;
 	width: 260px;
 }
 
-.container .content > p{
+body[adapt='pc'] .container .content > p{
 	font-size: 14px;
 	margin: 0;
 	padding: 4px 0 0 0;
