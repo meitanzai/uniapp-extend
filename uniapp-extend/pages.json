@@ -221,6 +221,15 @@
             }
             
         }
+        ,{
+            "path" : "uni_modules/helang-tabBar/pages/helang-tabBar/helang-tabBar",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "底部导航栏",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"tabBar": {
 	    "color": "#666666",

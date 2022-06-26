@@ -69,6 +69,10 @@
 							{
 								"name":"从底部弹起的滚动选择器工具箱",
 								"url":"/uni_modules/helang-picker-utils/pages/picker-utils/picker-utils"
+							},
+							{
+								"name":"底部导航栏",
+								"url":"/uni_modules/helang-tabBar/pages/helang-tabBar/helang-tabBar"
 							}
 						]
 					}
