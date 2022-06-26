@@ -36,7 +36,7 @@
 			// 固定底部
 			fixedBottom:{
 				type:Boolean,
-				default:false
+				default:true
 			}
 		},
 		data() {
@@ -105,7 +105,9 @@
 				width: 90rpx;
 				height: 90rpx;
 				box-sizing: border-box;
-				border: #0043e3 solid 4px;
+				border-color: #0043e3;
+				border-style: solid;
+				border-width: 2px;
 				border-radius: 50%;
 				top: 5rpx;
 				left: 50%;
@@ -174,13 +176,16 @@
 	0% {
 		transform:scale(0,0);
 		opacity: 0;
+		border-width: 2px;
 	}
 	50% {
 		opacity: 0.5;
+		border-width: 5px;
 	}
 	100% {
 		transform:scale(0.95,0.95);
 		opacity: 0;
+		border-width: 0px;
 	}
 }
 
