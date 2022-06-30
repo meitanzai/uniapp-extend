@@ -34,7 +34,8 @@
 	import uniIcons from "@/uni_modules/helang-tabBar/components/uni-icons/uni-icons";
 	
 	export default {
-		name:"helang-tabBar-1",
+		// 冒泡
+		name:"helangTabBarBubble",
 		components: {
 			uniIcons
 		},
