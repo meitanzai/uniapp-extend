@@ -49,7 +49,7 @@
 		data() {
 			return {
 				prevIndex:-1,
-				current:0,
+				current:1,
 				tabList:[
 					{
 						"icon":"home-filled",

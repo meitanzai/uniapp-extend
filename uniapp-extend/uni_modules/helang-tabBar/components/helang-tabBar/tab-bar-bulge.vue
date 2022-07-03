@@ -14,9 +14,8 @@
 							'open':openBulge,
 							'close':!openBulge
 						}"
-						@tap="changeBulge()"
 					>
-						<view class="btn h-flex-x h-flex-center">
+						<view class="btn h-flex-x h-flex-center" @tap="changeBulge()">
 							<view>
 								<uni-icons type="plusempty" size="42rpx" color="#fff"></uni-icons>
 							</view>
@@ -26,7 +25,17 @@
 								<view class="color-yellow"></view>
 								<view class="color-orange"></view>
 								<view class="content">
-									<view>这里放图标</view>
+									<view class="h-flex-x h-flex-3">
+										<view style="padding-top: 40rpx;">
+											<uni-icons type="star" size="42rpx" color="#c66219"></uni-icons>
+										</view>
+										<view style="padding-bottom: 30rpx;">
+											<uni-icons type="paperplane" size="42rpx" color="#c66219"></uni-icons>
+										</view>
+										<view style="padding-top: 40rpx;">
+											<uni-icons type="heart" size="42rpx" color="#c66219"></uni-icons>
+										</view>
+									</view>
 								</view>
 							</view>
 						</view>
@@ -69,16 +78,14 @@
 		data() {
 			return {
 				prevIndex:-1,
-				current:0,
+				current:3,
 				tabList:[
 					{
 						"icon":"home",
-						"iconSelected":"home-filled",
 						"text":"首页"
 					},
 					{
 						"icon":"chat",
-						"iconSelected":"chat-filled",
 						"text":"消息"
 					},
 					{
@@ -86,12 +93,10 @@
 					},
 					{
 						"icon":"gift",
-						"iconSelected":"chat-filled",
 						"text":"福利"
 					},
 					{
 						"icon":"person",
-						"iconSelected":"person-filled",
 						"text":"我的"
 					},
 				],
@@ -112,10 +117,10 @@
 				
 				this.prevIndex = this.current;
 				this.current = index;
+				this.openBulge = false;
 			},
 			// 凸起按钮切换
 			changeBulge(){
-				
 				this.openBulge = !this.openBulge;
 			}
 		}
@@ -241,7 +246,7 @@
 						width: 100%;
 						height: 100%;
 						z-index: 2;
-						line-height: 100rpx;
+						padding: 0 15rpx;
 						text-align: center;
 					}
 				}

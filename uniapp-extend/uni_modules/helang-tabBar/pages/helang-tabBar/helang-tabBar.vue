@@ -19,6 +19,11 @@
 			<view class="title" style="margin-bottom: 30px;color: #333;">凸起舵式切换效果</view>
 			<helang-tab-bar-bulge :fixed-bottom="false"></helang-tab-bar-bulge>
 		</view>
+		
+		<view class="preview" style="background-color: #f4614e;">
+			<view class="title" style="margin-bottom: 30px;">窗帘下拉效果</view>
+			<helang-tab-bar-curtain :fixed-bottom="false"></helang-tab-bar-curtain>
+		</view>
 	</view>
 </template>
 
@@ -27,13 +32,15 @@
 	import tabBarBubble from "@/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-bubble";
 	import tabBarOverturn from "@/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-overturn";
 	import tabBarBulge from "@/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-bulge";
+	import tabBarCurtain from "@/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-curtain";
 	
 	export default {
 		components: {
 			"helang-tab-bar-roll": tabBarRoll,
 			"helang-tab-bar-bubble": tabBarBubble,
 			"helang-tab-bar-overturn": tabBarOverturn,
-			"helang-tab-bar-bulge": tabBarBulge
+			"helang-tab-bar-bulge": tabBarBulge,
+			"helang-tab-bar-curtain": tabBarCurtain
 		},
 		data() {
 			return {

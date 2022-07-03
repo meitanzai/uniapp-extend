@@ -54,7 +54,7 @@
 		data() {
 			return {
 				prevIndex:-1,
-				current:0,
+				current:2,
 				tabList:[
 					{
 						"icon":"home",
@@ -68,7 +68,7 @@
 					},
 					{
 						"icon":"gift",
-						"iconSelected":"chat-filled",
+						"iconSelected":"gift-filled",
 						"text":"福利"
 					},
 					{

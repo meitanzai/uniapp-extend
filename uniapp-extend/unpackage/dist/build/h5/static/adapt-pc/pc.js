@@ -5,6 +5,7 @@
  */
 
 ;(function(){
+	// 小于768像素则不执行
 	if(window.innerWidth < 768){
 		return;
 	}
