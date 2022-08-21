@@ -59,7 +59,6 @@
 	border-radius: 4px;
 	font-size: 28rpx;
 	color: #666;
-	margin-bottom: 20rpx;
 	
 	image{
 		display: block;
