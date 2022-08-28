@@ -1,73 +1,45 @@
 <template>
 	<view>
-		<view class="waterfall-box h-flex-x h-flex-2">
-			<view>
-				<view v-for="(item,index) in leftList" :key="item._render_id" 
-					class="list-item" 
-					:class="{'show': showPage >= item._current_page }"
-				>
-					<helang-waterfall
-						:params="item" 
-						tag="left"
-						:index="index"
-						@height="onHeight"
-						@click="onClick"
-					></helang-waterfall>
-				</view>
-			</view>
-			<view>
-				<view v-for="(item,index) in rightList" :key="item._render_id" 
-					class="list-item"
-					:class="{'show': showPage >= item._current_page }"
-				>
-					<helang-waterfall
-						:params="item" 
-						@height="onHeight"
-						@click="onClick"
-						tag="right"
-						:index="index"
-					></helang-waterfall>
-				</view>
-			</view>
-		</view>
-		<view class="load-txt">{{ajax.loadTxt}}</view>
+		<helang-waterfall-list
+			:status="waterfall.status"
+			:list="waterfall.list"
+			:reset="waterfall.reset"
+			@click="onClick"
+			@done="onDone"
+		></helang-waterfall-list>
 	</view>
 </template>
 
 <script>
-	import helangWaterfall from "@/uni_modules/helang-waterfall/components/helang-waterfall/helang-waterfall"
+	import helangWaterfallList from "@/uni_modules/helang-waterfall/components/waterfall/waterfall-list"
 	
 	// 列表接口模拟数据
 	import mockData from '../../mock-data/waterfall-list.js'
 	
 	export default {
 		components: {
-			"helang-waterfall": helangWaterfall
+			"helang-waterfall-list": helangWaterfallList
 		},
 		data() {
 			return {
-				// 左侧列表高度
-				leftHeight: 0,
-				// 右侧列表高度
-				rightHeight: 0,
-				// 左侧列表数据
-				leftList: [],
-				// 右侧列表数据
-				rightList: [],
 				// 异步请求相关
 				ajax: {
 					// 是否可以加载
 					load: true,
-					// 加载中提示文字
-					loadTxt: '',
 					// 每页的请求条件
 					rows:10,
 					// 页码
 					page:1,
+					// 数据列表
+					dataList:[]
 				},
-				// 待渲染列表
-				awaitRenderList:[],
-				showPage:-1
+				// 瀑布流组件相关
+				waterfall:{
+					status:"",
+					reset:false,
+					list:[]
+				}
+				
 			}
 		},
 		onReady() {
@@ -87,24 +59,9 @@
 			},800);
 		},
 		methods: {
-			// 监听高度变化
-			onHeight(height, tag) {
-				if (tag == 'left') {
-					this.leftHeight += height;
-				} else {
-					this.rightHeight += height;
-				}
-				this.renderList();
-			},
-			// 组件点击事件
-			onClick(index, tag){
-				console.log(index, tag);
-				// 对应的数据
-				if(tag == 'left'){
-					console.log(this.leftList[index]);
-				}else{
-					console.log(this.rightList[index]);
-				}
+			// 瀑布流组件点击事件
+			onClick(data,index, tag){
+				console.log(data);
 				let direction = {
 					"left":'左',
 					"right":'右'
@@ -114,64 +71,83 @@
 					icon:'none'
 				})
 			},
+			// 瀑布流组件渲染完成
+			onDone(){
+				// 设置组件为 非重置，这行代码保留不删即可
+				this.waterfall.reset = false;
+				
+				// 恢复 getList 方法的调用
+				this.ajax.load = true;
+				this.ajax.page++;
+				
+				// 设置组件状态为 等待加载
+				this.waterfall.status = 'await';
+
+				/**
+				 * 如果你是一个追求完美的开发者，可以通过判断当前数据的长度和请求的数据长度来优化前端请求，减少不必要请求
+				 * 不需要则删除
+				 * */
+				/**
+				if(this.ajax.dataCount >= this.ajax.rows){
+					this.ajax.load = true;
+					this.ajax.page++;
+				}
+				*/
+			},
 			// 获取数据
 			getList() {
 				if (!this.ajax.load) {
 					return;
 				}
 				this.ajax.load = false;
-				this.ajax.loadTxt = '加载中';
 				
-				mockData.getList().then(res=>{
+				// 设置状态为加载中
+				this.waterfall.status = 'loading';
+				
+				// 请求数据， mockData.getList 示例一个 ajax 请求
+				mockData.getList({
+					pageNum:this.ajax.page,
+					pageSize:this.ajax.rows
+				}).then(res=>{
 					// 获取到的数据，请注意数据结构
 					console.log(res);
 					
-					// 第一页初始化数据
+					// 第一页数据执行以下代码
 					if(this.ajax.page == 1){
-						// 将原来的列表左右高度重置为0
-						this.leftHeight = 0;
-						this.rightHeight = 0;
-						// 将原来的数据重置为空
-						this.leftList = [];
-						this.rightList = [];
-						// 可显示的页码重置
-						this.showPage = -1;
 						// 关闭下拉
 						uni.stopPullDownRefresh();
+						
+						// 设置组件状态为 重置，可供下拉刷新这类需要重置列表功能时使用
+						this.waterfall.reset = true;
 					}
 					
+					// 数据无效时处理
 					if(!res || res.length < 1){
-						this.ajax.loadTxt = '没有更多了';
+						// 设置组件为 加载结束 状态
+						this.waterfall.status = 'finish';
 						return;
 					}
-					this.awaitRenderList = res;
-					this.renderList();
+					
+					// 将数据赋值给瀑布流 list 属性
+					this.waterfall.list = res;
+					// 设置组件为 加载成功 状态
+					this.waterfall.status = 'success';
+					
+					/**
+					 * 下方的代码为扩展其他功能的示例代码 可做参考，不需要可删除
+					 * */ 
+					
+					// 缓存当前数据给其他需要该数据的功能使用
+					if(this.ajax.page == 1){
+						this.ajax.dataList = res;
+					}else{
+						this.ajax.dataList = [...this.ajax.dataList,...res];
+					}
+					// 记录本次数据长度，意义请看 done 事件的回调
+					this.ajax.dataCount = res.length || 0;
+					
+					// 。。。下面不需要写代码了，等待组件渲染完成
 				})
-			},
-			// 渲染列表，这里实现瀑布流的左右分栏
-			renderList() {
-				// 待渲染长度为 0 时表示已渲染完成
-				if(this.awaitRenderList.length < 1){
-					console.log(`--- 第${this.ajax.page}页  渲染完成 ---`);
-					this.showPage = this.ajax.page;
-					this.ajax.load = true;
-					this.ajax.loadTxt = '上拉加载更多';
-					this.ajax.page++;
-					return;
-				}
-				let item = {
-					...this.awaitRenderList.splice(0,1)[0],
-					// 当前数据添加当前页面标识
-					_current_page:this.ajax.page,
-					// 当前数据添加一个渲染id，解决 v-for 重复会出现不执行 load 的 BUG
-					_render_id:new Date().getTime()
-				};
-				
-				if(this.leftHeight > this.rightHeight){
-					this.rightList.push(item);
-				}else{
-					this.leftList.push(item);
-				}
 			}
 		}
 	}
@@ -180,54 +156,5 @@
 <style lang="scss">
 	page {
 		background-color: #f3f3f3;
-	}
-</style>
-
-<style lang="scss" scoped>
-	.waterfall-box {
-		padding: 20rpx 10rpx;
-		box-sizing: border-box;
-
-		>view {
-			padding: 0 10rpx;
-		}
-		
-		.list-item{
-			margin-bottom: 0;
-			// 设置透明，默认是可视的
-			opacity: 0;
-			// 默认超出隐藏，不影响加载中的文字显示效果
-			overflow: hidden;
-			height: 0;
-			
-			&.show{
-				margin-bottom: 20rpx;
-				opacity: 1;
-				overflow: auto;
-				height: auto;
-			}
-		}
-	}
-
-	.h-flex-x {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: nowrap;
-		justify-content: flex-start;
-		align-items: flex-start;
-		align-content: flex-start;
-
-		&.h-flex-2 {
-			>view {
-				width: 50%;
-			}
-		}
-	}
-	
-	.load-txt{
-		padding: 0 0 20rpx 0;
-		text-align: center;
-		color: #999;
-		font-size: 24rpx;
 	}
 </style>

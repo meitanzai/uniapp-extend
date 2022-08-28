@@ -1,13 +1,15 @@
 <template>
-	<view class="waterfall-item" @tap="onTap">
-		<image :src="params.url" mode="widthFix" @load="emitHeight" @error="emitHeight"></image>
-		<view class="content">
-			<view>{{params.title}}</view>
-			<view class="money">{{params.money}}元</view>
-			<view style="margin: 0 0 8rpx 0;">
-				<text class="label">{{params.label}}</text>
+	<view class="waterfall-item-container">
+		<view class="waterfall-item" @tap="onTap">
+			<image :src="params.url" mode="widthFix" @load="emitHeight" @error="emitHeight"></image>
+			<view class="content">
+				<view>{{params.title}}</view>
+				<view class="money">{{params.money}}元</view>
+				<view style="margin: 0 0 8rpx 0;">
+					<text class="label">{{params.label}}</text>
+				</view>
+				<view class="shop-name">{{params.shop}}</view>
 			</view>
-			<view class="shop-name">{{params.shop}}</view>
 		</view>
 	</view>
 </template>
@@ -40,7 +42,7 @@
 			// 发出组件高度信息，在此处可以区分正确和错误的加载，给予错误的提示图片
 			emitHeight(e){
 				const query = uni.createSelectorQuery().in(this);
-				query.select('.waterfall-item').boundingClientRect(data => {
+				query.select('.waterfall-item-container').boundingClientRect(data => {
 					let height = Math.floor(data.height);
 					this.$emit("height",height,this.$props.tag);
 				}).exec();
