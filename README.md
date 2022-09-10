@@ -1,4 +1,3 @@
-[![梦之蓝/uniapp-extend](https://gitee.com/myDarling/uniapp-extend/widgets/widget_card.svg?colors=393222,ebdfc1,fffae5,d8ca9f,393222,a28b40)](https://gitee.com/myDarling/uniapp-extend)
 ## uniapp-extend
 
 #### 介绍
