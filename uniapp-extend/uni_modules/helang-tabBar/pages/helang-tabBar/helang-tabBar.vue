@@ -10,6 +10,11 @@
 			<helang-tab-bar-bubble :fixed-bottom="false"></helang-tab-bar-bubble>
 		</view>
 		
+		<view class="preview" style="background-color: #212426;">
+			<view class="title" style="margin-bottom: 30px;">滑动效果</view>
+			<helang-tab-bar-slide :fixed-bottom="false"></helang-tab-bar-slide>
+		</view>
+		
 		<view class="preview" style="background-color: #b49df9;">
 			<view class="title">翻转效果</view>
 			<helang-tab-bar-overturn :fixed-bottom="false"></helang-tab-bar-overturn>
@@ -33,6 +38,7 @@
 	import tabBarOverturn from "@/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-overturn";
 	import tabBarBulge from "@/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-bulge";
 	import tabBarCurtain from "@/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-curtain";
+	import tabBarSlide from "@/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-slide";
 	
 	export default {
 		components: {
@@ -40,7 +46,8 @@
 			"helang-tab-bar-bubble": tabBarBubble,
 			"helang-tab-bar-overturn": tabBarOverturn,
 			"helang-tab-bar-bulge": tabBarBulge,
-			"helang-tab-bar-curtain": tabBarCurtain
+			"helang-tab-bar-curtain": tabBarCurtain,
+			"helang-tab-bar-slide": tabBarSlide
 		},
 		data() {
 			return {
