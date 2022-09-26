@@ -87,8 +87,8 @@
 		},
 		watch:{
 			"$props.status"(newValue,oldValue){
-				// 由 加载中 变更为 加载成功 状态时，执行瀑布流数据渲染	
-				if(oldValue == 'loading' && newValue == 'success'){
+				// 状态变更为 加载成功 时，执行瀑布流数据渲染	
+				if(newValue == 'success'){
 					if(!this.$props.list || this.$props.list.length < 1){
 						console.error('河浪瀑布流插件提示：当前数据无效');
 						return;

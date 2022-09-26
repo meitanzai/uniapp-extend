@@ -130,7 +130,7 @@
 					
 					// 将数据赋值给瀑布流 list 属性
 					this.waterfall.list = res;
-					// 设置组件为 加载成功 状态
+					// 设置组件为 加载成功 状态，此时瀑布流组件开始计算当前数据的布局
 					this.waterfall.status = 'success';
 					
 					/**

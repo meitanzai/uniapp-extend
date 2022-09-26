@@ -1,7 +1,7 @@
 {
   "id": "helang-waterfall",
   "displayName": "瀑布流布局-waterfall",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "这是一款简单又好用的瀑布流布局模板，通过页面模板+组件的方式。充分利用组件的复用性和页面的生命周期。",
   "keywords": [
     "瀑布流",
@@ -11,7 +11,7 @@
 ],
   "repository": "https://gitee.com/myDarling/uniapp-extend",
   "engines": {
-    "HBuilderX": "^3.2.5"
+    "HBuilderX": "^3.2.10"
   },
 "dcloudext": {
     "sale": {
