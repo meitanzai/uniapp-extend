@@ -6,7 +6,35 @@
 			:reset="waterfall.reset"
 			@click="onClick"
 			@done="onDone"
-		></helang-waterfall-list>
+		>
+			<template>
+				<view v-if="waterfall.status == 'await'">
+					<view class="load-txt">上拉加载更多</view>
+				</view>
+				<view v-else-if="waterfall.status == 'loading'">
+					<view class="load-txt">加载中</view>
+				</view>
+				<view v-else-if="waterfall.status == 'success'">
+					<view class="load-txt">加载中</view>
+				</view>
+				<view v-else-if="waterfall.status == 'finish'">
+					<view class="load-txt">没有更多了</view>
+				</view>
+				<view v-else-if="waterfall.status == 'fail'">
+					<image class="load-icon" src="../../static/waterfall/fail.png"></image>
+					<view class="load-txt">出错了，请刷新重试</view>
+				</view>
+				<view v-else-if="waterfall.status == 'empty'">
+					<image class="load-icon" src="../../static/waterfall/empty.png"></image>
+					<view class="load-txt">暂无数据</view>
+				</view>
+				<view v-else><!-- 别问我为什么要写一个 v-else 的空 view,不写H5平台就会有CSS生效的离谱BUG --></view>
+			</template>
+		</helang-waterfall-list>
+		
+		<view class="status-change" @tap="onStatusChange">
+			<view>切换<br />状态</view>
+		</view>
 	</view>
 </template>
 
@@ -148,7 +176,30 @@
 					
 					// 。。。下面不需要写代码了，等待组件渲染完成
 				})
-			}
+			},
+			// 导航状态切换演示监听
+			onStatusChange(){
+				uni.showActionSheet({
+					itemList: ['常规', '加载异常', '加载错误'],
+					success: (res)=> {
+						switch(res.tapIndex){
+							case 0:
+								this.ajax.page = 1;
+								this.ajax.load = true;
+								this.getList();
+								break;
+							case 1:
+								// alert(111)
+								this.waterfall.status = 'fail';
+								break;
+							case 2:
+								this.waterfall.status = 'empty';
+								break;
+							default:
+						}
+					}
+				});
+			},
 		}
 	}
 </script>
@@ -156,5 +207,41 @@
 <style lang="scss">
 	page {
 		background-color: #f3f3f3;
+	}
+	
+	.load-txt{
+		padding: 0 0 20rpx 0;
+		text-align: center;
+		color: #999;
+		font-size: 24rpx;
+	}
+	
+	.load-icon{
+		width: 300rpx;
+		height: 300rpx;
+		margin: 0 auto 20rpx auto;
+		display: block;
+	}
+	
+	.status-change{
+		position: fixed;
+		right: 10rpx;
+		top: 60%;
+		width: 80rpx;
+		height: 80rpx;
+		z-index: 100;
+		font-size: 24rpx;
+		border-radius: 50%;
+		background-color: #0089ff;
+		color: #fff;
+		line-height: 1;
+		opacity: .33;
+		
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
 	}
 </style>

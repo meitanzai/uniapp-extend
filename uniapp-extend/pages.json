@@ -191,7 +191,6 @@
                 "navigationBarTitleText": "瀑布流",
                 "enablePullDownRefresh": true
             }
-            
         }
         ,{
             "path" : "pages/template/optimized-swiper",

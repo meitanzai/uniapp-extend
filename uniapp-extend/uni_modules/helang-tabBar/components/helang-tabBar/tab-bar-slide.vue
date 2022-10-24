@@ -2,7 +2,7 @@
 	<view class="helang-tab-bar">
 		<view class="placeholder" v-if="fixedBottom"></view>
 		<view class="bar" :class="{'fixed':fixedBottom}">
-			<view class="circle" :class="`circle-${current}`">
+			<view class="circle" :class="'circle-'+current">
 				<view class="left"></view>
 				<view class="right"></view>
 			</view>

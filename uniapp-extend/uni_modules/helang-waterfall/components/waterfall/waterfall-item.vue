@@ -16,7 +16,10 @@
 
 <script>
 	export default {
-		name:"helang-waterfall",
+		name:"helangWaterfallItem",
+		options:{
+			virtualHost: true
+		},
 		props:{
 			params:{
 				type: Object,
