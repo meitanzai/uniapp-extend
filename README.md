@@ -1,37 +1,25 @@
-# uniapp-extend
+## uniapp-extend
 
 #### 介绍
-uni-app 插件 / 模板分享
+##### uni-app 组件 / 模板 / SDK 分享
 
-#### 软件架构
-软件架构说明
+### 在线预览：[https://mydarling.gitee.io/uniapp-extend](https://mydarling.gitee.io/uniapp-extend "H5版在线体验")
 
+### H5版在线体验
+![H5版在线体验二维码](https://mydarling.gitee.io/uniapp-extend/static/qrcode_h5.png "H5版在线体验二维码")
 
-#### 安装教程
+#### 安装
+* 下载项目 导入 HBuilderX 即可运行体验
 
-1. xxxx
-2. xxxx
-3. xxxx
+#### 关于作者
+* 昵称：河浪
+* 简介：一个热爱分享又普通的web前端开发者
+* 邮箱：helang.love@qq.com
 
-#### 使用说明
-
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 参与贡献
-
-1. Fork 本仓库
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
+#### 资源分享
+1. uni-app插件主页：[https://ext.dcloud.net.cn/publisher?id=110853](https://ext.dcloud.net.cn/publisher?id=110853 "uni-app插件主页")
+2. jQuery插件主页：[http://www.jq22.com/mem395541](http://www.jq22.com/mem395541 "jQuery插件主页：")
+3. CSDN-博客主页：[https://blog.csdn.net/u013350495](https://blog.csdn.net/u013350495 "CSDN-博客主页")
 
 
-#### 码云特技
 
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
