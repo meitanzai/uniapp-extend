@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class="waterfall-box h-flex-x h-flex-2">
+		<view class="waterfall-box h-flex-x h-flex-2" v-if="showList">
 			<view>
 				<view v-for="(item,index) in leftList" :key="item._render_id" 
 					class="list-item" 
@@ -30,7 +30,8 @@
 				</view>
 			</view>
 		</view>
-		<view class="load-txt" v-if="statusText">{{statusText}}</view>
+		
+		<slot name="default"></slot>
 	</view>
 </template>
 
@@ -38,6 +39,10 @@
 	import helangWaterfallItem from "./waterfall-item.vue"
 		
 	export default {
+		name:"helangWaterfallList",
+		options:{
+			virtualHost: true
+		},
 		components: {
 			"helang-waterfall-item": helangWaterfallItem
 		},
@@ -46,31 +51,6 @@
 			status:{
 				type: String,
 				default:''
-			},
-			// 等待加载文案
-			awaitText:{
-				type: String,
-				default:'上拉加载更多'
-			},
-			// 加载中文案
-			loadingText:{
-				type: String,
-				default:'加载中'
-			},
-			// 加载成功文案，一般与加载中保持一致即可，主要为提示组件可以开始渲染了
-			successText:{
-				type: String,
-				default:'加载中'
-			},
-			// 加载结束文案，用于没有更多数据时候展示
-			finishText:{
-				type: String,
-				default:'没有更多了'
-			},
-			// 加载失败文案，用于数据获取异常时展示
-			failText:{
-				type: String,
-				default:'加载失败'
 			},
 			// 待渲染的数据
 			list:{
@@ -89,34 +69,15 @@
 			"$props.status"(newValue,oldValue){
 				// 状态变更为 加载成功 时，执行瀑布流数据渲染	
 				if(newValue == 'success'){
-					if(!this.$props.list || this.$props.list.length < 1){
-						console.error('河浪瀑布流插件提示：当前数据无效');
-						return;
-					}
-					
-					// 若本次渲染为 重置 则先恢复组件的默认参数
-					if(this.$props.reset){
-						this.leftHeight = 0;
-						this.rightHeight = 0;
-						this.leftList = [];
-						this.rightList = [];
-						this.awaitRenderList = [];
-						// 当前展示页码数据
-						this.showPage = 1;
-					}
-					
-					this.awaitRenderList = [...this.$props.list];
-					this.renderList();
+					this.startRender();
+				}else if(!this.showList){
+					this.resetData();
 				}
 			}
 		},
 		computed:{
-			statusText(){
-				if(!this.$props.status){
-					return false;
-				}
-				let key = `${this.$props.status}Text`;
-				return this.$props[key] || false;
+			showList(){
+				return !["fail","empty"].includes(this.$props.status);
 			}
 		},
 		data() {
@@ -133,6 +94,11 @@
 				awaitRenderList:[],
 				// 当前展示页码数据
 				showPage:1
+			}
+		},
+		mounted() {
+			if(this.$props.status == 'success'){
+				this.startRender();
 			}
 		},
 		methods: {
@@ -194,6 +160,36 @@
 				}else{
 					this.leftList.push(item);
 				}
+			},
+			// 重置数据
+			resetData(){
+				this.leftHeight = 0;
+				this.rightHeight = 0;
+				this.leftList = [];
+				this.rightList = [];
+				this.awaitRenderList = [];
+				// 当前展示页码数据
+				this.showPage = 1;
+			},
+			// 启动渲染
+			startRender(){
+				if(!this.showList){
+					this.resetData();
+					return;
+				}
+				
+				if(!this.$props.list || this.$props.list.length < 1){
+					console.log('河浪瀑布流插件提示：当前数据为空，不会触发列表渲染');
+					return;
+				}
+				
+				// 若本次渲染为 重置 则先恢复组件的默认参数
+				if(this.$props.reset){
+					this.resetData();
+				}
+				
+				this.awaitRenderList = [...this.$props.list];
+				this.renderList();
 			}
 		}
 	}
@@ -238,12 +234,5 @@
 				width: 50%;
 			}
 		}
-	}
-	
-	.load-txt{
-		padding: 0 0 20rpx 0;
-		text-align: center;
-		color: #999;
-		font-size: 24rpx;
 	}
 </style>
